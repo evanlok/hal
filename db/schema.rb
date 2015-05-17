@@ -11,10 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150517013731) do
+ActiveRecord::Schema.define(version: 20150517020558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "find_the_best_locations", force: :cascade do |t|
+    t.integer  "ftb_id"
+    t.string   "county"
+    t.text     "sale_price_intro"
+    t.text     "sale_price_verb"
+    t.text     "sale_price_change"
+    t.text     "sale_price_end"
+    t.text     "expected_intro"
+    t.text     "expected_change"
+    t.text     "expected_months"
+    t.text     "list_price_intro"
+    t.text     "list_price_change"
+    t.text     "list_price_end"
+    t.text     "market_text"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "find_the_best_locations", ["ftb_id"], name: "index_find_the_best_locations_on_ftb_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -34,5 +54,17 @@ ActiveRecord::Schema.define(version: 20150517013731) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "videos", force: :cascade do |t|
+    t.integer  "videoable_id"
+    t.string   "videoable_type"
+    t.string   "url"
+    t.integer  "duration"
+    t.string   "thumbnail_url"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "videos", ["videoable_id", "videoable_type"], name: "index_videos_on_videoable_id_and_videoable_type", using: :btree
 
 end
