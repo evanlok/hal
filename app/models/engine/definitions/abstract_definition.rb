@@ -43,6 +43,10 @@ module Engine
         raise NotImplementedError.new('All subclasses of AbstractDefinition must override #content.')
       end
 
+      def ftb_location
+        @ftb_location ||= Engine::Presenters::FTBLocationPresenter.new(video.videoable)
+      end
+
       private
 
       def unicode_font
