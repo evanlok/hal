@@ -1,4 +1,4 @@
-User.create(email: 'admin@houztrendz.com', password: 'test1234')
+User.create(email: 'admin@houztrendz.com', password: 'test1234', role: 'admin')
 
 Definition.create! do |d|
   d.name = 'Test'
