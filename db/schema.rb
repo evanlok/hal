@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519054245) do
+ActiveRecord::Schema.define(version: 20150525215752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,13 +69,15 @@ ActiveRecord::Schema.define(version: 20150519054245) do
   create_table "videos", force: :cascade do |t|
     t.integer  "videoable_id"
     t.string   "videoable_type"
-    t.string   "url"
+    t.string   "filename"
     t.integer  "duration"
     t.string   "thumbnail_url"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "definition_id"
   end
 
+  add_index "videos", ["definition_id"], name: "index_videos_on_definition_id", using: :btree
   add_index "videos", ["videoable_id", "videoable_type"], name: "index_videos_on_videoable_id_and_videoable_type", using: :btree
 
 end

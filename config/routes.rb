@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resource :encoder_callback, only: [:create]
+
   namespace :admin do
     root to: 'definitions#index'
 

@@ -1,43 +1,20 @@
 class VideoGenerator
-  SKETCH_TEMPLATE = <<-EOS
-class Engine::Definitions::<%= definition.class_name %> < Engine::Definitions::AbstractDefinition
-  <%= definition.vgl_header -%>
+  attr_reader :videoable, :definition
 
-  def content
-    <%= definition.vgl_content %>
-  end
-
-  <%= definition.vgl_methods %>
-end
-  EOS
-
-  attr_reader :video, :definition
-
-  def initialize(video, definition)
-    @video = video
+  def initialize(videoable, definition)
+    @videoable = videoable
     @definition = definition
   end
 
-  def definition_class
-    @definition_class ||= begin
-      evaluate_code
-      "Engine::Definitions::#{definition.class_name}".constantize
-    end
+  def generate(priority = 'medium')
+    video = fetch_video
+    VidgenieClient.post_video(video, priority)
   end
 
-  def generate_definition_code
-    ERB.new(SKETCH_TEMPLATE, nil, '%<>-').result(binding)
-  end
-
-  def evaluate_code
-    Object.class_eval generate_definition_code, Rails.root.to_s + "/app/models/engine/definitions/#{definition.class_name.underscore}", -1
-  end
-
-  def definition_instance
-    @definition_instance ||= definition_class.new(@video)
-  end
-
-  def generated_vgl
-    @generated_vgl ||= definition_instance.to_vgl
+  def fetch_video
+    video = videoable.video || videoable.build_video
+    video.definition = definition
+    video.save
+    video
   end
 end

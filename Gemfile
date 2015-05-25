@@ -39,6 +39,8 @@ gem 'figaro'
 gem 'autoprefixer-rails'
 gem 'simple_form'
 gem 'paloma'
+gem 'faraday'
+gem 'typhoeus'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-ujs'
