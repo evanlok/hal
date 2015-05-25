@@ -48,6 +48,6 @@ end
 
 Video.create! do |v|
   v.videoable = ftb_location
-  v.filename = "#{SecureRandom.guid}.mp4"
+  v.filename = "#{SecureRandom.uuid}.mp4"
   v.duration = 120
 end

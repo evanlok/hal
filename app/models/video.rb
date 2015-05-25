@@ -11,7 +11,17 @@ class Video < ActiveRecord::Base
     "houztrendz/videos/#{id}"
   end
 
-  def url
-    [ENV['CDN_URL'], base_dir, filename].join('/')
+  def url(version=nil)
+    version_affix = case version.to_s
+                       when '240'
+                         '_240.mp4'
+                       when '720'
+                         '_720.mp4'
+                       else
+                         '.mp4'
+                     end
+
+    version_filename = filename.gsub(/\..+/, version_affix)
+    [ENV['CDN_URL'], base_dir, version_filename].join('/')
   end
 end
