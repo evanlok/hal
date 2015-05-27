@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     root to: 'definitions#index'
 
     resources :definitions
+    resources :find_the_best_locations
   end
 end

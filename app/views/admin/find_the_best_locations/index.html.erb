@@ -1,0 +1,30 @@
+<h1>FindTheBest Locations</h1>
+
+<p>
+  <%= link_to 'New Location', new_admin_find_the_best_location_path, class: 'btn btn-primary' %>
+</p>
+
+<table class="table">
+  <tr>
+    <th>FTB ID</th>
+    <th colspan="2">County</th>
+  </tr>
+
+  <% @find_the_best_locations.each do |find_the_best_location| %>
+    <tr>
+      <td><%= find_the_best_location.ftb_id %></td>
+      <td><%= find_the_best_location.county %></td>
+      <td class="actions">
+        <%= link_to [:edit, :admin, find_the_best_location] do %>
+          <i class="fa fa-pencil" title="Edit"></i>
+        <% end %>
+
+        <%= link_to [:admin, find_the_best_location], method: :delete, data: {confirm: 'Are you sure?'} do %>
+          <i class="fa fa-trash-o" title="Delete"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @find_the_best_locations %>

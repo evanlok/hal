@@ -4,4 +4,5 @@ class FindTheBestLocation < ActiveRecord::Base
 
   # Validations
   validates :ftb_id, :county, presence: true
+  validates :ftb_id, uniqueness: true
 end

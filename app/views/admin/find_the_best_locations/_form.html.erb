@@ -1,0 +1,18 @@
+<%= simple_form_for [:admin, @find_the_best_location] do |f| %>
+  <%= render 'shared/errors', errored_on: @find_the_best_location %>
+  <%= f.input :ftb_id, label: 'FTB ID' %>
+  <%= f.input :county %>
+  <%= f.input :sale_price_intro %>
+  <%= f.input :sale_price_verb %>
+  <%= f.input :sale_price_change %>
+  <%= f.input :sale_price_end %>
+  <%= f.input :expected_intro %>
+  <%= f.input :expected_change %>
+  <%= f.input :expected_months %>
+  <%= f.input :list_price_intro %>
+  <%= f.input :list_price_change %>
+  <%= f.input :list_price_end %>
+  <%= f.input :market_text %>
+  <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
+  <%= link_to 'Cancel', admin_definitions_path, class: 'btn btn-default' %>
+<% end %>
