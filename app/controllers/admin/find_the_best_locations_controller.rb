@@ -1,8 +1,12 @@
 class Admin::FindTheBestLocationsController < Admin::BaseController
-  before_action :load_find_the_best_location, only: [:edit, :update, :destroy]
+  before_action :load_find_the_best_location, only: [:show, :edit, :update, :destroy]
 
   def index
     @find_the_best_locations = FindTheBestLocation.order(updated_at: :desc).page(params[:page])
+  end
+
+  def show
+    @video = @find_the_best_location.video
   end
 
   def new

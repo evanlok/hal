@@ -8,10 +8,12 @@ class Video < ActiveRecord::Base
   validates :definition, presence: true, on: :create
 
   def base_dir
-    "houztrendz/videos/#{id}"
+    "videos/#{id}"
   end
 
   def url(version=nil)
+    return nil unless filename
+
     version_affix = case version.to_s
                        when '240'
                          '_240.mp4'

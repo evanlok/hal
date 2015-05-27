@@ -8,9 +8,13 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'definitions#index'
 
+    concern :videoable do
+      resource :video, only: [:create]
+    end
+
     resources :definitions
 
-    resources :find_the_best_locations do
+    resources :find_the_best_locations, concerns: :videoable do
       collection do
         post :import
       end
