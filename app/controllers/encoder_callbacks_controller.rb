@@ -1,4 +1,6 @@
 class EncoderCallbacksController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+
   def create
     status = params['status']
     video_url = params['outputs'].find {|o| o['label'] == 'medium' }.try(:[], 'url')
