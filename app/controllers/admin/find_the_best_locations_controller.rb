@@ -35,6 +35,12 @@ class Admin::FindTheBestLocationsController < Admin::BaseController
     redirect_to admin_find_the_best_locations_url, notice: "Deleted location: #{@find_the_best_location.county}"
   end
 
+  def import
+    file = params[:csv][:file]
+    Importers::FindTheBestLocationCSVImporter.new(file.path).import
+    redirect_to admin_find_the_best_locations_url, notice: 'Import successful!'
+  end
+
   protected
 
   def load_find_the_best_location

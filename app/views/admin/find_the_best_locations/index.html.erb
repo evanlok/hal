@@ -1,8 +1,18 @@
 <h1>FindTheBest Locations</h1>
 
-<p>
-  <%= link_to 'New Location', new_admin_find_the_best_location_path, class: 'btn btn-primary' %>
-</p>
+<div class="clearfix">
+  <div class="pull-left">
+    <%= link_to 'New Location', new_admin_find_the_best_location_path, class: 'btn btn-primary' %>
+  </div>
+
+  <div class="pull-right">
+    <%= simple_form_for :csv, url: import_admin_find_the_best_locations_path, multipart: true do |f| %>
+      <%= f.input :file, as: :file %>
+      <%= f.button :submit, 'Import', class: 'btn btn-warning' %>
+    <% end %>
+  </div>
+</div>
+<br/>
 
 <table class="table">
   <tr>
@@ -19,7 +29,7 @@
           <i class="fa fa-pencil" title="Edit"></i>
         <% end %>
 
-        <%= link_to [:admin, find_the_best_location], method: :delete, data: {confirm: 'Are you sure?'} do %>
+        <%= link_to [:admin, find_the_best_location], method: :delete, data: { confirm: 'Are you sure?' } do %>
           <i class="fa fa-trash-o" title="Delete"></i>
         <% end %>
       </td>
