@@ -17,13 +17,17 @@
 <table class="table">
   <tr>
     <th>FTB ID</th>
-    <th colspan="2">County</th>
+    <th>County</th>
+    <th>Created</th>
+    <th colspan="2">Updated</th>
   </tr>
 
   <% @find_the_best_locations.each do |find_the_best_location| %>
     <tr>
       <td><%= find_the_best_location.ftb_id %></td>
       <td><%= find_the_best_location.county %></td>
+      <td><%= find_the_best_location.created_at %></td>
+      <td><%= find_the_best_location.updated_at %></td>
       <td class="actions">
         <%= link_to [:edit, :admin, find_the_best_location] do %>
           <i class="fa fa-pencil" title="Edit"></i>
