@@ -6,7 +6,7 @@ class VideoGenerator
     @definition = definition
   end
 
-  def generate(priority = 'medium')
+  def generate(priority = 'normal')
     video = fetch_video
     VidgenieClient.post_video(video, priority)
   end
