@@ -26,10 +26,12 @@ class VidgenieClient
 
   def payload
     {
-      reference: reference,
-      vgl: vgl_generator.vgl,
-      priority: priority,
-      encoding_settings: encoder.settings
+      video: {
+        reference: reference,
+        vgl: vgl_generator.vgl,
+        priority: priority,
+        encoding_settings: encoder.settings
+      }
     }
   end
 end
