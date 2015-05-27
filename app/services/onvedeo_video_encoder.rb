@@ -69,7 +69,7 @@ class OnvedeoVideoEncoder
   def notifications
     [
       {
-        url: Rails.application.routes.url_helpers.encoder_callback_url(host: ENV['HOST'], port: ENV['PORT'])
+        url: Rails.application.routes.url_helpers.encoder_callback_url(host: ENV['HOST'], port: ENV['WEB_PORT'])
       }
     ]
   end

@@ -1,5 +1,5 @@
 VIDGENIE_SERVER_URL: http://localhost:3001
 HOST: localhost
-PORT: '3000'
+WEB_PORT: '3000'
 S3_BUCKET: vejeo-development
 CDN_URL: https://vejeo-development.s3.amazonaws.com
