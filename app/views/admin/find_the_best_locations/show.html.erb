@@ -9,6 +9,9 @@
 
   <dt>Slug</dt>
   <dd><%= @find_the_best_location.slug %></dd>
+
+  <dt>Embed URL</dt>
+  <dd><%= link_to embed_find_the_best_location_url(@find_the_best_location), embed_find_the_best_location_url(@find_the_best_location), target: '_blank' %></dd>
 </dl>
 
 <h2>Video</h2>
