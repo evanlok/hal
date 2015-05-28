@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :find_the_best_locations, only: [:show]
   resource :encoder_callback, only: [:create]
 
   namespace :admin do

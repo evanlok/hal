@@ -48,7 +48,7 @@ class Admin::FindTheBestLocationsController < Admin::BaseController
   protected
 
   def load_find_the_best_location
-    @find_the_best_location = FindTheBestLocation.find(params[:id])
+    @find_the_best_location = FindTheBestLocation.friendly.find(params[:id])
   end
 
   def find_the_best_location_params
