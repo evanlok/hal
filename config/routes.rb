@@ -3,7 +3,12 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :find_the_best_locations, only: [:show]
+  resources :find_the_best_locations, only: [:show] do
+    member do
+      get :embed
+    end
+  end
+
   resource :encoder_callback, only: [:create]
 
   namespace :admin do
