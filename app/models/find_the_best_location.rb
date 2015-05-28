@@ -1,6 +1,6 @@
 class FindTheBestLocation < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :county, use: [:slugged, :history]
+  friendly_id :county, use: [:slugged, :history, :finders]
 
   # Associations
   has_one :video, as: :videoable, dependent: :destroy
