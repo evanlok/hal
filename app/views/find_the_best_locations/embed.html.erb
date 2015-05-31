@@ -4,15 +4,17 @@
   <link rel="canonical" href="<%= find_the_best_location_url(@find_the_best_location) %>">
 <% end %>
 
-<video id="example_video_1" class="video-js vjs-default-skin vjs-big-play-centered"
-       controls preload="auto" width="640" height="360"
-       data-setup='{"customControlsOnMobile":true, "plugins":{"resolutionSelector": {}}}'>
+<div class="video-wrapper">
+  <video id="video" class="video-js vjs-default-skin vjs-big-play-centered"
+         controls preload="auto" width="auto" height="auto"
+         data-setup='{"customControlsOnMobile":true, "plugins":{"resolutionSelector": {}}}'>
 
-  <source src="https://d2iyuthlzz4bl3.cloudfront.net/videos/1/ed4abdf4-171f-4a5e-993c-c152020432d6.mp4" type='video/mp4' data-res="360"/>
-  <source src="https://d2iyuthlzz4bl3.cloudfront.net/videos/1/ed4abdf4-171f-4a5e-993c-c152020432d6_720.mp4" type='video/mp4' data-res="720"/>
+    <source src="https://d2iyuthlzz4bl3.cloudfront.net/videos/1/ed4abdf4-171f-4a5e-993c-c152020432d6.mp4" type='video/mp4' data-res="360"/>
+    <source src="https://d2iyuthlzz4bl3.cloudfront.net/videos/1/ed4abdf4-171f-4a5e-993c-c152020432d6_720.mp4" type='video/mp4' data-res="720"/>
 
-  <p class="vjs-no-js">
-    To view this video please enable JavaScript, and consider upgrading to a web browser that
-    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-  </p>
-</video>
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+  </video>
+</div>
