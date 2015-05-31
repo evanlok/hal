@@ -9,8 +9,8 @@
          controls preload="auto" width="auto" height="auto"
          data-setup='{"customControlsOnMobile":true, "plugins":{"resolutionSelector": {}}}'>
 
-    <source src="https://d2iyuthlzz4bl3.cloudfront.net/videos/1/ed4abdf4-171f-4a5e-993c-c152020432d6.mp4" type='video/mp4' data-res="360"/>
-    <source src="https://d2iyuthlzz4bl3.cloudfront.net/videos/1/ed4abdf4-171f-4a5e-993c-c152020432d6_720.mp4" type='video/mp4' data-res="720"/>
+    <source src="<%= @video.url %>" type='video/mp4' data-res="360"/>
+    <source src="<%= @video.url(720) %>" type='video/mp4' data-res="720"/>
 
     <p class="vjs-no-js">
       To view this video please enable JavaScript, and consider upgrading to a web browser that
