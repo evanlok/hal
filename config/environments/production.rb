@@ -78,4 +78,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.default_url_options = { host: ENV['HOST'], port: ENV['WEB_PORT'] }
+
+  config.action_controller.asset_host = ENV['CDN_URL']
 end
