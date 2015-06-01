@@ -206,6 +206,10 @@ GEM
     kaminari-bootstrap (3.0.1)
       kaminari (>= 0.13.0)
       rails
+    lograge (0.3.2)
+      actionpack (>= 3)
+      activesupport (>= 3)
+      railties (>= 3)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -353,6 +357,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   kaminari
   kaminari-bootstrap (~> 3.0.1)
+  lograge
   newrelic_rpm
   paloma
   pg

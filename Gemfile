@@ -46,6 +46,7 @@ gem 'honeybadger', '~> 2.0'
 gem 'friendly_id', '~> 5.1.0'
 gem 'asset_sync'
 gem 'newrelic_rpm'
+gem 'lograge'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-ujs'
