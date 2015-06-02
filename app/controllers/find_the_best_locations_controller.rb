@@ -1,11 +1,18 @@
 class FindTheBestLocationsController < ApplicationController
-  before_action :load_find_the_best_location
+  before_action :load_find_the_best_location, except: :fth_embed
 
   def show
   end
 
   def embed
     render layout: 'embed'
+  end
+
+  def fth_embed
+    @find_the_best_location = FindTheBestLocation.find_by(ftb_id: params[:ftb_id])
+    raise ActiveRecord::RecordNotFound.new("Couldn't find FindTheBestLocation with 'ftb_id'=#{params[:ftb_id]}") unless @find_the_best_location
+    @video = @find_the_best_location.try(:video)
+    render :embed, layout: 'embed'
   end
 
   protected

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/fth_videos/:ftb_id', to: 'find_the_best_locations#fth_embed', as: 'fth_video'
+
   resource :encoder_callback, only: [:create]
 
   namespace :admin do
