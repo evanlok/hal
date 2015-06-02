@@ -2,3 +2,28 @@
   height: auto;
   position: relative;
 }
+
+.vjs-control-bar {
+
+  a.onvedeo-logo {
+    display: inline-block;
+    height: 30px;
+    width: 88px;
+    background-image: image-url("ov-player-logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto 100%;
+    margin: 0 auto;
+    position: absolute;
+    left: 50%;
+    margin-left: -44px;
+    text-indent: -9999px;
+
+    /* Landscape phones and down */
+    @media (max-width: 500px) {
+      & {
+        display: none;
+      }
+    }
+  }
+}
