@@ -1,5 +1,6 @@
 class FindTheBestLocationsController < ApplicationController
   before_action :load_find_the_best_location, except: :fth_embed
+  after_action :allow_iframe
 
   def show
   end
@@ -20,5 +21,9 @@ class FindTheBestLocationsController < ApplicationController
   def load_find_the_best_location
     @find_the_best_location = FindTheBestLocation.friendly.find(params[:id])
     @video = @find_the_best_location.try(:video)
+  end
+
+  def allow_iframe
+    response.headers.except!('X-Frame-Options')
   end
 end
