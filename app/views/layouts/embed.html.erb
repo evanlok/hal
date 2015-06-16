@@ -18,7 +18,6 @@
 <script type='text/javascript'>
 
   videojs("video", function(){
-    var myPlayer = this;    // Store the video object
 
     if(typeof mixpanel != 'undefined') {
       mixpanel.register({
@@ -27,10 +26,10 @@
         "county": '<%= @find_the_best_location.county %>'
       })
 
-      myPlayer.on("play", function(){ mixpanel.track("Played video") })
-      myPlayer.on("pause", function(){ mixpanel.track("Paused video", {"progress": parseInt((this.currentTime() / this.duration())*100) }) })
-      myPlayer.on("ended", function(){ mixpanel.track("Ended video") })
-      myPlayer.on("seeked", function(e) { mixpanel.track("Seeked video", {"seek_to_second": parseInt(this.currentTime())}) })
+      video.on("play", function(){ mixpanel.track("Played video") })
+      video.on("pause", function(){ mixpanel.track("Paused video", {"progress": parseInt((this.currentTime() / this.duration())*100) }) })
+      video.on("ended", function(){ mixpanel.track("Ended video") })
+      video.on("seeked", function(e) { mixpanel.track("Seeked video", {"seek_to_second": parseInt(this.currentTime())}) })
     }
   });
 
