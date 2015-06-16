@@ -19,7 +19,7 @@
 
   videojs("video", function(){
     var myPlayer = this;    // Store the video object
-
+    
     if(typeof mixpanel != 'undefined') {
       mixpanel.register({
         "Video Type": "houztrendz", 
@@ -27,10 +27,10 @@
         "county": '<%= @find_the_best_location.county %>'
       })
 
-      mixpanel.track("Played video");
-      mixpanel.track("Paused video", {"progress": parseInt((this.currentTime() / this.duration())*100) });
-      mixpanel.track("Ended video");
-      mixpanel.track("Seeked video", {"seek_to_second": parseInt(this.currentTime())});
+      this.on("play", function(){ mixpanel.track("Played video") })
+      this.on("pause", function(){ mixpanel.track("Paused video", {"progress": parseInt((this.currentTime() / this.duration())*100) }) })
+      this.on("ended", function(){ mixpanel.track("Ended video") })
+      this.on("seeked", function(e) { mixpanel.track("Seeked video", {"seek_to_second": parseInt(this.currentTime())}) })
     }
   });
 

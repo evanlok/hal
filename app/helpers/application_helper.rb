@@ -16,4 +16,15 @@ module ApplicationHelper
     page_title << suffix unless page_title.end_with?(suffix)
     content_for :title, page_title
   end
+
+  def track(event, options={})
+    return nil if Rails.env.development?
+    javascript_tag("mixpanel.track('#{event}', #{raw(options.to_json)})")
+  end
+
+  def track_links(selector, event, options={})
+    return nil if Rails.env.development?
+    javascript_tag("mixpanel.track_links('#{selector}', '#{event}', #{raw(options.to_json)})")
+  end
+  
 end
