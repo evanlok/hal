@@ -20,8 +20,8 @@
     if(typeof mixpanel != 'undefined') {
       mixpanel.register({
         "Video Type": "houztrendz", 
-        "houztrendz_id": <%= @find_the_best_location.ftb_id %>,
-        "county": <%= @find_the_best_location.county %>
+        "houztrendz_id": '<%= @find_the_best_location.ftb_id %>',
+        "county": '<%= @find_the_best_location.county %>'
       })
 
       this.on("play", function(){ mixpanel.track("Played video") })
