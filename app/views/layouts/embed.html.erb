@@ -27,10 +27,10 @@
         "county": '<%= @find_the_best_location.county %>'
       })
 
-      this.on("play", function(){ mixpanel.track("Played video") })
-      this.on("pause", function(){ mixpanel.track("Paused video", {"progress": parseInt((this.currentTime() / this.duration())*100) }) })
-      this.on("ended", function(){ mixpanel.track("Ended video") })
-      this.on("seeked", function(e) { mixpanel.track("Seeked video", {"seek_to_second": parseInt(this.currentTime())}) })
+      myPlayer .on("play", function(){ mixpanel.track("Played video") })
+      myPlayer .on("pause", function(){ mixpanel.track("Paused video", {"progress": parseInt((this.currentTime() / this.duration())*100) }) })
+      myPlayer .on("ended", function(){ mixpanel.track("Ended video") })
+      myPlayer .on("seeked", function(e) { mixpanel.track("Seeked video", {"seek_to_second": parseInt(this.currentTime())}) })
     }
   });
 
