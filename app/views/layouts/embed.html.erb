@@ -17,6 +17,7 @@
 <%= yield %>
 <script type='text/javascript'>
 
+  videojs("video", function(){
     if(typeof mixpanel != 'undefined') {
       mixpanel.register({
         "Video Type": "houztrendz", 
@@ -29,6 +30,7 @@
       this.on("ended", function(){ mixpanel.track("Ended video") })
       this.on("seeked", function(e) { mixpanel.track("Seeked video", {"seek_to_second": parseInt(this.currentTime())}) })
     }
+  });
 
 </script>
 </body>
