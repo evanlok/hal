@@ -47,6 +47,7 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'asset_sync'
 gem 'newrelic_rpm'
 gem 'lograge'
+gem 'bootflat-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-ujs'
