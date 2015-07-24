@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.2.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.3'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+#gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -26,15 +26,39 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Unicorn as the app server
-gem 'unicorn'
+# Use Puma as the app server
+gem 'puma'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'bundler', '>= 1.8.4'
 gem 'devise'
 gem 'kaminari'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'figaro'
+gem 'autoprefixer-rails'
+gem 'simple_form'
+gem 'paloma'
+gem 'faraday'
+gem 'typhoeus'
+gem 'honeybadger', '~> 2.0'
+gem 'friendly_id', '~> 5.1.0'
+gem 'asset_sync'
+gem 'newrelic_rpm'
+gem 'lograge'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery-ujs'
+  gem 'rails-assets-bootstrap-sass-official'
+  gem 'rails-assets-fontawesome'
+  gem 'rails-assets-normalize-scss'
+  gem 'rails-assets-ace-builds'
+end
+
+group :development do
+  gem 'quiet_assets'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -47,4 +71,14 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails', '~> 3.0'
+  gem 'awesome_print'
+end
+
+group :test do
+  gem 'factory_girl_rails'
+  gem 'faker'
+end
+
+group :production do
+  gem 'rails_12factor'
 end

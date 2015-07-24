@@ -1,0 +1,44 @@
+<% title @find_the_best_location.county %>
+
+<% content_for :head do %>
+  <link rel="canonical" href="<%= find_the_best_location_url(@find_the_best_location) %>">
+<% end %>
+
+<div class="video-wrapper">
+  <video id="video" class="video-js vjs-default-skin vjs-big-play-centered"
+         controls preload="auto" width="auto" height="auto"
+         data-setup='{"customControlsOnMobile":true, "plugins":{"resolutionSelector": {}}}'>
+
+    <source src="<%= @video.url %>" type='video/mp4' data-res="360"/>
+    <source src="<%= @video.url(720) %>" type='video/mp4' data-res="720"/>
+
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+  </video>
+</div>
+
+<script>
+  videojs('video', {}, function () {
+    if (typeof mixpanel != 'undefined') {
+      mixpanel.register({
+        "Video Type": "houztrendz",
+        "houztrendz_id": <%= @find_the_best_location.ftb_id %>,
+        "county": '<%= @find_the_best_location.county %>'
+      });
+      this.on('play', function () {
+        mixpanel.track('Played video');
+      });
+      this.on('pause', function () {
+        mixpanel.track('Paused video', {"progress": parseInt((this.currentTime() / this.duration()) * 100) });
+      });
+      this.on('ended', function () {
+        mixpanel.track('Ended video');
+      });
+      this.on('seeked', function (e) {
+        mixpanel.track('Seeked video', {"seek_to_second": parseInt(this.currentTime())});
+      });
+    }
+  });
+</script>

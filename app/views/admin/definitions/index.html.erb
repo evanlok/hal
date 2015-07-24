@@ -1,0 +1,40 @@
+<h1>Definitions</h1>
+
+<p>
+  <%= link_to 'New Definition', new_admin_definition_path, class: 'btn btn-primary' %>
+</p>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Active</th>
+    <th>Created</th>
+    <th colspan="2">Updated</th>
+  </tr>
+
+  <% @definitions.each do |definition| %>
+    <tr>
+      <td><%= definition.name %></td>
+      <td>
+        <% if definition.active %>
+          <i class="fa fa-check text-success"></i>
+        <% else %>
+          <i class="fa fa-times text-danger"></i>
+        <% end %>
+      </td>
+      <td><%= definition.created_at %></td>
+      <td><%= definition.updated_at %></td>
+      <td class="actions">
+        <%= link_to [:edit, :admin, definition] do %>
+          <i class="fa fa-pencil" title="Edit"></i>
+        <% end %>
+
+        <%= link_to [:admin, definition], method: :delete, data: {confirm: 'Are you sure?'} do %>
+          <i class="fa fa-trash-o" title="Delete"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @definitions %>

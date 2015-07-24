@@ -1,0 +1,11 @@
+VIDGENIE_SERVER_URL: http://localhost:3001
+HOST: localhost
+WEB_PORT: '3000'
+S3_BUCKET: houztrendz-staging
+CDN_URL: https://vejeo-development.s3.amazonaws.com
+AWS_ACCESS_KEY_ID: ACCESS_KEY
+AWS_SECRET_ACCESS_KEY: SECRET_KEY
+FOG_DIRECTORY: houztrendz-staging
+FOG_PROVIDER: AWS
+ASSET_SYNC_GZIP_COMPRESSION: 'true'
+MIXPANEL_TOKEN: token

@@ -46,7 +46,7 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :debug
+  config.log_level = :info
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
@@ -77,5 +77,14 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: ENV['HOST'], port: ENV['PORT'] }
+  config.action_mailer.default_url_options = { host: ENV['HOST'], port: ENV['WEB_PORT'] }
+
+  config.action_controller.asset_host = ENV['CDN_URL']
+
+  config.lograge.enabled = true
+
+  config.lograge.custom_options = lambda do |event|
+    params = event.payload[:params].except('controller', 'action', 'format')
+    {time: event.time, params: params}
+  end
 end
