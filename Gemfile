@@ -47,6 +47,9 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'asset_sync'
 gem 'newrelic_rpm'
 gem 'lograge'
+gem 'oj'
+gem 'oj_mimic_json'
+gem 'hashie'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-ujs'
@@ -77,6 +80,8 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'webmock'
+  gem 'climate_control'
 end
 
 group :production do

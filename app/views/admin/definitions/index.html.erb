@@ -6,7 +6,9 @@
 
 <table class="table">
   <tr>
+    <th>ID</th>
     <th>Name</th>
+    <th>Video Type</th>
     <th>Active</th>
     <th>Created</th>
     <th colspan="2">Updated</th>
@@ -14,7 +16,9 @@
 
   <% @definitions.each do |definition| %>
     <tr>
+      <td><%= definition.id %></td>
       <td><%= definition.name %></td>
+      <td><%= link_to definition.video_type.name, [:edit, :admin, definition.video_type] %></td>
       <td>
         <% if definition.active %>
           <i class="fa fa-check text-success"></i>

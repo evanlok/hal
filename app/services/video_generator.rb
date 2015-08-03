@@ -1,19 +1,20 @@
 class VideoGenerator
-  attr_reader :videoable, :definition
+  attr_reader :video_content
 
-  def initialize(videoable, definition)
-    @videoable = videoable
-    @definition = definition
+  def initialize(video_content)
+    @video_content = video_content
   end
 
   def generate(priority = 'normal')
     video = fetch_video
-    VidgenieClient.post_video(video, priority)
+    vgl_generator = VGLGenerator.new(video_content)
+    encoder = OnvedeoVideoEncoder.new(video)
+    vidgenie_client = VidgenieClient.new(vgl_generator, encoder, priority, { type: video.videoable_type, id: video.videoable_id, video_id: video.id })
+    vidgenie_client.post_to_server
   end
 
   def fetch_video
-    video = videoable.video || videoable.build_video
-    video.definition = definition
+    video = video_content.video || video_content.build_video
     video.save
     video
   end

@@ -1,0 +1,47 @@
+<h1>Video Content: <%= @video_content.uid %></h1>
+
+<dl class="dl-horizontal">
+  <dt>Definition</dt>
+  <dd><%= link_to @video_content.definition.name, [:edit, :admin, @video_content.definition] %></dd>
+
+  <dt>Data</dt>
+  <dd>
+    <pre class="pre-scrollable"><%= JSON.pretty_generate(@video_content.data) %></pre>
+  </dd>
+</dl>
+
+<% if @video %>
+  <dl class="dl-horizontal">
+    <dt>Duration</dt>
+    <dd><%= @video.duration %></dd>
+
+    <dt>Embed URL</dt>
+    <dd><%= link_to video_url(@video), @video, target: '_blank' %></dd>
+
+    <dt>URL</dt>
+    <dd><%= link_to @video.url, @video.url %></dd>
+
+    <dt>URL 720p</dt>
+    <dd><%= link_to @video.url(720), @video.url(720) %></dd>
+
+    <dt>Thumbnail URL</dt>
+
+    <dd>
+      <% if @video.thumbnail_url.present? %>
+        <%= link_to @video.thumbnail_url, @video.thumbnail_url %>
+      <% else %>
+        No thumbnail available
+      <% end %>
+    </dd>
+  </dl>
+<% else %>
+  No video generated!
+<% end %>
+
+<div class="row">
+  <div class="col-md-4">
+    <%= simple_form_for @video || Video.new, url: admin_video_content_video_path(@video_content), method: :post do |f| %>
+      <%= f.button :submit, 'Generate', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

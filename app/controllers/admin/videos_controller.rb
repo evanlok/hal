@@ -1,9 +1,8 @@
 class Admin::VideosController < Admin::BaseController
   def create
     @videoable = find_videoable
-    @definition = Definition.find(params[:video][:definition_id])
-    VideoGenerator.new(@videoable, @definition).generate
-    redirect_to [:admin, @videoable], notice: "Generated video with definition: #{@definition.name}"
+    VideoGenerator.new(@videoable).generate
+    redirect_to [:admin, @videoable], notice: "Generated video with definition: #{@videoable.definition.name}"
   end
 
   protected

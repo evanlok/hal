@@ -2,7 +2,7 @@ class Admin::DefinitionsController < Admin::BaseController
   before_action :load_definition, except: [:index, :new, :create]
 
   def index
-    @definitions = Definition.page(params[:page])
+    @definitions = Definition.includes(:video_type).order('video_types.name, definitions.name').page(params[:page])
   end
 
   def new
@@ -45,6 +45,6 @@ class Admin::DefinitionsController < Admin::BaseController
   end
 
   def definition_params
-    params.require(:definition).permit(:name, :class_name, :active, :vgl_header, :vgl_content, :vgl_methods)
+    params.require(:definition).permit!
   end
 end

@@ -1,0 +1,48 @@
+<h1>Video Contents</h1>
+
+<p>
+  <%= link_to 'New Video Content', new_admin_video_content_path, class: 'btn btn-primary' %>
+</p>
+
+<table class="table">
+  <tr>
+    <td>ID</td>
+    <th>UID</th>
+    <th>Video Type</th>
+    <th>Definition</th>
+    <th>Created</th>
+    <th colspan="2">Updated</th>
+  </tr>
+
+  <% @video_contents.each do |video_content| %>
+    <tr>
+      <td><%= video_content.id %></td>
+      <td><%= video_content.uid %></td>
+      <td><%= link_to video_content.definition.video_type.name, [:edit, :admin, video_content.definition.video_type] %></td>
+      <td><%= link_to video_content.definition.name, [:edit, :admin, video_content.definition] %></td>
+      <td><%= video_content.created_at %></td>
+      <td><%= video_content.updated_at %></td>
+      <td class="actions">
+        <%= link_to [:admin, video_content] do %>
+          <i class="fa fa-eye" title="Show"></i>
+        <% end %>
+
+        <% if video_content.video %>
+          <%= link_to video_path(video_content.video), target: '_blank' do %>
+            <i class="fa fa-play-circle" title="Embed URL"></i>
+          <% end %>
+        <% end %>
+
+        <%= link_to [:edit, :admin, video_content] do %>
+          <i class="fa fa-pencil" title="Edit"></i>
+        <% end %>
+
+        <%= link_to [:admin, video_content], method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="fa fa-trash-o" title="Delete"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @video_contents %>

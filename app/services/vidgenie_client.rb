@@ -8,12 +8,6 @@ class VidgenieClient
     @reference = reference
   end
 
-  def self.post_video(video, priority)
-    vgl_generator = VGLGenerator.new(video)
-    encoder = OnvedeoVideoEncoder.new(video)
-    new(vgl_generator, encoder, priority, { type: video.videoable_type, id: video.videoable_id }).post_to_server
-  end
-
   def post_to_server
     conn = Faraday.new(url: ENV['VIDGENIE_SERVER_URL'], headers: { 'Content-Type' => 'application/json' }) do |f|
       f.response :logger, Rails.logger, bodies: true
