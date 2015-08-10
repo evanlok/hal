@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :find_the_best_locations, only: [:show] do
+  resources :find_the_best_locations, only: [] do
     member do
       get :embed
     end
