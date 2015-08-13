@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Admin::DefinitionsController do
   login_admin
+  let(:video_type) { create(:video_type) }
   let(:definition) { create(:definition) }
 
   describe 'GET index' do
@@ -13,13 +14,14 @@ RSpec.describe Admin::DefinitionsController do
 
   describe 'GET new' do
     it 'renders page' do
+      get :new
       expect(response).to be_success
     end
   end
 
   describe 'POST create' do
     it 'creates new definition' do
-      post :create, definition: attributes_for(:definition)
+      post :create, definition: attributes_for(:definition, video_type_id: video_type.id)
       expect(assigns(:definition)).to be_persisted
       expect(response).to redirect_to(admin_definitions_url)
     end
@@ -27,6 +29,7 @@ RSpec.describe Admin::DefinitionsController do
 
   describe 'GET edit' do
     it 'renders page' do
+      get :edit, id: definition
       expect(response).to be_success
     end
   end

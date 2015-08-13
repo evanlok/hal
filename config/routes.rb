@@ -3,11 +3,13 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :find_the_best_locations, only: [:show] do
+  resources :find_the_best_locations, only: [] do
     member do
       get :embed
     end
   end
+
+  resources :videos, only: :show
 
   get '/fth_videos/:ftb_id', to: 'find_the_best_locations#fth_embed', as: 'fth_video'
 
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
       resource :video, only: [:create]
     end
 
+    resources :video_types
     resources :definitions
 
     resources :find_the_best_locations, concerns: :videoable do
@@ -27,5 +30,7 @@ Rails.application.routes.draw do
         post :import
       end
     end
+
+    resources :video_contents, concerns: :videoable
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150528034612) do
+ActiveRecord::Schema.define(version: 20150808224604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,13 +19,16 @@ ActiveRecord::Schema.define(version: 20150528034612) do
   create_table "definitions", force: :cascade do |t|
     t.string   "name"
     t.string   "class_name"
-    t.boolean  "active",      default: false
+    t.boolean  "active",        default: false
     t.text     "vgl_header"
     t.text     "vgl_content"
     t.text     "vgl_methods"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "video_type_id"
   end
+
+  add_index "definitions", ["video_type_id"], name: "index_definitions_on_video_type_id", using: :btree
 
   create_table "find_the_best_locations", force: :cascade do |t|
     t.integer  "ftb_id"
@@ -44,8 +47,10 @@ ActiveRecord::Schema.define(version: 20150528034612) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
     t.string   "slug"
+    t.integer  "definition_id"
   end
 
+  add_index "find_the_best_locations", ["definition_id"], name: "index_find_the_best_locations_on_definition_id", using: :btree
   add_index "find_the_best_locations", ["ftb_id"], name: "index_find_the_best_locations_on_ftb_id", using: :btree
   add_index "find_the_best_locations", ["slug"], name: "index_find_the_best_locations_on_slug", unique: true, using: :btree
 
@@ -81,6 +86,25 @@ ActiveRecord::Schema.define(version: 20150528034612) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "video_contents", force: :cascade do |t|
+    t.string   "uid"
+    t.json     "data"
+    t.integer  "definition_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "video_contents", ["definition_id"], name: "index_video_contents_on_definition_id", using: :btree
+  add_index "video_contents", ["uid"], name: "index_video_contents_on_uid", using: :btree
+
+  create_table "video_types", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.json     "schema"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "videos", force: :cascade do |t|
     t.integer  "videoable_id"
     t.string   "videoable_type"
@@ -89,10 +113,8 @@ ActiveRecord::Schema.define(version: 20150528034612) do
     t.string   "thumbnail_url"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.integer  "definition_id"
   end
 
-  add_index "videos", ["definition_id"], name: "index_videos_on_definition_id", using: :btree
   add_index "videos", ["videoable_id", "videoable_type"], name: "index_videos_on_videoable_id_and_videoable_type", using: :btree
 
 end

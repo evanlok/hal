@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.2.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.3'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -47,6 +47,9 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'asset_sync'
 gem 'newrelic_rpm'
 gem 'lograge'
+gem 'oj'
+gem 'oj_mimic_json'
+gem 'hashie'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-ujs'
@@ -77,6 +80,8 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'webmock'
+  gem 'climate_control'
 end
 
 group :production do

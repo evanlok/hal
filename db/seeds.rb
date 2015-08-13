@@ -1,8 +1,19 @@
 User.create(email: 'admin@houztrendz.com', password: 'test1234', role: 'admin')
 
-Definition.create! do |d|
+houztrendz_video_type = VideoType.create! do |vt|
+  vt.name = 'HouzTrendz'
+  vt.description = 'Houztrendz county videos'
+end
+
+ad_video_type = VideoType.create! do |vt|
+  vt.name = 'FacebookAd'
+  vt.description = 'Facebook Ad Videos'
+end
+
+test_definition = Definition.create! do |d|
   d.name = 'Test'
   d.class_name = 'TestDefinition'
+  d.video_type = ad_video_type
   d.active = true
   d.vgl_header = <<-HEADER
 font_family "http://vejeo.s3.amazonaws.com/vidgenie/fonts/lato/Lato-Bold.ttf"
@@ -30,7 +41,12 @@ end
   CONTENT
 end
 
+find_the_home_definition = test_definition.dup
+find_the_home_definition.attributes = { name: FindTheBestLocation::DEFINITION_NAME, class_name: FindTheBestLocation::DEFINITION_NAME, video_type: houztrendz_video_type }
+find_the_home_definition.save
+
 ftb_location = FindTheBestLocation.create! do |f|
+  f.definition = find_the_home_definition
   f.ftb_id = 18118
   f.county = ' Kent County'
   f.sale_price_intro = 'The median sale price in'
@@ -48,6 +64,18 @@ end
 
 Video.create! do |v|
   v.videoable = ftb_location
+  v.filename = "#{SecureRandom.uuid}.mp4"
+  v.duration = 120
+end
+
+video_content = VideoContent.create! do |vc|
+  vc.uid = "Content #{Time.zone.now.to_i}"
+  vc.data = {attr1: 'value1', attr2: 'value2'}
+  vc.definition = test_definition
+end
+
+Video.create! do |v|
+  v.videoable = video_content
   v.filename = "#{SecureRandom.uuid}.mp4"
   v.duration = 120
 end

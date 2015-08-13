@@ -1,9 +1,11 @@
 class Definition < ActiveRecord::Base
   # Associations
-  has_many :videos, dependent: :nullify
+  belongs_to :video_type
+  has_many :video_contents, dependent: :nullify
+  has_many :find_the_best_locations, dependent: :nullify
 
   # Validations
-  validates :name, :class_name, presence: true
-  validates :name, :class_name, uniqueness: true
-  validates :class_name, format: { with: /\A[a-zA-Z]+\z/, message: 'only allows letters' }
+  validates :name, :class_name, :video_type, presence: true
+  validates :name, :class_name, uniqueness: { scope: :video_type_id }
+  validates :class_name, class_name: true
 end

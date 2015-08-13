@@ -1,7 +1,7 @@
 <% title @find_the_best_location.county %>
 
 <% content_for :head do %>
-  <link rel="canonical" href="<%= find_the_best_location_url(@find_the_best_location) %>">
+  <link rel="canonical" href="<%= embed_find_the_best_location_url(@find_the_best_location) %>">
 <% end %>
 
 <div class="video-wrapper">
@@ -19,3 +19,26 @@
   </video>
 </div>
 
+<script>
+  videojs('video', {}, function () {
+    if (typeof mixpanel != 'undefined') {
+      mixpanel.register({
+        "Video Type": "houztrendz",
+        "houztrendz_id": <%= @find_the_best_location.ftb_id %>,
+        "county": '<%= @find_the_best_location.county %>'
+      });
+      this.on('play', function () {
+        mixpanel.track('Played video');
+      });
+      this.on('pause', function () {
+        mixpanel.track('Paused video', {"progress": parseInt((this.currentTime() / this.duration()) * 100) });
+      });
+      this.on('ended', function () {
+        mixpanel.track('Ended video');
+      });
+      this.on('seeked', function (e) {
+        mixpanel.track('Seeked video', {"seek_to_second": parseInt(this.currentTime())});
+      });
+    }
+  });
+</script>

@@ -8,9 +8,14 @@ FactoryGirl.define do
     end
   end
 
+  factory :video_type do
+    sequence(:name) { |n| "VideoType#{n}" }
+  end
+
   factory :definition do
+    video_type
     sequence(:name) { |n| "Defintion#{n}" }
-    class_name { "TestDefinition#{('A'..'Z').to_a.sample(3).join}" }
+    sequence(:class_name) { |n| "Defintion#{n}" }
     active true
     vgl_header 'vgl_header'
     vgl_content 'vgl_content'
@@ -19,12 +24,18 @@ FactoryGirl.define do
   factory :video do
     filename { "#{SecureRandom.uuid}.mp4" }
     duration 100
-    definition
     association :videoable, factory: :find_the_best_location
+  end
+
+  factory :video_content do
+    definition
+    sequence(:uid) { |n| "uid-#{n}" }
+    data { { attr1: 'test', attr2: 'test2' } }
   end
 
   factory :find_the_best_location do
     sequence(:ftb_id) { |n| n }
+    definition
     county { Faker::Address.city }
     sale_price_intro 'The median sale price in'
     sale_price_verb 'has decreased'
