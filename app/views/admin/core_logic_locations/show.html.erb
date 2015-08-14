@@ -1,0 +1,49 @@
+<h1>Location: <%= @core_logic_location.county %></h1>
+
+<dl class="dl-horizontal">
+  <dt>CL Zip Code</dt>
+  <dd><%= @core_logic_location.zip_code %></dd>
+
+  <dt>Definition</dt>
+  <dd><%= link_to @core_logic_location.definition.name, [:edit, :admin, @core_logic_location.definition] %></dd>
+
+  <dt>County</dt>
+  <dd><%= @core_logic_location.tier_name %></dd>
+
+  <dt>Slug</dt>
+  <dd><%= @core_logic_location.metric %></dd>
+
+  <dt>Embed URL</dt>
+  <dd><%= link_to embed_core_logic_location_url(@core_logic_location), embed_core_logic_location_url(@core_logic_location), target: '_blank' %></dd>
+
+  <dt>FTB Embed URL</dt>
+  <dd><%= link_to fth_video_url(@core_logic_location.ftb_id), fth_video_url(@core_logic_location.ftb_id), target: '_blank' %></dd>
+</dl>
+
+<h2>Video</h2>
+
+<% if @video %>
+  <dl class="dl-horizontal">
+    <dt>Duration</dt>
+    <dd><%= @video.duration %></dd>
+
+    <dt>URL</dt>
+    <dd><%= @video.url %></dd>
+
+    <dt>URL 720p</dt>
+    <dd><%= @video.url(720) %></dd>
+
+    <dt>Thumbnail URL</dt>
+    <dd><%= @video.thumbnail_url %></dd>
+  </dl>
+<% else %>
+  No video generated!
+<% end %>
+
+<div class="row">
+  <div class="col-md-4">
+    <%= simple_form_for @video || Video.new, url: admin_core_logic_location_video_path(@core_logic_location), method: :post do |f| %>
+      <%= f.button :submit, 'Generate', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

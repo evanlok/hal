@@ -1,0 +1,57 @@
+<h1>FindTheBest Locations</h1>
+
+<div class="clearfix">
+  <div class="pull-left">
+    <%= link_to 'New Location', new_admin_core_logic_location_path, class: 'btn btn-primary' %>
+  </div>
+
+  <div class="pull-right">
+    <%= simple_form_for :csv, url: import_admin_core_logic_locations_path, multipart: true do |f| %>
+      <%= f.input :file, as: :file %>
+      <%= f.button :submit, 'Import', class: 'btn btn-warning' %>
+    <% end %>
+  </div>
+</div>
+<br/>
+
+<table class="table">
+  <tr>
+    <th>Zip Code</th>
+    <th>Tier Name</th>
+    <th>Metric</th>
+    <th>Active List Price Mean</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th colspan="2">Updated</th>
+  </tr>
+
+  <% @core_logic_locations.each do |core_logic_location| %>
+    <tr>
+      <td><%= core_logic_location.zip_code %></td>
+      <td><%= core_logic_location.tier_name %></td>
+      <td><%= core_logic_location.metric %></td>
+      <td><%= core_logic_location.active_list_price_mean %></td>
+      <td><%= core_logic_location.created_at %></td>
+      <td><%= core_logic_location.updated_at %></td>
+      <td class="actions">
+        <%= link_to [:admin, core_logic_location] do %>
+          <i class="fa fa-eye" title="Show"></i>
+        <% end %>
+
+        <%= link_to embed_core_logic_location_path(core_logic_location), target: '_blank' do %>
+          <i class="fa fa-play-circle" title="Embed URL"></i>
+        <% end %>
+
+        <%= link_to [:edit, :admin, core_logic_location] do %>
+          <i class="fa fa-pencil" title="Edit"></i>
+        <% end %>
+
+        <%= link_to [:admin, core_logic_location], method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="fa fa-trash-o" title="Delete"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @core_logic_locations %>

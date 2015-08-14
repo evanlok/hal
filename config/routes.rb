@@ -31,6 +31,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :core_logic_locations, concerns: :videoable do
+      collection do
+        post :import
+      end
+    end
+
     resources :video_contents, concerns: :videoable
   end
 end

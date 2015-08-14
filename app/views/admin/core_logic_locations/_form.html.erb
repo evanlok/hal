@@ -1,0 +1,16 @@
+<%= simple_form_for [:admin, @core_logic_location] do |f| %>
+  <%= render 'shared/errors', errored_on: @core_logic_location %>
+  <%= f.association :definition, prompt: 'Select a definition' %>
+  <%= f.input :zip_code %>
+  <%= f.input :tier_name %>
+  <%= f.input :metric %>
+  <%= f.input :active_list_price_mean %>
+  <%= f.input :active_list_price_median %>
+  <%= f.input :active_listings_dom_mean %>
+  <%= f.input :active_listings_inventory_count %>
+  <%= f.input :sold_inventory_count %>
+  <%= f.input :sold_list_price_mean %>
+  <%= f.input :sold_listings_dom_mean %>
+  <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
+  <%= link_to 'Cancel', admin_definitions_path, class: 'btn btn-default' %>
+<% end %>

@@ -11,10 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150808224604) do
+ActiveRecord::Schema.define(version: 20150813215409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "core_logic_locations", force: :cascade do |t|
+    t.integer  "zip_code"
+    t.string   "tier_name"
+    t.string   "metirc"
+    t.float    "active_list_price_mean"
+    t.float    "active_list_price_median"
+    t.integer  "active_listings_dom_mean"
+    t.integer  "active_listings_dom_median"
+    t.integer  "active_listings_inventory_count"
+    t.integer  "sold_inventory_count"
+    t.integer  "sold_list_price_mean"
+    t.integer  "sold_listings_dom_mean"
+    t.integer  "definition_id"
+    t.string   "slug"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "core_logic_locations", ["definition_id"], name: "index_core_logic_locations_on_definition_id", using: :btree
+  add_index "core_logic_locations", ["slug"], name: "index_core_logic_locations_on_slug", unique: true, using: :btree
 
   create_table "definitions", force: :cascade do |t|
     t.string   "name"
