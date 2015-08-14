@@ -1,4 +1,4 @@
-<h1>FindTheBest Locations</h1>
+<h1>CoreLogic Locations</h1>
 
 <div class="clearfix">
   <div class="pull-left">
@@ -29,7 +29,7 @@
     <tr>
       <td><%= core_logic_location.zip_code %></td>
       <td><%= core_logic_location.tier_name %></td>
-      <td><%= core_logic_location.metric %></td>
+      <td><%= core_logic_location.metrics %></td>
       <td><%= core_logic_location.active_list_price_mean %></td>
       <td><%= core_logic_location.created_at %></td>
       <td><%= core_logic_location.updated_at %></td>
@@ -38,9 +38,9 @@
           <i class="fa fa-eye" title="Show"></i>
         <% end %>
 
-        <%= link_to embed_core_logic_location_path(core_logic_location), target: '_blank' do %>
+        <%#= link_to embed_core_logic_location_path(core_logic_location), target: '_blank' do %>
           <i class="fa fa-play-circle" title="Embed URL"></i>
-        <% end %>
+        <%# end %>
 
         <%= link_to [:edit, :admin, core_logic_location] do %>
           <i class="fa fa-pencil" title="Edit"></i>

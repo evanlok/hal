@@ -2,7 +2,7 @@ class CoreLogicLocation < ActiveRecord::Base
   extend FriendlyId
   friendly_id :zip_code, use: [:slugged, :history, :finders]
 
-  #DEFINITION_NAME = 'CoreLogicHome'.freeze
+  DEFINITION_NAME = 'CoreLogic'.freeze
   
   # Associations
   belongs_to :definition

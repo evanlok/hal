@@ -3,7 +3,7 @@ class CreateCoreLogicLocations < ActiveRecord::Migration
     create_table :core_logic_locations do |t|
       t.integer :zip_code
       t.string :tier_name
-      t.string :metirc
+      t.string :metrics
       t.float :active_list_price_mean
       t.float :active_list_price_median
       t.integer :active_listings_dom_mean

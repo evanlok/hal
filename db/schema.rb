@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20150813215409) do
   create_table "core_logic_locations", force: :cascade do |t|
     t.integer  "zip_code"
     t.string   "tier_name"
-    t.string   "metirc"
+    t.string   "metrics"
     t.float    "active_list_price_mean"
     t.float    "active_list_price_median"
     t.integer  "active_listings_dom_mean"
