@@ -5,4 +5,11 @@ namespace :import do
 
     Importers::FindTheBestLocationCSVImporter.new(args.file).import
   end
+
+  desc 'Import CoreLogic location records from a CSV file'
+  task :core_logic, [:file] => :environment do |t, args|
+    fail 'You need to specify a file location' unless args.file
+
+    Importers::CoreLogicLocationCSVImporter.new(args.file).import
+  end
 end
