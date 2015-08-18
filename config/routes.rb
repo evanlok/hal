@@ -9,9 +9,16 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :core_logic_locations, only: [] do
+    member do
+      get :embed
+    end
+  end
+
   resources :videos, only: :show
 
   get '/fth_videos/:ftb_id', to: 'find_the_best_locations#fth_embed', as: 'fth_video'
+  get '/cl_videos/:zip_code/:period_date', to: 'core_logic_locations#cl_embed', as: 'cl_video'
 
   resource :encoder_callback, only: [:create]
 

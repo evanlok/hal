@@ -7,17 +7,17 @@
   <dt>Definition</dt>
   <dd><%= link_to @core_logic_location.definition.name, [:edit, :admin, @core_logic_location.definition] %></dd>
 
-  <dt>County</dt>
-  <dd><%= @core_logic_location.tier_name %></dd>
+  <dt>Period Date </dt>
+  <dd><%= @core_logic_location.period_date %></dd>
 
   <dt>Slug</dt>
-  <dd><%#= @core_logic_location.metric %></dd>
+  <dd><%= @core_logic_location.slug %></dd>
 
   <dt>Embed URL</dt>
   <dd><%= link_to embed_core_logic_location_url(@core_logic_location), embed_core_logic_location_url(@core_logic_location), target: '_blank' %></dd>
 
   <dt>FTB Embed URL</dt>
-  <dd><%= link_to fth_video_url(@core_logic_location.ftb_id), fth_video_url(@core_logic_location.ftb_id), target: '_blank' %></dd>
+  <dd><%= link_to cl_video_url(@core_logic_location.zip_code, @core_logic_location.period_date), cl_video_url(@core_logic_location.zip_code, @core_logic_location.period_date), target: '_blank' %></dd>
 </dl>
 
 <h2>Video</h2>

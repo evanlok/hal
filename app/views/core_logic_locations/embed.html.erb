@@ -24,7 +24,7 @@
     if (typeof mixpanel != 'undefined') {
       mixpanel.register({
         "Video Type": "houztrendz",
-        "houztrendz_id": <%= @core_logic_location.ftb_id %>,
+        "houztrendz_id": <%= @core_logic_location.zip_code %>,
         "county": '<%= @core_logic_location.county %>'
       });
       this.on('play', function () {
