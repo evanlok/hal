@@ -39,7 +39,7 @@ RSpec.describe Admin::DefinitionsController do
       patch :update, id: definition, definition: { name: 'New Name'}
       definition.reload
       expect(definition.name).to eq('New Name')
-      expect(response).to redirect_to(admin_definitions_url)
+      expect(response).to redirect_to(admin_definition_url(definition))
     end
   end
 

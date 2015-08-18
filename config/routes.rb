@@ -11,15 +11,20 @@ Rails.application.routes.draw do
 
   resources :videos, only: :show
 
-  get '/fth_videos/:ftb_id', to: 'find_the_best_locations#fth_embed', as: 'fth_video'
+  get '/fth_videos/:ftb_id', to: 'find_the_best_locations#fth_embed', as: :fth_video
 
-  resource :encoder_callback, only: [:create]
+  scope '/callbacks/:video_id' do
+    post 'encoder', to: 'callbacks#encoder', as: :encoder_callback
+    post 'stream', to: 'callbacks#stream', as: :stream_callback
+  end
 
   namespace :admin do
     root to: 'definitions#index'
 
     concern :videoable do
-      resource :video, only: [:create]
+      resource :video, only: [:create] do
+        post :create_preview, on: :collection
+      end
     end
 
     resources :video_types

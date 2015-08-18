@@ -40,8 +40,12 @@
 
 <div class="row">
   <div class="col-md-4">
-    <%= simple_form_for @video || Video.new, url: admin_video_content_video_path(@video_content), method: :post do |f| %>
-      <%= f.button :submit, 'Generate', class: 'btn btn-primary' %>
+    <%= form_tag create_preview_admin_video_content_video_path(@video_content), class: 'pull-left', target: '_blank' do %>
+      <%= submit_tag 'Preview', class: 'btn btn-info btn-preview' %>
+    <% end %>
+
+    <%= form_tag admin_video_content_video_path(@video_content), method: :post, class: 'pull-left' do %>
+      <%= submit_tag 'Generate', class: 'btn btn-primary' %>
     <% end %>
   </div>
 </div>

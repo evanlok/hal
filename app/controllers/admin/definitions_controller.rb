@@ -26,7 +26,7 @@ class Admin::DefinitionsController < Admin::BaseController
 
   def update
     if @definition.update_attributes(definition_params)
-      redirect_to admin_definitions_url, notice: "Updated definition: #{@definition.name}"
+      redirect_to admin_definition_url(@definition), notice: "Updated definition: #{@definition.name}"
     else
       js :edit
       render :edit
