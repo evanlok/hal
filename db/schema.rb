@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20150813215409) do
 
   create_table "core_logic_locations", force: :cascade do |t|
     t.integer  "zip_code"
-    t.string   "tier_name"
     t.string   "metrics"
+    t.string   "tier_name"
     t.decimal  "active_list_price_mean"
     t.decimal  "active_list_price_median"
     t.integer  "active_listings_dom_mean"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150813215409) do
     t.string   "slug"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.date     "period_date"
   end
 
   add_index "core_logic_locations", ["definition_id"], name: "index_core_logic_locations_on_definition_id", using: :btree

@@ -9,8 +9,8 @@ class CoreLogicLocation < ActiveRecord::Base
   has_one :video, as: :videoable, dependent: :destroy
 
   # Validation
-  #validates :zip_code, :tier_name, :definition, presence: true
-  #validates :zip_code, uniqueness: true
+  validates :zip_code, :tier_name, :definition, presence: true
+  validates :active_list_price_mean, uniqueness: true
 
   # Callbacks
   before_validation :set_definition, on: :create

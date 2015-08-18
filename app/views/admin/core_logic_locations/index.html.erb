@@ -16,6 +16,7 @@
 
 <table class="table">
   <tr>
+    <th>Period Date </th>
     <th>Zip Code</th>
     <th>Tier Name</th>
     <th>Active List Price Mean</th>
@@ -33,6 +34,7 @@
 
   <% @core_logic_locations.each do |core_logic_location| %>
     <tr>
+      <td><%= core_logic_location.period_date.strftime("%Y-%m-%d") %></td>
       <td><%= core_logic_location.zip_code %></td>
       <td><%= core_logic_location.tier_name %></td>
       <td><%= number_with_delimiter(core_logic_location.active_list_price_mean,:delimiter => ',') %></td>
