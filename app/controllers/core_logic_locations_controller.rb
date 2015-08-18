@@ -1,4 +1,4 @@
-class FindTheBestLocationsController < ApplicationController
+class CoreLogicLocationsController < ApplicationController
   before_action :load_core_logic_location, except: :fth_embed
   after_action :allow_iframe
 
@@ -18,7 +18,7 @@ class FindTheBestLocationsController < ApplicationController
 
   protected
 
-  def load_find_the_best_location
+  def load_core_logic_location
     @core_logic_location = CoreLogicLocation.friendly.find(params[:id])
     @video = @core_logic_location.try(:video)
   end
