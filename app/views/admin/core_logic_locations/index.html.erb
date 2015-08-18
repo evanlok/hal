@@ -18,8 +18,14 @@
   <tr>
     <th>Zip Code</th>
     <th>Tier Name</th>
-    <th>Metric</th>
     <th>Active List Price Mean</th>
+    <th>Active List Price Median</th>
+    <th>Active Listings DOM - Mean</th>
+    <th>Active Listings DOM - Median</th>
+    <th>Active Listings Inventory - Count</th>
+    <th>Sold Inventory - Count</th>
+    <th>Sold List Price - Mean</th>
+    <th>Sold Listings DOM - Mean</th>    
     <th>Created at</th>
     <th>Updated at</th>
     <th colspan="2">Updated</th>
@@ -29,8 +35,14 @@
     <tr>
       <td><%= core_logic_location.zip_code %></td>
       <td><%= core_logic_location.tier_name %></td>
-      <td><%= core_logic_location.metrics %></td>
-      <td><%= core_logic_location.active_list_price_mean %></td>
+      <td><%= number_with_delimiter(core_logic_location.active_list_price_mean,:delimiter => ',') %></td>
+      <td><%= number_with_delimiter(core_logic_location.active_list_price_median,:delimiter => ',') %></td>
+      <td><%= core_logic_location.active_listings_dom_mean %></td>
+      <td><%= core_logic_location.active_listings_dom_median %></td>
+      <td><%= core_logic_location.active_listings_inventory_count %></td>
+      <td><%= core_logic_location.sold_inventory_count %></td>
+      <td><%= number_with_delimiter(core_logic_location.sold_list_price_mean,:delimiter => ',') %></td>
+      <td><%= core_logic_location.sold_listings_dom_mean %></td>                  
       <td><%= core_logic_location.created_at %></td>
       <td><%= core_logic_location.updated_at %></td>
       <td class="actions">

@@ -4,13 +4,13 @@ class CreateCoreLogicLocations < ActiveRecord::Migration
       t.integer :zip_code
       t.string :tier_name
       t.string :metrics
-      t.float :active_list_price_mean
-      t.float :active_list_price_median
+      t.decimal :active_list_price_mean
+      t.decimal :active_list_price_median
       t.integer :active_listings_dom_mean
       t.integer :active_listings_dom_median
       t.integer :active_listings_inventory_count
       t.integer :sold_inventory_count
-      t.integer :sold_list_price_mean
+      t.decimal :sold_list_price_mean
       t.integer :sold_listings_dom_mean
       t.integer :definition_id
       t.string :slug
