@@ -23,6 +23,10 @@ class FindTheBestLocation < ActiveRecord::Base
     @video_data ||= Hashie::Mash.new(attributes)
   end
 
+  def uid
+    county.strip
+  end
+
   private
 
   def set_definition

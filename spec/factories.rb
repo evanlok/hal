@@ -24,7 +24,7 @@ FactoryGirl.define do
   factory :video do
     filename { "#{SecureRandom.uuid}.mp4" }
     duration 100
-    association :videoable, factory: :find_the_best_location
+    association :videoable, factory: :video_content
   end
 
   factory :video_content do

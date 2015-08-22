@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :videos, only: :show
+  resources :videos, only: :show do
+    get :stream, on: :member
+  end
 
   get '/fth_videos/:ftb_id', to: 'find_the_best_locations#fth_embed', as: :fth_video
 

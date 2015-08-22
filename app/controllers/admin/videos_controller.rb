@@ -8,8 +8,7 @@ class Admin::VideosController < Admin::BaseController
 
   def create_preview
     VideoGenerator.new(@videoable).generate(stream_only: true)
-    # TODO: redirect to preview page
-    redirect_to [:admin, @videoable], notice: "Generated preview video with definition: #{@videoable.definition.name}"
+    redirect_to [@videoable.video, {autoplay: 1}], notice: "Generated preview video with definition: #{@videoable.definition.name}"
   end
 
   protected
