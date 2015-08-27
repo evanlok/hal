@@ -1,4 +1,6 @@
 class Definition < ActiveRecord::Base
+  has_paper_trail
+
   # Associations
   belongs_to :video_type
   has_many :video_contents, dependent: :nullify

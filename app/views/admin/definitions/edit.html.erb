@@ -1,3 +1,34 @@
 <h1>Edit <%= @definition.name %></h1>
 
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <a role="button" data-toggle="collapse" href="#versioning" aria-expanded="false" aria-controls="versioning">
+        Version:
+
+        <% if @definition.version %>
+          <%= @definition.version.try(:created_at).to_s(:full) %>
+        <% else %>
+          Live
+        <% end %>
+      </a>
+    </h3>
+  </div>
+
+  <div id="versioning" class="panel-collapse collapse">
+    <div class="panel-body">
+      <%= form_tag [:edit, :admin, @definition], method: :get do %>
+        <div>
+          <%= label_tag :verion_id, 'Versions' %>
+          <%= select_tag :version_id, options_for_select(@versions, @definition.version.try(:id)), include_blank: 'Live', class: 'form-control' %>
+        </div>
+
+        <div class="form-actions">
+          <%= submit_tag 'Change', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <%= render 'form' %>

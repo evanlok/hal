@@ -32,14 +32,27 @@ RSpec.describe Admin::DefinitionsController do
       get :edit, id: definition
       expect(response).to be_success
     end
+
+    with_versioning do
+      before do
+        definition.update(name: 'New Name')
+      end
+
+      it 'loads version from version_id' do
+        get :edit, id: definition.id, version_id: definition.versions.last.id
+        expect(assigns(:definition).version).to be_present
+        expect(assigns(:versions)).to be_present
+        expect(response).to be_success
+      end
+    end
   end
 
   describe 'PATCH update' do
     it 'updates definition' do
-      patch :update, id: definition, definition: { name: 'New Name'}
+      patch :update, id: definition, definition: { name: 'New Name' }
       definition.reload
       expect(definition.name).to eq('New Name')
-      expect(response).to redirect_to(admin_definition_url(definition))
+      expect(response).to redirect_to(edit_admin_definition_url(definition))
     end
   end
 

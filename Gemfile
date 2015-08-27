@@ -50,6 +50,7 @@ gem 'lograge'
 gem 'oj'
 gem 'oj_mimic_json'
 gem 'hashie'
+gem 'paper_trail'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-ujs'

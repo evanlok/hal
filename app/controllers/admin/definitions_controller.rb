@@ -22,11 +22,16 @@ class Admin::DefinitionsController < Admin::BaseController
   end
 
   def edit
+    @versions = @definition.versions.pluck(:created_at, :id).reverse.map { |date, id| [date.to_s(:full), id] }
+
+    if params[:version_id].present?
+      @definition = @definition.versions.find(params[:version_id]).reify
+    end
   end
 
   def update
     if @definition.update_attributes(definition_params)
-      redirect_to admin_definition_url(@definition), notice: "Updated definition: #{@definition.name}"
+      redirect_to edit_admin_definition_url(@definition), notice: "Updated definition: #{@definition.name}"
     else
       js :edit
       render :edit

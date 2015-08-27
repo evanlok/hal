@@ -1,4 +1,7 @@
-<h1>Video Content: <%= @video_content.uid %></h1>
+<h1>
+  Video Content: <%= @video_content.uid %>
+  <small><%= link_to 'Edit', [:edit, :admin, @video_content] %></small>
+</h1>
 
 <dl class="dl-horizontal">
   <dt>Definition</dt>
