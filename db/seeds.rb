@@ -5,6 +5,11 @@ houztrendz_video_type = VideoType.create! do |vt|
   vt.description = 'Houztrendz county videos'
 end
 
+core_logic_video_type = VideoType.create! do |vt|
+  vt.name = 'CoreLogic'
+  vt.description = 'CoreLogic Location videos'
+end
+
 ad_video_type = VideoType.create! do |vt|
   vt.name = 'FacebookAd'
   vt.description = 'Facebook Ad Videos'
@@ -44,6 +49,10 @@ end
 find_the_home_definition = test_definition.dup
 find_the_home_definition.attributes = { name: FindTheBestLocation::DEFINITION_NAME, class_name: FindTheBestLocation::DEFINITION_NAME, video_type: houztrendz_video_type }
 find_the_home_definition.save
+
+core_logic_definition = test_definition.dup
+core_logic_definition.attributes = { name: Importers::CoreLogicLocationCSVImporter::DEFINITION_NAME, class_name: Importers::CoreLogicLocationCSVImporter::DEFINITION_NAME, video_type: core_logic_video_type }
+core_logic_definition.save
 
 ftb_location = FindTheBestLocation.create! do |f|
   f.definition = find_the_home_definition
