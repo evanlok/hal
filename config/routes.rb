@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
     resources :video_types
     resources :definitions
+    resources :video_contents, concerns: :videoable
 
     resources :find_the_best_locations, concerns: :videoable do
       collection do
@@ -38,6 +39,10 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :video_contents, concerns: :videoable
+    resources :csv_imports, only: [:index] do
+      collection do
+        post :core_logic
+      end
+    end
   end
 end
