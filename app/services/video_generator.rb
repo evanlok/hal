@@ -15,6 +15,7 @@ class VideoGenerator
 
   def fetch_video
     video = video_content.video || video_content.build_video
+    video.stream_url = nil
     video.save
     video
   end

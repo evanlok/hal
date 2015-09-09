@@ -48,6 +48,15 @@ RSpec.describe VideoGenerator do
       it 'fetches existing video' do
         expect(video_generator.fetch_video).to eq(video)
       end
+
+      context 'with previous stream_url' do
+        let!(:video) { create(:video, videoable: video_content, stream_url: 'url') }
+
+        it 'resets stream_url' do
+          video_generator.fetch_video
+          expect(video.reload.stream_url).to be nil
+        end
+      end
     end
   end
 end
