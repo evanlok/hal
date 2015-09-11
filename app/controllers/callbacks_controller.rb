@@ -10,6 +10,7 @@ class CallbacksController < ApplicationController
       filename = File.basename(video_url)
       duration = params['input']['duration_in_ms'].to_i
       @video.update_attributes(filename: filename, duration: duration)
+      VideoCallbackNotifier.notify(@video.videoable) if @video.videoable.respond_to?(:callback_url)
     end
 
     js false
