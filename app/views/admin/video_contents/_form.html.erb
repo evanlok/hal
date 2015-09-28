@@ -1,0 +1,11 @@
+<%= simple_form_for [:admin, @video_content] do |f| %>
+  <%= render 'shared/errors', errored_on: @video_content %>
+  <%= f.input :uid %>
+  <%= f.association :definition, prompt: 'Select a definition' %>
+  <%= f.input :data, as: :text, input_html: { rows: 20, value: f.object.data_before_type_cast } %>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', admin_video_contents_path, class: 'btn btn-default' %>
+  </div>
+<% end %>

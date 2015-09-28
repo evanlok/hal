@@ -17,7 +17,7 @@ class Admin::FindTheBestLocationsController < Admin::BaseController
     @find_the_best_location = FindTheBestLocation.new(find_the_best_location_params)
 
     if @find_the_best_location.save
-      redirect_to admin_find_the_best_locations_url, notice: "Created location: #{@find_the_best_location.county}"
+      redirect_to admin_find_the_best_location_url(@find_the_best_location), notice: "Created location: #{@find_the_best_location.county}"
     else
       render :new
     end
@@ -28,7 +28,7 @@ class Admin::FindTheBestLocationsController < Admin::BaseController
 
   def update
     if @find_the_best_location.update_attributes(find_the_best_location_params)
-      redirect_to admin_find_the_best_locations_url, notice: "Updated location: #{@find_the_best_location.county}"
+      redirect_to admin_find_the_best_location_url(@find_the_best_location), notice: "Updated location: #{@find_the_best_location.county}"
     else
       render :edit
     end

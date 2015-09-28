@@ -1,6 +1,9 @@
-.video-js .vjs-tech {
-  height: auto;
-  position: relative;
+html, body {
+  height: 100%;
+}
+
+.video-wrapper {
+  height: 100%;
 }
 
 .vjs-control-bar {

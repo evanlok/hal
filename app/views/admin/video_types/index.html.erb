@@ -1,0 +1,34 @@
+<h1>Video Types</h1>
+
+<p>
+  <%= link_to 'New Video Type', new_admin_video_type_path, class: 'btn btn-primary' %>
+</p>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th colspan="2">Updated</th>
+  </tr>
+
+  <% @video_types.each do |video_type| %>
+    <tr>
+      <td><%= video_type.id %></td>
+      <td><%= video_type.name %></td>
+      <td><%= truncate(video_type.description, length: 140) %></td>
+      <td><%= video_type.updated_at %></td>
+      <td class="actions">
+        <%= link_to [:edit, :admin, video_type] do %>
+          <i class="fa fa-pencil" title="Edit"></i>
+        <% end %>
+
+        <%= link_to [:admin, video_type], method: :delete, data: {confirm: 'Are you sure?'} do %>
+          <i class="fa fa-trash-o" title="Delete"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @video_types %>

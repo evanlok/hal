@@ -6,13 +6,14 @@ module Engine
       include Engine::Definitions::StyleDSL
       include Engine::Definitions::Helpers
 
-      attr_reader :video, :currency, :language_name, :asset_folder, :builder
+      attr_reader :video_content, :currency, :language_name, :asset_folder, :builder
       alias :b :builder
+      delegate :video_data, to: :video_content
 
-      def initialize(video, options={})
+      def initialize(video_content, options={})
         options.reverse_merge!(branded: true, currency: 'usd', language: 'en', asset_folder: 'classic/black_v2')
 
-        @video = video
+        @video_content = video_content
         @currency       = options.delete(:currency)
         @language_name  = options.delete(:language)
         @asset_folder   = options.delete(:asset_folder)
@@ -43,8 +44,9 @@ module Engine
         raise NotImplementedError.new('All subclasses of AbstractDefinition must override #content.')
       end
 
+      # TODO: Remove once all ftb_location references are changed to video_data or VideoContent objects
       def ftb_location
-        @ftb_location ||= Engine::Presenters::FTBLocationPresenter.new(video.videoable)
+        video_content.video_data
       end
 
       private

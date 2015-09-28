@@ -25,10 +25,12 @@ RSpec.describe Admin::FindTheBestLocationsController do
   end
 
   describe 'POST create' do
+    let!(:definition) { create(:definition, name: FindTheBestLocation::DEFINITION_NAME) }
+
     it 'creates new record' do
       post :create, find_the_best_location: { ftb_id: 1234, county: 'County' }
       expect(assigns(:find_the_best_location)).to be_persisted
-      expect(response).to redirect_to(admin_find_the_best_locations_url)
+      expect(response).to redirect_to(admin_find_the_best_location_url(assigns(:find_the_best_location)))
     end
   end
 
@@ -43,7 +45,7 @@ RSpec.describe Admin::FindTheBestLocationsController do
       patch :update, id: find_the_best_location, find_the_best_location: { county: 'Another county' }
       find_the_best_location.reload
       expect(find_the_best_location.county).to eq('Another county')
-      expect(response).to redirect_to(admin_find_the_best_locations_url)
+      expect(response).to redirect_to(admin_find_the_best_location_url(assigns(:find_the_best_location)))
     end
   end
 
