@@ -1,4 +1,4 @@
-## Setup
+== Setup
 
 1. Clone repoistory
 2. `$ bundle install`
