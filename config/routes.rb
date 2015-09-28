@@ -28,4 +28,7 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  get '/home/index' => 'home#index', :as => :home
+
 end

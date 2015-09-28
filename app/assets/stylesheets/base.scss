@@ -1,0 +1,39 @@
+.container-fluid {
+  padding: 0px;
+}
+#nav {
+  position: absolute;
+  float: left;
+  height: 100%;
+  width: 140px;
+  background-color: hsla(0, 0%, 0.0000%, 0.6000);
+  ul {
+    padding: 0px;
+  }
+}
+.nav-logo {
+  position: relative;
+  display: block;
+  height: 140px;
+  width: 140px;
+  background: hsl(7, 76.3033%, 58.6275%);
+}
+.ht-logo-mark {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+}
+.hero {
+  background-color: gray;
+  height:500px;
+}
+.hp-pad {
+  padding-left: 250px;
+}
+.logo {
+  color: white;
+}
+#myChart {
+  width: 150px;
+  height: 150px;
+}

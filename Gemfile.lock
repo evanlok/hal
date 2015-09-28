@@ -50,8 +50,6 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootflat-rails (0.1.0)
-      sass (~> 3.2)
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
@@ -346,7 +344,6 @@ DEPENDENCIES
   asset_sync
   autoprefixer-rails
   awesome_print
-  bootflat-rails
   bundler (>= 1.8.4)
   byebug
   coffee-rails (~> 4.1.0)
