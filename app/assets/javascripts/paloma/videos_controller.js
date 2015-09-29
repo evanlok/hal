@@ -4,7 +4,12 @@ VideosController.prototype.show = function () {
   var params = this.params;
   var player = videojs('video', {}, setupMixpanel);
 
-  initializeStreamPolling(this.params.video_id);
+  window.onload = resizeVideoJS;
+  window.onresize = resizeVideoJS;
+
+  if (!player.src()) {
+    initializeStreamPolling(this.params.video_id);
+  }
 
   function initializeStreamPolling(videoId) {
     pollStreamUrl();
@@ -67,5 +72,10 @@ VideosController.prototype.show = function () {
         mixpanel.track('Seeked video', {"seek_to_second": parseInt(this.currentTime())});
       });
     }
+  }
+
+  function resizeVideoJS() {
+    var height = $(window).height();
+    player.height(height);
   }
 };

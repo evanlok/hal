@@ -22,10 +22,23 @@
     <dd><%= link_to video_url(@video), @video, target: '_blank' %></dd>
 
     <dt>URL</dt>
-    <dd><%= link_to @video.url, @video.url %></dd>
+    <dd>
+      <% if @video.url.present? %>
+        <%= link_to @video.url, @video.url %>
+      <% else %>
+        N/A
+      <% end %>
+    </dd>
 
     <dt>URL 720p</dt>
-    <dd><%= link_to @video.url(720), @video.url(720) %></dd>
+
+    <dd>
+      <% if @video.url.present? %>
+        <%= link_to @video.url(720), @video.url(720) %>
+      <% else %>
+        N/A
+      <% end %>
+    </dd>
 
     <dt>Thumbnail URL</dt>
 
