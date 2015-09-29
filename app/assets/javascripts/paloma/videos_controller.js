@@ -75,15 +75,7 @@ VideosController.prototype.show = function () {
   }
 
   function resizeVideoJS() {
-    var width = $('.video-wrapper').width();
-
-    if (width == 0) {
-      width = window.innerWidth
-    }
-    var calculatedHeight = width * 9 / 16;
-
-    if (!calculatedHeight == 0) {
-      player.width(width).height(calculatedHeight);
-    }
+    var height = $(window).height();
+    player.height(height);
   }
 };
