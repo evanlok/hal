@@ -4,7 +4,12 @@ VideosController.prototype.show = function () {
   var params = this.params;
   var player = videojs('video', {}, setupMixpanel);
 
-  initializeStreamPolling(this.params.video_id);
+  window.onload = resizeVideoJS;
+  window.onresize = resizeVideoJS;
+
+  if (!player.src()) {
+    initializeStreamPolling(this.params.video_id);
+  }
 
   function initializeStreamPolling(videoId) {
     pollStreamUrl();
@@ -66,6 +71,19 @@ VideosController.prototype.show = function () {
       this.on('seeked', function (e) {
         mixpanel.track('Seeked video', {"seek_to_second": parseInt(this.currentTime())});
       });
+    }
+  }
+
+  function resizeVideoJS() {
+    var width = $('.video-wrapper').width();
+
+    if (width == 0) {
+      width = window.innerWidth
+    }
+    var calculatedHeight = width * 9 / 16;
+
+    if (!calculatedHeight == 0) {
+      player.width(width).height(calculatedHeight);
     }
   }
 };
