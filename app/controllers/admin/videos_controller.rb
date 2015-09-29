@@ -1,9 +1,14 @@
 class Admin::VideosController < Admin::BaseController
+  before_action :find_videoable
+
   def create
-    @videoable = find_videoable
-    @definition = Definition.find(params[:video][:definition_id])
-    VideoGenerator.new(@videoable, @definition).generate
-    redirect_to [:admin, @videoable], notice: "Generated video with definition: #{@definition.name}"
+    VideoGenerator.new(@videoable).generate
+    redirect_to [:admin, @videoable], notice: "Generated video with definition: #{@videoable.definition.name}"
+  end
+
+  def create_preview
+    VideoGenerator.new(@videoable).generate(stream_only: true)
+    redirect_to [@videoable.video, {autoplay: 1}], notice: "Generated preview video with definition: #{@videoable.definition.name}"
   end
 
   protected
@@ -11,7 +16,8 @@ class Admin::VideosController < Admin::BaseController
   def find_videoable
     params.each do |name, value|
       if name =~ /(.+)_id$/
-        return $1.classify.constantize.find(value)
+        @videoable = $1.classify.constantize.find(value)
+        return @videoable
       end
     end
   end

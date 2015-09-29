@@ -1,0 +1,54 @@
+<h1>
+  Video Content: <%= @video_content.uid %>
+  <small><%= link_to 'Edit', [:edit, :admin, @video_content] %></small>
+</h1>
+
+<dl class="dl-horizontal">
+  <dt>Definition</dt>
+  <dd><%= link_to @video_content.definition.name, [:edit, :admin, @video_content.definition] %></dd>
+
+  <dt>Data</dt>
+  <dd>
+    <pre class="pre-scrollable"><%= JSON.pretty_generate(@video_content.data) %></pre>
+  </dd>
+</dl>
+
+<% if @video %>
+  <dl class="dl-horizontal">
+    <dt>Duration</dt>
+    <dd><%= @video.duration %></dd>
+
+    <dt>Embed URL</dt>
+    <dd><%= link_to video_url(@video), @video, target: '_blank' %></dd>
+
+    <dt>URL</dt>
+    <dd><%= link_to @video.url, @video.url %></dd>
+
+    <dt>URL 720p</dt>
+    <dd><%= link_to @video.url(720), @video.url(720) %></dd>
+
+    <dt>Thumbnail URL</dt>
+
+    <dd>
+      <% if @video.thumbnail_url.present? %>
+        <%= link_to @video.thumbnail_url, @video.thumbnail_url %>
+      <% else %>
+        No thumbnail available
+      <% end %>
+    </dd>
+  </dl>
+<% else %>
+  No video generated!
+<% end %>
+
+<div class="row">
+  <div class="col-md-4">
+    <%= form_tag create_preview_admin_video_content_video_path(@video_content), class: 'pull-left', target: '_blank' do %>
+      <%= submit_tag 'Preview', class: 'btn btn-info btn-preview' %>
+    <% end %>
+
+    <%= form_tag admin_video_content_video_path(@video_content), method: :post, class: 'pull-left' do %>
+      <%= submit_tag 'Generate', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

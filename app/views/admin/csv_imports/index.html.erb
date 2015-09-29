@@ -1,0 +1,14 @@
+<h1>CSV Imports</h1>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">CoreLogic Locations</h3>
+  </div>
+  <div class="panel-body">
+    <%= simple_form_for :csv, url: core_logic_admin_csv_imports_path, multipart: true do |f| %>
+      <%= f.input :file, as: :file %>
+      <%= f.button :submit, 'Import', class: 'btn btn-warning' %>
+    <% end %>
+  </div>
+</div>

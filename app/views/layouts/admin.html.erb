@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><%= content_for?(:title) ? content_for(:title) : 'HouzTrendz' %></title>
+  <title><%= content_for?(:title) ? content_for(:title) : 'HAL' %></title>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'admin', 'data-turbolinks-track' => true %>
   <%= yield(:head) %>
@@ -14,12 +14,15 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <%= link_to 'HouzTrendz', root_path, class: 'navbar-brand' %>
+      <%= link_to 'HAL', root_path, class: 'navbar-brand' %>
     </div>
 
     <ul class="nav navbar-nav">
+      <li><%= link_to 'Video Types', admin_video_types_path %></a></li>
       <li><%= link_to 'Definitions', admin_definitions_path %></a></li>
+      <li><%= link_to 'Video Contents', admin_video_contents_path %></a></li>
       <li><%= link_to 'FTB Locations', admin_find_the_best_locations_path %></a></li>
+      <li><%= link_to 'CSV Imports', admin_csv_imports_path %></a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">

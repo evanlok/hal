@@ -2,6 +2,7 @@
   <%= render 'shared/errors', errored_on: @definition %>
   <%= f.input :name, required: true %>
   <%= f.input :class_name, required: true, hint: 'Can only contain letters: TestDefinitionClass' %>
+  <%= f.association :video_type, required: true, prompt: 'Select a video type' %>
   <%= f.input :active %>
 
   <div id="vgl_header">

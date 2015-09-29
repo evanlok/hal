@@ -1,27 +1,33 @@
 class VGLGenerator
   SKETCH_TEMPLATE = <<-EOS
-class Engine::Definitions::<%= definition.class_name %> < Engine::Definitions::AbstractDefinition
-  <%= definition.vgl_header -%>
+module Engine
+  module Definitions
+    module <%= definition.video_type.name %>
+      class <%= definition.class_name %> < AbstractDefinition
+        <%= definition.vgl_header -%>
 
-  def content
-    <%= definition.vgl_content %>
+        def content
+          <%= definition.vgl_content %>
+        end
+
+        <%= definition.vgl_methods %>
+      end
+    end
   end
-
-  <%= definition.vgl_methods %>
 end
-  EOS
+EOS
 
-  attr_reader :video, :definition
+  attr_reader :video_content, :definition
 
-  def initialize(video)
-    @video = video
-    @definition = video.definition
+  def initialize(video_content)
+    @video_content = video_content
+    @definition = video_content.definition
   end
 
   def definition_class
     @definition_class ||= begin
       evaluate_code
-      "Engine::Definitions::#{definition.class_name}".constantize
+      "Engine::Definitions::#{definition.video_type.name}::#{definition.class_name}".constantize
     end
   end
 
@@ -30,11 +36,11 @@ end
   end
 
   def evaluate_code
-    Object.class_eval generate_definition_code, Rails.root.to_s + "/app/models/engine/definitions/#{definition.class_name.underscore}", -1
+    Object.class_eval generate_definition_code, Rails.root.to_s + "/app/models/engine/definitions/#{definition.video_type.name.underscore}/#{definition.class_name.underscore}", -1
   end
 
   def definition_instance
-    @definition_instance ||= definition_class.new(@video)
+    @definition_instance ||= definition_class.new(video_content)
   end
 
   def vgl

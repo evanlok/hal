@@ -1,11 +1,9 @@
 class Video < ActiveRecord::Base
   # Associations
   belongs_to :videoable, polymorphic: true
-  belongs_to :definition
 
   # Validations
   validates :videoable, presence: true
-  validates :definition, presence: true, on: :create
 
   def base_dir
     "videos/#{id}"

@@ -1,6 +1,7 @@
 <%= simple_form_for [:admin, @find_the_best_location] do |f| %>
   <%= render 'shared/errors', errored_on: @find_the_best_location %>
   <%= f.input :ftb_id, label: 'FTB ID' %>
+  <%= f.association :definition, prompt: 'Select a definition' %>
   <%= f.input :county %>
   <%= f.input :sale_price_intro %>
   <%= f.input :sale_price_verb %>

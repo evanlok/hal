@@ -1,0 +1,10 @@
+<%= simple_form_for [:admin, @video_type] do |f| %>
+  <%= render 'shared/errors', errored_on: @video_type %>
+  <%= f.input :name, required: true, hint: 'Must start witha uppercase letter and can only contain letters, numeners, and underscores' %>
+  <%= f.input :description %>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', admin_video_types_path, class: 'btn btn-default' %>
+  </div>
+<% end %>

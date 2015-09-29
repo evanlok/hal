@@ -4,6 +4,9 @@
   <dt>FTB ID</dt>
   <dd><%= @find_the_best_location.ftb_id %></dd>
 
+  <dt>Definition</dt>
+  <dd><%= link_to @find_the_best_location.definition.name, [:edit, :admin, @find_the_best_location.definition] %></dd>
+
   <dt>County</dt>
   <dd><%= @find_the_best_location.county %></dd>
 
@@ -21,12 +24,6 @@
 
 <% if @video %>
   <dl class="dl-horizontal">
-    <dt>Definition</dt>
-    <dd><%= @video.definition.try(:name) %></dd>
-
-    <dt>Definition</dt>
-    <dd><%= @video.definition.try(:name) %></dd>
-
     <dt>Duration</dt>
     <dd><%= @video.duration %></dd>
 
@@ -35,6 +32,9 @@
 
     <dt>URL 720p</dt>
     <dd><%= @video.url(720) %></dd>
+
+    <dt>Thumbnail URL</dt>
+    <dd><%= @video.thumbnail_url %></dd>
   </dl>
 <% else %>
   No video generated!
@@ -43,7 +43,6 @@
 <div class="row">
   <div class="col-md-4">
     <%= simple_form_for @video || Video.new, url: admin_find_the_best_location_video_path(@find_the_best_location), method: :post do |f| %>
-      <%= f.association :definition, prompt: 'Select a definition' %>
       <%= f.button :submit, 'Generate', class: 'btn btn-primary' %>
     <% end %>
   </div>
