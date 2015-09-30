@@ -36,7 +36,7 @@ module Importers
 
     def import
       current_date = nil
-      data_by_zip_code = Hash.new { |h, k| h[k] = HashWithIndifferentAccess.new(metrics: []) }
+      data_by_zip_code = Hash.new { |h, k| h[k] = HashWithIndifferentAccess.new(stats: []) }
 
       CSV.foreach(@file_path, converters: :numeric) do |row|
         # Date row
@@ -56,19 +56,19 @@ module Importers
           end
 
           shared_data = data.slice(*SHARED_ATTRIBUTES)
-          metrics_data = data.except(*SHARED_ATTRIBUTES)
+          stats_data = data.except(*SHARED_ATTRIBUTES)
 
           # Only keep the 2 most recent data rows per zip code
           data_by_zip_code[zip_code].merge!(shared_data)
-          data_by_zip_code[zip_code][:metrics].pop if data_by_zip_code[zip_code][:metrics].length == 2
-          data_by_zip_code[zip_code][:metrics] << metrics_data
+          data_by_zip_code[zip_code][:stats].pop if data_by_zip_code[zip_code][:stats].length == 2
+          data_by_zip_code[zip_code][:stats] << stats_data
         end
       end
 
       begin
         data_by_zip_code.each do |zip_code, data|
           video_content = VideoContent.where(definition: @definition, uid: zip_code).first_or_initialize
-          data[:metrics].sort_by! { |metric| metric['date'] }
+          data[:stats].sort_by! { |s| s['date'] }
           video_content.data = data
           video_content.save!
         end
