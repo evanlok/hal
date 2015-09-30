@@ -43,10 +43,8 @@ module Importers
         if row[0] =~ /Period Date:/
           month, day, year = row[0].split(':').last.strip.split('/').map(&:to_i)
           current_date = Date.new(year, month, day)
-        end
-
         # Data row
-        if row.count == ATTRIBUTES.count && row[0] != 'County Name' && current_date
+        elsif row[3].to_s =~ /\A\d+\z/ && current_date
           zip_code = row[3]
           data = { date: current_date }
           parsed_row = row.map { |val| parse_number(val) }
