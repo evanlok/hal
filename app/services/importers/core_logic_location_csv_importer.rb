@@ -4,6 +4,9 @@ module Importers
   class CoreLogicLocationCSVImporter
     DEFINITION_NAME = 'CoreLogic'.freeze
     ATTRIBUTES = %w(
+      county_name
+      state
+      cbsa_name
       zip_code
       tier_name
       new_listings_inventory_count
@@ -22,7 +25,9 @@ module Importers
       active_list_price_median
       active_listings_dom_mean
       cumulative_active_dom_mean
-    )
+    ).freeze
+
+    SHARED_ATTRIBUTES = ATTRIBUTES.first(5).freeze
 
     def initialize(file_path)
       @file_path = file_path
@@ -31,43 +36,46 @@ module Importers
 
     def import
       current_date = nil
+      data_by_zip_code = Hash.new { |h, k| h[k] = HashWithIndifferentAccess.new(stats: []) }
 
       CSV.foreach(@file_path, converters: :numeric) do |row|
         # Date row
         if row[0] =~ /Period Date:/
           month, day, year = row[0].split(':').last.strip.split('/').map(&:to_i)
           current_date = Date.new(year, month, day)
-        end
-
         # Data row
-        if row[0].to_s =~ /\A\d+\z/ && row.count == ATTRIBUTES.count && current_date
-          zip_code = row[0]
-          video_content = VideoContent.where(definition: @definition, uid: generate_uid(zip_code, current_date)).first_or_initialize
-          data = {}
+        elsif row[3].to_s =~ /\A\d+\z/ && current_date
+          zip_code = row[3]
+          data = { date: current_date }
           parsed_row = row.map { |val| parse_number(val) }
 
           ATTRIBUTES.each_with_index do |attr, i|
             data[attr] = parsed_row[i]
           end
 
-          video_content.data = data
+          shared_data = data.slice(*SHARED_ATTRIBUTES)
+          stats_data = data.except(*SHARED_ATTRIBUTES)
 
-          begin
-            video_content.save!
-          rescue ActiveRecord::RecordInvalid => e
-            Honeybadger.notify(e, context: { date: current_date, zip_code: zip_code })
-          ensure
-            current_date = nil
-          end
+          # Only keep the 2 most recent data rows per zip code
+          data_by_zip_code[zip_code].merge!(shared_data)
+          data_by_zip_code[zip_code][:stats].pop if data_by_zip_code[zip_code][:stats].length == 2
+          data_by_zip_code[zip_code][:stats] << stats_data
         end
+      end
+
+      begin
+        data_by_zip_code.each do |zip_code, data|
+          video_content = VideoContent.where(definition: @definition, uid: zip_code).first_or_initialize
+          data[:stats].sort_by! { |s| s['date'] }
+          video_content.data = data
+          video_content.save!
+        end
+      rescue ActiveRecord::RecordInvalid => e
+        Honeybadger.notify(e, context: { zip_code: zip_code })
       end
     end
 
     private
-
-    def generate_uid(zip_code, date)
-      "#{zip_code}-#{date}"
-    end
 
     def parse_number(input)
       return input unless input.is_a?(String)

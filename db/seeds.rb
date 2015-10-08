@@ -1,4 +1,4 @@
-User.create(email: 'admin@houztrendz.com', password: 'test1234', role: 'admin')
+User.create(email: 'admin@onvedeo.com', password: 'test1234', role: 'admin')
 
 houztrendz_video_type = VideoType.create! do |vt|
   vt.name = 'HouzTrendz'

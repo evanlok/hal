@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
   def title(page_title)
-    suffix = ' | HouzTrendz'
+    suffix = ' | HAL'
     page_title += suffix unless page_title.end_with?(suffix)
     content_for :title, page_title
   end
