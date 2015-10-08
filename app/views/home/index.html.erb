@@ -1,9 +1,29 @@
 <div class="homepage">
-  <%= render "layouts/nav" %>
-  <div class="hero hp-pad">
-    <div class="logo">Check yoself</div>
-    <canvas id="pieChart"></canvas>
-    <canvas id="lineChart" width="600" height="200"></canvas>
+  <div class="row-fluid">
+    <div class="col-md-6">
+      <div class="hero hp-pad">
+        <%= image_tag("houztrendz-horiz-logo.png", class: "houztrendz-horiz-logo") %>
+        <h4>Generate Personalized Local Market Reports in a Click</h4>
+
+        <div class="main-house">
+          <%= image_tag("main-house.png") %>
+        </div>
+        <div class="main-graphic">
+          <div class="bars">         
+            <%= image_tag("bar-dark.png", class: "bar-dark") %>
+            <%= image_tag("bar-med.png", class: "bar-med")  %>
+            <%= image_tag("bar-light.png", class: "bar-light") %>
+          </div>
+          <%= image_tag("line-area-chart.png", class: "line-chart") %>
+          <%= image_tag("line-area-chart-transparency.png", class: "line-chart-transparent") %>
+          <canvas id="pieChart" class="piechart"></canvas>
+          <canvas id="lineChart" class="dotchart" width="600" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 video-column">
+      <i class="fa fa-youtube-play"></i>
+    </div>
   </div>
 </div>
 
@@ -71,7 +91,7 @@ var lineData = {
       responsive: true,
       datasetStrokeWidth : 12,
       scaleGridLineWidth : 21,
-      data : [40,56,36,51,35,47,45]
+      data : [40,56,36,51,35,47]
     }
 ]
 }

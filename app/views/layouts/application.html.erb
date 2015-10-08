@@ -5,14 +5,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><%= content_for?(:title) ? content_for(:title) : 'HouzTrendz' %></title>
+  <script src="https://use.typekit.net/rth8pka.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= yield(:head) %>
   <%= csrf_meta_tags %>
   <%= render 'shared/mixpanel' %>
 </head>
 <body>
-
 <div class="container-fluid">
   <%= render 'layouts/flash_messages' %>
   <%= yield %>

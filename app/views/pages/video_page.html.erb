@@ -1,0 +1,54 @@
+<%= render "layouts/nav" %>
+<div class="video-page">
+	<div class="video-page-column">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="video-title">
+					<h1>June 2015 Market Trends </h1>
+					<h4>San Francisco 94107</h4>
+				</div>
+				<div class="action-buttons">
+					<%= link_to "#", class: "agent-button top-button" do %>
+						<%= image_tag("sample-agent.png") %>
+					<% end %>
+					<%= link_to "#", class: "download-button top-button" do %>
+						<i class="fa fa-download"></i>
+					<% end %>
+					<%= link_to "#", class: "share-button top-button" do %>
+						<i class="fa fa-share"></i>
+					<% end %>
+				</div>
+				<video></video>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="agent-data">
+					<div class="agent-image"><img src=""></div>
+					<h3 class="agent-name">Aria Landis</h3>
+					<div class="title">Associate Partner</div>
+					<div class="phone">(415)234-4567</div>
+					<div class="broker-logo"></div>
+				</div>
+				<div class="agent-bio">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in henderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="zipcode">94105</div>
+				<div class="map"><%= image_tag("dummy-map.png") %></div>
+			</div>
+			<div class="col-md-4">
+				<div class="zipcode">Contact this agent</div>
+				<%= form_tag("/search", method: "get") do %>
+				  <%= text_area :body, size: "60x12" %>
+				  <%= text_field_tag(:q) %>
+				  <%= text_field_tag(:q) %>
+				  <%= text_field_tag(:q) %>
+				  <%= submit_tag("Search") %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+

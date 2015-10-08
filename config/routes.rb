@@ -20,6 +20,12 @@ Rails.application.routes.draw do
     post 'stream', to: 'callbacks#stream', as: :stream_callback
   end
 
+  resources :pages do
+    collection do
+      get :video_page
+    end
+  end
+
   namespace :admin do
     root to: 'definitions#index'
 
