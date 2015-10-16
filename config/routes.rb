@@ -48,7 +48,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :video_contents, only: [:create]
+      resources :video_contents, only: [:create, :show]
     end
   end
 end
