@@ -1,13 +1,12 @@
-<div class="video-wrapper">
   <video id="video" class="video-js vjs-default-skin vjs-big-play-centered"
          controls preload="auto" width="100%" height="100%"
-         data-setup='{"customControlsOnMobile":true, "plugins":{"resolutionSelector": {}}}'
+         data-setup='{"fluid": true, "customControlsOnMobile": true}'
          poster="<%= video_poster_url(@video) %>"
          <%= 'autoplay' if params[:autoplay].present? %>>
 
     <% if @video.url %>
-      <source src="<%= @video.url %>" type='video/mp4' data-res="360"/>
-      <source src="<%= @video.url(720) %>" type='video/mp4' data-res="720"/>
+      <source src="<%= @video.url %>" type="video/mp4" label="360p" res="360"/>
+      <source src="<%= @video.url(720) %>" type="video/mp4" label="720p" res="720"/>
     <% end %>
 
     <p class="vjs-no-js">
@@ -15,4 +14,3 @@
       <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
     </p>
   </video>
-</div>

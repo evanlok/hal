@@ -3,4 +3,4 @@
 //= require paloma/videos_controller
 //= require videojs/videojs-media-sources
 //= require videojs/videojs.hls
-//= require videojs/video-quality-selector
+//= require videojs/videojs-resolution-switcher

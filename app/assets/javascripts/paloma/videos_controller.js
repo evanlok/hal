@@ -3,9 +3,11 @@ var VideosController = Paloma.controller('Videos');
 VideosController.prototype.show = function () {
   var params = this.params;
   var player = videojs('video', {}, setupMixpanel);
-
-  window.onload = resizeVideoJS;
-  window.onresize = resizeVideoJS;
+  // Initialize resolution switcher plugin after video player is initialized otherwise an error occurs
+  player.videoJsResolutionSwitcher({
+    default: 'low', // Default resolution [{Number}, 'low', 'high'],
+    dynamicLabel: true // Display dynamic labels or gear symbol
+  });
 
   if (!player.src()) {
     initializeStreamPolling(this.params.video_id);
@@ -72,10 +74,5 @@ VideosController.prototype.show = function () {
         mixpanel.track('Seeked video', {"seek_to_second": parseInt(this.currentTime())});
       });
     }
-  }
-
-  function resizeVideoJS() {
-    var height = $(window).height();
-    player.height(height);
   }
 };
