@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20151216052439) do
     t.json     "data"
     t.string   "transition"
     t.float    "transition_duration", default: 0.0
+    t.integer  "position"
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
   end

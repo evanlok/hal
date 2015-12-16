@@ -6,6 +6,7 @@ class CreateSceneContents < ActiveRecord::Migration
       t.json :data
       t.string :transition
       t.float :transition_duration, default: 0
+      t.integer :position
 
       t.timestamps null: false
     end

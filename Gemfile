@@ -51,6 +51,7 @@ gem 'oj'
 gem 'oj_mimic_json'
 gem 'hashie'
 gem 'paper_trail'
+gem 'acts_as_list'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-ujs'
