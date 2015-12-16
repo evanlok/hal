@@ -95,12 +95,11 @@ end
   SceneAttributeType.create(name: attr_name)
 end
 
-scene = Scene.create! do |s|
-  s.name = 'Intro'
-  s.vgl_content = vgl
-  s.transition = 'SlideUp'
-  s.transition_duration = 2.5
-end
+scene = Scene.create!(
+  name: 'Intro',
+  vgl_content: vgl,
+  active: true
+)
 
 SceneAttribute.create!(
   scene: scene,
@@ -123,10 +122,17 @@ SceneAttribute.create!(
   name: 'location_video'
 )
 
-SceneContent.create!(
+scene_collection = SceneCollection.create!(
   color: 'blue: "0,112,238", white: "255,255,255", gray: "136, 136, 136"',
   font: 'http://vejeo.s3.amazonaws.com/vidgenie/fonts/lato/Lato-Bold.ttf',
   music: 'https://vejeo.s3.amazonaws.com/vidgenie/audio/music/soothing/soothing-8.mp3',
+)
+
+SceneContent.create!(
+  scene: scene,
+  scene_collection: scene_collection,
+  transition: 'SlideUp',
+  transition_duration: 2.5,
   data: {
     agent_name: 'John Doe',
     agent_photo: 'https://houztrendz-staging.s3.amazonaws.com/videos/assets/1/agent-test-photo.jpg',
