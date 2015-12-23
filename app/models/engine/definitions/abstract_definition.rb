@@ -14,15 +14,11 @@ module Engine
         options.reverse_merge!(branded: true, currency: 'usd', language: 'en', asset_folder: 'classic/black_v2')
 
         @video_content = video_content
-        @currency       = options.delete(:currency)
-        @language_name  = options.delete(:language)
-        @asset_folder   = options.delete(:asset_folder)
+        @currency = options.delete(:currency)
+        @language_name = options.delete(:language)
+        @asset_folder = options.delete(:asset_folder)
       end
 
-      # Attention!
-      #
-      # Write code to generate vidgenie engine ruby file
-      #
       def builder
         Engine::VGL::Builder.new do |builder|
           if %w(zh-cn ko).include?(language_name)

@@ -49,4 +49,31 @@ FactoryGirl.define do
     list_price_end 'higher than it was a year ago'
     market_text 'While the typical home is on the market for about 4 fewer weeks before being sold'
   end
+
+  factory :scene do
+    sequence(:name) { |n| "Scene #{n}" }
+    active true
+    vgl_content 'vgl_content'
+  end
+
+  factory :scene_attribute_type do
+    sequence(:name) { |n| "Scene Attribute #{n}" }
+  end
+
+  factory :scene_attribute do
+    scene_attribute_type
+    scene
+    sequence(:name) { |n| "attr_#{n}" }
+    sequence(:display_name) { |n| "Attribute #{n}" }
+  end
+
+  factory :scene_collection do
+    font 'http://vejeo.s3.amazonaws.com/vidgenie/fonts/lato/Lato-Bold.ttf'
+    music 'https://vejeo.s3.amazonaws.com/vidgenie/audio/music/soothing/soothing-8.mp3'
+  end
+
+  factory :scene_content do
+    scene
+    scene_collection
+  end
 end
