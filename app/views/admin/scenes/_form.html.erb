@@ -1,0 +1,29 @@
+<%= simple_form_for [:admin, @scene] do |f| %>
+  <%= render 'shared/errors', errored_on: @scene %>
+  <%= f.input :name, required: true %>
+  <%= f.input :active %>
+
+  <% if @scene.persisted? %>
+    <div class="form-group">
+      <h4>Scene Attributes</h4>
+      <ul>
+        <% @scene.scene_attributes.includes(:scene_attribute_type).each do |scene_attribute| %>
+          <li><%= scene_attribute.name %> (<%= scene_attribute.scene_attribute_type.name %>) - <%= scene_attribute.display_name %></li>
+        <% end %>
+      </ul>
+
+      <%= link_to 'Edit Scene Attributes', [:admin, @scene, SceneAttribute] %>
+    </div>
+  <% end %>
+
+  <div id="vgl_content">
+    <strong>VGL Content</strong>
+    <%= content_tag :div, @scene.vgl_content, class: 'editor editor-large' %>
+    <%= f.hidden_field :vgl_content %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', admin_scenes_path, class: 'btn btn-default' %>
+  </div>
+<% end %>

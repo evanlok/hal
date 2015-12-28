@@ -33,6 +33,16 @@ Rails.application.routes.draw do
     resources :definitions
     resources :video_contents, concerns: :videoable
 
+    resources :scenes do
+      resources :scene_attributes
+    end
+
+    resources :scene_collections do
+      resources :scene_contents, except: :index
+    end
+
+    resources :scene_attribute_types
+
     resources :find_the_best_locations, concerns: :videoable do
       collection do
         post :import

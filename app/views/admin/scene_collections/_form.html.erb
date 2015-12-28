@@ -1,0 +1,11 @@
+<%= simple_form_for [:admin, @scene_collection] do |f| %>
+  <%= render 'shared/errors', errored_on: @scene_collection %>
+  <%= f.input :font %>
+  <%= f.input :music %>
+  <%= f.input :color %>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', admin_scene_collections_path, class: 'btn btn-default' %>
+  </div>
+<% end %>

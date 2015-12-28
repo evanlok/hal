@@ -1,0 +1,15 @@
+<h1>Edit Scene Collection: <%= @scene_collection.id %></h1>
+
+<%= render 'form' %>
+
+<h4>Scenes</h4>
+
+<ol>
+  <% @scene_collection.scene_contents.includes(:scene).each do |scene_content| %>
+    <li><%= link_to scene_content.scene.name, [:edit, :admin, @scene_collection, scene_content] %></li>
+  <% end %>
+</ol>
+
+<p>
+  <%= link_to 'Add Scene', new_admin_scene_collection_scene_content_path(@scene_collection), class: 'btn btn-info' %>
+</p>

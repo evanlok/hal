@@ -1,0 +1,42 @@
+<h1>Scenes</h1>
+
+<p>
+  <%= link_to 'New Scene', new_admin_scene_path, class: 'btn btn-primary' %>
+</p>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Active</th>
+    <th>Created</th>
+    <th colspan="2">Updated</th>
+  </tr>
+
+  <% @scenes.each do |scene| %>
+    <tr>
+      <td><%= scene.id %></td>
+      <td><%= scene.name %></td>
+      <td>
+        <% if scene.active %>
+          <i class="fa fa-check text-success"></i>
+        <% else %>
+          <i class="fa fa-times text-danger"></i>
+        <% end %>
+      </td>
+      <td><%= scene.created_at.to_s(:full) %></td>
+      <td><%= scene.updated_at.to_s(:full) %></td>
+      <td class="actions">
+        <%= link_to [:edit, :admin, scene] do %>
+          <i class="fa fa-pencil" title="Edit"></i>
+        <% end %>
+
+        <%= link_to [:admin, scene], method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="fa fa-trash-o" title="Delete"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @scenes %>

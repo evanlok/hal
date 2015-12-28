@@ -1,0 +1,13 @@
+<%= simple_form_for [:admin, @scene_collection, @scene_content] do |f| %>
+  <%= render 'shared/errors', errored_on: @scene_content %>
+  <%= f.association :scene, prompt: 'Select a scene' %>
+  <%= f.input :transition %>
+  <%= f.input :transition_duration %>
+  <%= f.input :position %>
+  <%= f.input :data, as: :text, input_html: { rows: 20, value: f.object.data_before_type_cast } %>
+
+  <div class="form-actions">
+    <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', [:edit, :admin, @scene_collection], class: 'btn btn-default' %>
+  </div>
+<% end %>

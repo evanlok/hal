@@ -1,0 +1,34 @@
+<h1>Scene Attribute Types</h1>
+
+<p>
+  <%= link_to 'New Scene Attribute Type', new_admin_scene_attribute_type_path, class: 'btn btn-primary' %>
+</p>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Created</th>
+    <th colspan="2">Updated</th>
+  </tr>
+
+  <% @scene_attribute_types.each do |scene_attribute_type| %>
+    <tr>
+      <td><%= scene_attribute_type.id %></td>
+      <td><%= scene_attribute_type.name %></td>
+      <td><%= scene_attribute_type.created_at.to_s(:full) %></td>
+      <td><%= scene_attribute_type.updated_at.to_s(:full) %></td>
+      <td class="actions">
+        <%= link_to [:edit, :admin, scene_attribute_type] do %>
+          <i class="fa fa-pencil" title="Edit"></i>
+        <% end %>
+
+        <%= link_to [:admin, scene_attribute_type], method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="fa fa-trash-o" title="Delete"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @scene_attribute_types %>
