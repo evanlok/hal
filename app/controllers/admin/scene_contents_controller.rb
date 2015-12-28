@@ -2,10 +2,6 @@ class Admin::SceneContentsController < Admin::BaseController
   before_action :load_scene_collection
   before_action :load_scene_content, only: [:edit, :update, :destroy]
 
-  def index
-    @scene_contents = @scene_collection.scene_contents.includes(:scene).page(params[:page])
-  end
-
   def new
     @scene_content = @scene_collection.scene_contents.build
   end
@@ -33,7 +29,7 @@ class Admin::SceneContentsController < Admin::BaseController
 
   def destroy
     @scene_content.destroy
-    redirect_to [:admin, @scene_collection, SceneContent], notice: "Deleted scene content: #{@scene_content.id}"
+    redirect_to [:admin, @scene_collection], notice: "Deleted scene content: #{@scene_content.id}"
   end
 
   protected

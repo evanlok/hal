@@ -75,5 +75,6 @@ FactoryGirl.define do
   factory :scene_content do
     scene
     scene_collection
+    data { { location: 'San Francisco' } }
   end
 end
