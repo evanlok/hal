@@ -11,5 +11,13 @@ RSpec.describe Engine::Definitions::SceneCollectionVideo do
       expect(definition.to_vgl).to be_a(String)
       expect(definition.to_vgl).to include('Agent Name')
     end
+
+    it 'inserts font vgl' do
+      expect(definition.to_vgl).to match(/set_default_font.+#{scene_collection.font}/)
+    end
+
+    it 'inserts music vgl' do
+      expect(definition.to_vgl).to match(/audio.+#{scene_collection.music}/)
+    end
   end
 end

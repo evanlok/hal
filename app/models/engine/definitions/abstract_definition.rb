@@ -23,7 +23,7 @@ module Engine
         Engine::VGL::Builder.new do |builder|
           if %w(zh-cn ko).include?(language_name)
             builder.set_default_font unicode_font
-          else
+          elsif font_family
             builder.set_default_font font_family
           end
 

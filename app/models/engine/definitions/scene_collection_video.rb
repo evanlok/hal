@@ -4,6 +4,9 @@ module Engine
       alias_method :scene_collection, :video_content
 
       def content
+        b.audio(scene_collection.music, volume: -15, file: true) if scene_collection.music.present?
+        b.set_default_font(scene_collection.font) if scene_collection.font.present?
+
         scene_contents.each do |scene_content|
           b.stack do
             scene_content.scene_data.tap do |scene_data|
