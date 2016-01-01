@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   scope '/callbacks/:video_id' do
     post 'encoder', to: 'callbacks#encoder', as: :encoder_callback
     post 'stream', to: 'callbacks#stream', as: :stream_callback
+    post 'preview', to: 'callbacks#preview', as: :preview_callback
   end
 
   namespace :admin do
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
     resources :video_contents, concerns: :videoable
 
     resources :scenes do
+      post :preview, on: :collection
       resources :scene_attributes
     end
 

@@ -43,6 +43,13 @@ class Admin::ScenesController < Admin::BaseController
     redirect_to admin_scenes_url, notice: "Deleted scene: #{@scene.name}"
   end
 
+  def preview
+    @scene = Scene.find(params[:scene_id]) if params[:scene_id].present?
+    scene_preview_video = Engine::Definitions::ScenePreviewVideo.new(params[:scene_vgl], params[:scene_data])
+    video_preview = VideoPreviewer.new(scene_preview_video.to_vgl, @scene).create_video_preview
+    render json: { video_preview_id: video_preview.id }
+  end
+
   protected
 
   def load_scene

@@ -23,7 +23,30 @@
   </div>
 
   <div class="form-actions">
+    <%= button_tag 'Preview', type: 'button', class: 'btn btn-warning', data: { toggle: 'modal', target: '#preview-modal' } %>
     <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
     <%= link_to 'Cancel', admin_scenes_path, class: 'btn btn-default' %>
   </div>
 <% end %>
+
+<div id="preview-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+
+        <h4 class="modal-title">Preview Scene</h4>
+      </div>
+      <div class="modal-body">
+        <%= label_tag :scene_data, 'Scene Data (JSON)' %>
+        <%= text_area_tag :scene_data, nil, class: 'form-control', rows: 10 %>
+        <%= hidden_field_tag :scene_id, @scene.id, id: 'scene_id' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="preview btn btn-primary">Generate Preview</button>
+      </div>
+    </div>
+  </div>
+</div>

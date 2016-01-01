@@ -1,10 +1,10 @@
 class CallbacksController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :load_video
+  before_action :load_video, only: [:encoder, :stream]
 
   def encoder
     status = params[:status]
-    video_url = params['outputs'].find {|o| o['label'] == 'medium' }.try(:[], 'url')
+    video_url = params['outputs'].find { |o| o['label'] == 'medium' }.try(:[], 'url')
 
     if video_url && status == 'finished'
       filename = File.basename(video_url)
@@ -14,7 +14,7 @@ class CallbacksController < ApplicationController
     end
 
     js false
-    render json: {id: @video.id}
+    render json: { id: @video.id }
   end
 
   def stream
@@ -25,6 +25,17 @@ class CallbacksController < ApplicationController
       render json: { id: @video.id }
     else
       render json: { errors: @video.errors.full_messages }, status: :bad_request
+    end
+  end
+
+  def preview
+    @video_preview = VideoPreview.find(params[:video_id])
+    js false
+
+    if @video_preview.update(stream_url: params[:stream][:url])
+      render json: { id: @video_preview.id }
+    else
+      render json: { errors: @video_preview.errors.full_messages }, status: :bad_request
     end
   end
 
