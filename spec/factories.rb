@@ -77,4 +77,8 @@ FactoryGirl.define do
     scene_collection
     data { { location: 'San Francisco' } }
   end
+
+  factory :video_preview do
+    stream_url 'http://www.onvedeo.com/stream.m3u8'
+  end
 end
