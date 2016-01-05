@@ -47,8 +47,20 @@ class Admin::ScenesController < Admin::BaseController
     @scene = Scene.find(params[:scene_id]) if params[:scene_id].present?
     scene_data = params[:scene_data].present? ? JSON.parse(params[:scene_data]) : {}
     scene_preview_video = Engine::Definitions::ScenePreviewVideo.new(params[:scene_vgl], scene_data)
-    video_preview = VideoPreviewer.new(scene_preview_video.to_vgl, @scene).create_video_preview
-    render json: { video_preview_id: video_preview.id }
+    errors = []
+
+    begin
+      vgl = scene_preview_video.to_vgl
+    rescue => e
+      errors << e.message
+    end
+
+    if errors.blank?
+      video_preview = VideoPreviewer.new(vgl, @scene).create_video_preview
+      render json: { id: video_preview.id }
+    else
+      render json: { errors: errors }, status: :bad_request
+    end
   end
 
   protected
