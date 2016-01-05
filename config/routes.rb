@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     get :stream, on: :member
   end
 
+  resources :video_previews, only: :show
+
   get '/fth_videos/:ftb_id', to: 'find_the_best_locations#fth_embed', as: :fth_video
 
   scope '/callbacks/:video_id' do
