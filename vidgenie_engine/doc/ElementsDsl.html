@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>module ElementsDsl - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="module">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-i-audio">#audio</a>
+    
+    <li ><a href="#method-i-box">#box</a>
+    
+    <li ><a href="#method-i-counter">#counter</a>
+    
+    <li ><a href="#method-i-custom_shape">#custom_shape</a>
+    
+    <li ><a href="#method-i-ellipse">#ellipse</a>
+    
+    <li ><a href="#method-i-gradient">#gradient</a>
+    
+    <li ><a href="#method-i-image">#image</a>
+    
+    <li ><a href="#method-i-inner_stack">#inner_stack</a>
+    
+    <li ><a href="#method-i-line">#line</a>
+    
+    <li ><a href="#method-i-mask">#mask</a>
+    
+    <li ><a href="#method-i-movie">#movie</a>
+    
+    <li ><a href="#method-i-overlay">#overlay</a>
+    
+    <li ><a href="#method-i-rect">#rect</a>
+    
+    <li ><a href="#method-i-sequence">#sequence</a>
+    
+    <li ><a href="#method-i-slideshow">#slideshow</a>
+    
+    <li ><a href="#method-i-text">#text</a>
+    
+    <li ><a href="#method-i-triangle">#triangle</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="module-ElementsDsl">
+  <h1 id="module-ElementsDsl" class="module">
+    module ElementsDsl
+  </h1>
+
+  <section class="description">
+    
+<p><a href="ElementsDsl.html">ElementsDsl</a> is used as a mixing for the <a
+href="Stack.html">Stack</a> and <a href="Sequence.html">Sequence</a>
+classes  so that they have the ability to define elements within them.</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-audio" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">audio</span><span
+            class="method-args">(path, options={})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Play an audio file</p>
+
+<p>@example Play an audio file</p>
+
+<pre class="ruby"><span class="ruby-identifier">audio</span>(<span class="ruby-string">&quot;data/house.wav&quot;</span>)
+</pre>
+
+<p>@param [ <a href="String.html">String</a> ] path The full path to the audio
+file location.</p>
+
+<p>@param [ Hash ] options</p>
+
+<p>@option options [ Integer ] :volume Volume of the audio in decibels</p>
+          
+          
+
+          
+          <div class="method-source-code" id="audio-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 300</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">audio</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-constant">AudioPlayer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">audio</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">audio</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-box" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">box</span><span
+            class="method-args">(x, y, z, width, height, depth, options={})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Draw a 3D box on the screen</p>
+
+<p>@example A box (x, y, z, width, height, depth)</p>
+
+<pre class="ruby"><span class="ruby-identifier">box</span>(<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>, <span class="ruby-value">100</span>,<span class="ruby-value">100</span>,<span class="ruby-value">100</span>)
+</pre>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] x The coordinates on
+the X axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] y The coordinates on
+the Y axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] z The coordinates on
+the Z axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] width The width of the
+box.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] height The height of
+the box.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] depth The depth of the
+box.</p>
+
+<p>@param [ Hash ] options</p>
+
+<p>@option options [ <a href="String.html">String</a> ] :color a string with
+the 3 RGB colors separated by commas. ie: “20,20,20”</p>
+
+<p>@option options [ <a href="String.html">String</a> ] :stroke_color it
+overrides the color for the stroke.</p>
+
+<p>@option options [ Integer ] :stroke_weight width of the stroke in pixels.
+defaults to 1.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="box-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 83</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">box</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">z</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">depth</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">z</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">depth</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">box</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">box</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-counter" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">counter</span><span
+            class="method-args">(number, x, y, width, height, options={})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Display a animated counter</p>
+
+<p>@example Display a counter of up to 10</p>
+
+<pre class="ruby"><span class="ruby-identifier">counter</span>(<span class="ruby-value">10</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, {<span class="ruby-identifier">font</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;BebasNeue&quot;</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">24</span>, <span class="ruby-identifier">color</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#ffffff&quot;</span>})
+</pre>
+
+<p>@param [ Integer ] number to be counted to</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] x the starting X
+coordinates of the counter</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] y the starting Y
+coordinates of the counter</p>
+
+<p>@param [ Hash ] options</p>
+
+<p>@option options [ <a href="String.html">String</a> ] :font name of the font</p>
+
+<p>@option options [ Integer ] :size size in pixels of the text</p>
+
+<p>@option options [ <a href="String.html">String</a> ] :color a string with
+the 3 RGB colors separated by commas. ie: “20,20,20”</p>
+
+<p>@option options [ <a href="String.html">String</a> ] :align one of the
+following three options: “left”, “center”, “right”</p>
+
+<p>@option options [ Integer ] :line_spacing line spacing size in pixels</p>
+
+<p>@option options [ Integer ] :duration seconds it will take to count up to
+the number</p>
+          
+          
+
+          
+          <div class="method-source-code" id="counter-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 414</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">counter</span>(<span class="ruby-identifier">number</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-constant">Counter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">number</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">counter</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">counter</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-custom_shape" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">custom_shape</span><span
+            class="method-args">(x, y, options={}, &block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="custom_shape-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 8</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">custom_shape</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-constant">CustomShape</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">options</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">custom_shape</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">custom_shape</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-ellipse" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ellipse</span><span
+            class="method-args">(x, y, width, height, options={})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Draw a ellipse on the screen</p>
+
+<p>@example A circle (equal width and height)</p>
+
+<pre class="ruby"><span class="ruby-identifier">rect</span>(<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">100</span>,<span class="ruby-value">100</span>)
+</pre>
+
+<p>@example A ellipse</p>
+
+<pre class="ruby"><span class="ruby-identifier">rect</span>(<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">100</span>,<span class="ruby-value">200</span>)
+</pre>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] x The coordinates on
+the X axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] y The coordinates on
+the Y axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] width The width of the
+ellipse.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] height The height of
+the ellipse.</p>
+
+<p>@param [ Hash ] options</p>
+
+<p>@option options [ <a href="String.html">String</a> ] :color a string with
+the 3 RGB colors separated by commas. ie: “20,20,20”</p>
+
+<p>@option options [ <a href="String.html">String</a> ] :stroke_color it
+overrides the color for the stroke.</p>
+
+<p>@option options [ Integer ] :stroke_weight width of the stroke in pixels.
+defaults to 1.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="ellipse-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 113</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ellipse</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-constant">Ellipse</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ellipse</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">ellipse</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-gradient" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">gradient</span><span
+            class="method-args">(x, y, width, height, options={})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Create a gradient</p>
+
+<p>@example Draw a custom shape on 0,0 with dimensions 100x100</p>
+
+<pre class="ruby"><span class="ruby-identifier">gradient</span>(<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">100</span>,<span class="ruby-value">100</span>)
+</pre>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] x The coordinates on
+the X axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] y The coordinates on
+the Y axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] width The width of the
+gradient.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] height The height of
+the gradient.</p>
+
+<p>@param [ Hash ] options</p>
+          
+          
+
+          
+          <div class="method-source-code" id="gradient-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">gradient</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-constant">Gradient</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gradient</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">gradient</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-image" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">image</span><span
+            class="method-args">(path, x, y, width=nil, height=nil, options={})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Display an image on screen</p>
+
+<p>@example Display an image in the top left corner taking 90% of the screen</p>
+
+<pre class="ruby"><span class="ruby-identifier">image</span>(<span class="ruby-string">&quot;data/house.jpg&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-string">&quot;90%&quot;</span>, <span class="ruby-string">&quot;90%&quot;</span>)
+</pre>
+
+<p>@note The width and/or height can be ommitted by just passing a nil value
+and it will use the provided width/height to calculate the corresponding
+value keeping the image proportions</p>
+
+<p>@param [ <a href="String.html">String</a> ] path The full path to the image
+location.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] x The coordinates on
+the X axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] y The coordinates on
+the Y axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] width The width of the
+image.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] height The height of
+the image.</p>
+
+<p>@param [ Hash ] options</p>
+
+<p>@option options [ Integer ] :blur Executes a gaussian blur with the value
+as the radius</p>
+          
+          
+
+          
+          <div class="method-source-code" id="image-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 283</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">image</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">height</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-constant">ImagePlayer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">image</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">image</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-inner_stack" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">inner_stack</span><span
+            class="method-args">(options={}, &block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="inner_stack-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 420</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">inner_stack</span>(<span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-constant">InnerStack</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">options</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">stack</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">stack</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-line" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">line</span><span
+            class="method-args">(x1, y1, x2, y2, options={})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Draws a line (a direct path between two points) to the screen. The version
+of line() with four parameters draws the line in 2D. To color a line, use
+the stroke() function. A line cannot be filled, therefore the fill()
+function will not affect the color of a line. 2D lines are drawn with a
+width of one pixel by default, but this can be changed with the
+strokeWeight() function. The version with six parameters allows the line to
+be placed anywhere within XYZ space. Drawing this shape in 3D with the z
+parameter requires the P3D parameter in combination with size() as shown in
+the above example.</p>
+
+<p>@example A line</p>
+
+<pre class="ruby"><span class="ruby-identifier">line</span>(<span class="ruby-identifier">x1</span>, <span class="ruby-identifier">y1</span>, <span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y2</span>)
+<span class="ruby-identifier">line</span>(<span class="ruby-identifier">x1</span>, <span class="ruby-identifier">y1</span>, <span class="ruby-identifier">z1</span>, <span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y2</span>, <span class="ruby-identifier">z2</span>)
+</pre>
+
+<p>Parameters</p>
+
+<p>x1  float: x-coordinate of the first point</p>
+
+<p>y1  float: y-coordinate of the first point</p>
+
+<p>x2  float: x-coordinate of the second point</p>
+
+<p>y2  float: y-coordinate of the second point</p>
+
+<p>z1  float: z-coordinate of the first point</p>
+
+<p>z2  float: z-coordinate of the second point</p>
+          
+          
+
+          
+          <div class="method-source-code" id="line-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 196</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">line</span>(<span class="ruby-identifier">x1</span>, <span class="ruby-identifier">y1</span>, <span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y2</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-constant">Line</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">x1</span>, <span class="ruby-identifier">y1</span>, <span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y2</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">line</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-mask" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">mask</span><span
+            class="method-args">(form, x, y, width, height, options={}, &block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Create a new context on where to draw things</p>
+
+<p>@example Draw a mask on 0,0 with a size of 100x100</p>
+
+<pre class="ruby"><span class="ruby-identifier">mask</span>(:<span class="ruby-identifier">rect</span>, <span class="ruby-value">0</span>,<span class="ruby-value">0</span>, <span class="ruby-value">100</span>,<span class="ruby-value">100</span>) <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">image</span>(<span class="ruby-string">&quot;slide.png&quot;</span>, <span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-keyword">nil</span>,<span class="ruby-keyword">nil</span>).<span class="ruby-identifier">animate</span>(<span class="ruby-value">-600</span>,<span class="ruby-value">0</span>, <span class="ruby-identifier">duration</span><span class="ruby-operator">:</span> <span class="ruby-value">3</span>)
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>@param [ Symbol ] form the shape of the mask. Valid values are: :rect,
+:ellipse</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] x The coordinates on
+the X axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] y The coordinates on
+the Y axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] width The width of the
+box.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] height The height of
+the box.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="mask-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">mask</span>(<span class="ruby-identifier">form</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-constant">Mask</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">form</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mask</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">mask</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-movie" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">movie</span><span
+            class="method-args">(path, x=nil, y=nil, width=nil, height=nil, options={})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Play a video on screen</p>
+
+<p>@example Play a full screen video</p>
+
+<pre class="ruby"><span class="ruby-identifier">movie</span>(<span class="ruby-string">&quot;data/movie.mp4&quot;</span>)
+</pre>
+
+<p>@example Play a small video somewhere in the middle of the screen</p>
+
+<pre class="ruby"><span class="ruby-identifier">movie</span>(<span class="ruby-string">&quot;data/movie.mp4&quot;</span>, <span class="ruby-value">160</span>, <span class="ruby-value">90</span>, <span class="ruby-string">&quot;50%&quot;</span>, <span class="ruby-string">&quot;50%&quot;</span>)
+</pre>
+
+<p>@param [ <a href="String.html">String</a> ] path The full path to the movie
+location.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] x The coordinates on
+the X axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] y The coordinates on
+the Y axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] width The width of the
+movie.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] height The height of
+the movie.</p>
+
+<p>@param [ Hash ] options</p>
+
+<p>@option options [ Float ] :volume Volume of the movie audio between 0 and 1
+0 meaning the sound is muted and 1 full volume.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="movie-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 254</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">movie</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">x</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">y</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">width</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">height</span>=<span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-constant">VideoPlayer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">movie</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">movie</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-overlay" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">overlay</span><span
+            class="method-args">(x, y, width, height, options={}, &block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Group several elements to toghether</p>
+
+<p>@example A container for other elements on the screen. The coordinates of
+the elements inside the overlay will be relative to the overlay.</p>
+
+<pre class="ruby"><span class="ruby-identifier">overlay</span>(<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">100</span>,<span class="ruby-value">100</span>) <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">image</span>(<span class="ruby-string">&quot;1.jpg&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>)
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>@note All paramerter passed for dimensions and position accept an Integer
+or <a href="String.html">String</a>.</p>
+
+<p>An Integer is assumed to be pixels and a <a href="String.html">String</a> a
+percentage of the screen size.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] x The coordinates on
+the X axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] y The coordinates on
+the Y axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] width The width of the
+square.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] height The height of
+the square.</p>
+
+<p>@param [ Proc ] block contains the definitions of the elements inside the
+overlay</p>
+          
+          
+
+          
+          <div class="method-source-code" id="overlay-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 225</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">overlay</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-constant">Overlay</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">overlay</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">overlay</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-rect" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rect</span><span
+            class="method-args">(x, y, width, height, options={})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Draw a rectangle on the screen</p>
+
+<p>@example A square with square corners</p>
+
+<pre class="ruby"><span class="ruby-identifier">rect</span>(<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">100</span>,<span class="ruby-value">100</span>)
+</pre>
+
+<p>@example A square with all corners rounded</p>
+
+<pre class="ruby"><span class="ruby-identifier">rect</span>(<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">100</span>,<span class="ruby-value">100</span>, <span class="ruby-identifier">radius</span><span class="ruby-operator">:</span> <span class="ruby-value">10</span>)
+</pre>
+
+<p>@example A square with all the top-left and top-right corners rounded</p>
+
+<pre class="ruby"><span class="ruby-identifier">rect</span>(<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">100</span>,<span class="ruby-value">100</span>, <span class="ruby-identifier">radius</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;10,5&quot;</span>)
+</pre>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] x The coordinates on
+the X axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] y The coordinates on
+the Y axis.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] width The width of the
+square.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] height The height of
+the square.</p>
+
+<p>@param [ Hash ] options</p>
+
+<p>@option options [ Float, Array ] :radius radius for the rectangle, it
+supports a single or multiple values</p>
+
+<p>@option options [ <a href="String.html">String</a> ] :color a string with
+the 3 RGB colors separated by commas. ie: “20,20,20”</p>
+
+<p>@option options [ <a href="String.html">String</a> ] :stroke_color it
+overrides the color for the stroke.</p>
+
+<p>@option options [ Integer ] :stroke_weight width of the stroke in pixels.
+defaults to 1.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="rect-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 146</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">rect</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-constant">Rectangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rect</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">rect</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-sequence" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">sequence</span><span
+            class="method-args">(&block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Wrap elements so that they are played sequencially and not at the same
+time.</p>
+
+<p>@example Display multiple audio files one after another</p>
+
+<pre class="ruby"><span class="ruby-identifier">sequence</span> <span class="ruby-keyword">do</span>
+  <span class="ruby-identifier">audio</span>(<span class="ruby-string">&quot;data/bed.wav&quot;</span>)
+  <span class="ruby-identifier">audio</span>(<span class="ruby-string">&quot;data/and.wav&quot;</span>)
+  <span class="ruby-identifier">audio</span>(<span class="ruby-string">&quot;data/bath.wav&quot;</span>)
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>@param [ Proc ] block The body of the sequence.</p>
+          
+          
+
+          
+          <div class="method-source-code" id="sequence-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 318</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sequence</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-constant">Sequence</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sequence</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sequence</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-slideshow" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">slideshow</span><span
+            class="method-args">(paths, x, y, width, height, options={}, &block)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Showcase a series of photos in the screen</p>
+
+<p>@example Display a slideshow with the images animating from right to left</p>
+
+<pre class="ruby"><span class="ruby-identifier">slideshow</span>([<span class="ruby-string">&quot;bath.jpg&quot;</span>, <span class="ruby-string">&quot;bed.jpg&quot;</span>, <span class="ruby-string">&quot;kitchen.jpg&quot;</span>], <span class="ruby-string">&quot;100&quot;</span>, <span class="ruby-string">&quot;50&quot;</span>, <span class="ruby-keyword">nil</span>, <span class="ruby-string">&quot;80&quot;</span>, <span class="ruby-identifier">delay</span><span class="ruby-operator">:</span> <span class="ruby-value">2</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">image</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">image</span>.<span class="ruby-identifier">animate</span>(<span class="ruby-string">&quot;50&quot;</span>, <span class="ruby-string">&quot;50&quot;</span>, <span class="ruby-identifier">duration</span><span class="ruby-operator">:</span> <span class="ruby-value">2</span>, <span class="ruby-identifier">easing</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;linear&quot;</span>, <span class="ruby-identifier">rotate</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>)
+        .<span class="ruby-identifier">animate</span>(<span class="ruby-string">&quot;-100&quot;</span>, <span class="ruby-string">&quot;50&quot;</span>, <span class="ruby-identifier">duration</span><span class="ruby-operator">:</span> <span class="ruby-value">2</span>, <span class="ruby-identifier">easing</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;linear&quot;</span>, <span class="ruby-identifier">rotate</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">-2</span>)
+<span class="ruby-keyword">end</span>
+</pre>
+
+<p>@note The animations in the block are applied to every single image</p>
+
+<p>@param [ Array&lt;String&gt; ] paths Array of string with the fullpath to
+the images</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] x The starting X
+coordinates of every image.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] y The starting Y
+coordinates of every image.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] width The width of
+every image.</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] height The height of
+every image.</p>
+
+<p>@param [ Hash ] options</p>
+
+<p>@option options [ Integer ] :delay Number of seconds between images</p>
+
+<p>@option options [ <a href="String.html">String</a> ] :origin The value of
+origin for images. ie: “center”</p>
+
+<p>@option options [ <a href="String.html">String</a> ] :x_origin The value of
+x_origin for images. ie: “center”</p>
+
+<p>@option options [ <a href="String.html">String</a> ] :y_origin The value of
+y_origin for images. ie: “center”</p>
+          
+          
+
+          
+          <div class="method-source-code" id="slideshow-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 354</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">slideshow</span>(<span class="ruby-identifier">paths</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>={}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-constant">Slideshow</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">paths</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">slideshow</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">slideshow</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-text" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">text</span><span
+            class="method-args">(string, x, y, width, height, options={})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Display text on screen</p>
+
+<p>@example Display a text of “Hi”</p>
+
+<pre class="ruby"><span class="ruby-identifier">text</span>(<span class="ruby-string">&quot;Hi&quot;</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, {<span class="ruby-identifier">font</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;BebasNeue&quot;</span>, <span class="ruby-identifier">size</span><span class="ruby-operator">:</span> <span class="ruby-value">24</span>, <span class="ruby-identifier">color</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;#ffffff&quot;</span>})
+</pre>
+
+<p>@param [ <a href="String.html">String</a> ] string the text to be displayed</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] x the starting X
+coordinates of the text</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] y the starting Y
+coordinates of the text</p>
+
+<p>@param [ Hash ] options</p>
+
+<p>@option options [ <a href="String.html">String</a> ] :font name of the font</p>
+
+<p>@option options [ Integer ] :size size in pixels of the text</p>
+
+<p>@option options [ <a href="String.html">String</a> ] :color a string with
+the 3 RGB colors separated by commas. ie: “20,20,20”</p>
+
+<p>@option options [ <a href="String.html">String</a> ] :align one of the
+following three options: “left”, “center”, “right”</p>
+
+<p>@option options [ Integer ] :line_spacing line spacing size in pixels</p>
+          
+          
+
+          
+          <div class="method-source-code" id="text-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 383</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">text</span>(<span class="ruby-identifier">string</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-constant">Text</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">string</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>, <span class="ruby-identifier">width</span>, <span class="ruby-identifier">height</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">text</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">text</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-triangle" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">triangle</span><span
+            class="method-args">(x1, y1, x2, y2, x3, y3, options={})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Draw a triangle on the screen</p>
+
+<p>@example A triangle</p>
+
+<pre class="ruby"><span class="ruby-identifier">triangle</span>(<span class="ruby-value">30</span>, <span class="ruby-value">75</span>, <span class="ruby-value">58</span>, <span class="ruby-value">20</span>, <span class="ruby-value">86</span>, <span class="ruby-value">75</span>)
+</pre>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] x1 The x coordinate of
+first point</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] y1 The y coordinate of
+the first point</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] x2 The x coordinate of
+the second point</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] y2 The y coordinate of
+the second point</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] x3 The x coordinate of
+the third point</p>
+
+<p>@param [ Integer, <a href="String.html">String</a> ] y3 The y coordinate of
+the thrid point</p>
+          
+          
+
+          
+          <div class="method-source-code" id="triangle-source">
+            <pre><span class="ruby-comment"># File elements_dsl.rb, line 169</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">triangle</span>(<span class="ruby-identifier">x1</span>, <span class="ruby-identifier">y1</span>, <span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y2</span>, <span class="ruby-identifier">x3</span>, <span class="ruby-identifier">y3</span>, <span class="ruby-identifier">options</span>={})
+  <span class="ruby-constant">Triangle</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>, <span class="ruby-identifier">x1</span>, <span class="ruby-identifier">y1</span>, <span class="ruby-identifier">x2</span>, <span class="ruby-identifier">y2</span>, <span class="ruby-identifier">x3</span>, <span class="ruby-identifier">y3</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">triangle</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@elements</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">triangle</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
