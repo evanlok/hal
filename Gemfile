@@ -59,6 +59,8 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-fontawesome'
   gem 'rails-assets-normalize-scss'
   gem 'rails-assets-ace-builds'
+  gem 'rails-assets-lodash'
+  gem 'rails-assets-pnotify'
 end
 
 group :development do

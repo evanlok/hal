@@ -5,6 +5,10 @@
   <%= f.input :color %>
 
   <div class="form-actions">
+    <% if @scene_collection.persisted? %>
+      <%= link_to 'Preview', preview_admin_scene_collection_path(@scene_collection), method: :post, remote: true, class: 'preview btn btn-warning' %>
+    <% end %>
+
     <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
     <%= link_to 'Cancel', admin_scene_collections_path, class: 'btn btn-default' %>
   </div>

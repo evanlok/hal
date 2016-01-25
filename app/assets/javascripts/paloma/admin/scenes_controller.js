@@ -28,8 +28,15 @@ ScenesController.prototype.edit = function () {
       },
       method: 'POST'
     }).done(function onSuccess(data) {
-      console.log(data)
       openPreviewTab(data.id);
+    }).fail(function onFail(xhr) {
+      new PNotify({
+        title: 'Preview Error',
+        text: '<ul>' + _.reduce(xhr.responseJSON.errors, function (html, error) {
+          return html + '<li>' + error + '</li>';
+        }, '') + '</ul>',
+        type: 'error'
+      });
     });
 
     $('#preview-modal').modal('hide');

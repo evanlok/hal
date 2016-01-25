@@ -42,6 +42,7 @@ Rails.application.routes.draw do
     end
 
     resources :scene_collections do
+      post :preview, on: :member
       resources :scene_contents, except: :index
     end
 

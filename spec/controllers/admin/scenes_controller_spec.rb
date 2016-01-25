@@ -15,9 +15,9 @@ RSpec.describe Admin::ScenesController do
       expect(response).to be_success
     end
 
-    context 'when vgl generation fails' do
+    context 'when preview has errors' do
       it 'returns bad request status' do
-        expect_any_instance_of(Engine::Definitions::ScenePreviewVideo).to receive(:to_vgl).and_raise(StandardError, 'Invalid syntax')
+        expect_any_instance_of(VideoPreviewer).to receive(:create_video_preview) { false }
         post :preview, scene_id: scene.id, scene_vgl: scene.vgl_content, scene_data: {}.to_json
         expect(response).to have_http_status(:bad_request)
       end

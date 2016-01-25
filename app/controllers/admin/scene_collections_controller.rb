@@ -1,5 +1,5 @@
 class Admin::SceneCollectionsController < Admin::BaseController
-  before_action :load_scene_collection, only: [:edit, :update, :destroy]
+  before_action :load_scene_collection, only: [:edit, :update, :destroy, :preview]
 
   def index
     @scene_collections = SceneCollection.includes(scene_contents: :scene).order(id: :desc).page(params[:page])
@@ -33,6 +33,18 @@ class Admin::SceneCollectionsController < Admin::BaseController
   def destroy
     @scene_collection.destroy
     redirect_to admin_scene_collections_url, notice: "Deleted scene collection: #{@scene_collection.id}"
+  end
+
+  def preview
+    scene_collection_preview_video = Engine::Definitions::SceneCollectionVideo.new(@scene_collection)
+    video_previewer = VideoPreviewer.new(scene_collection_preview_video, @scene_collection)
+    video_preview = video_previewer.create_video_preview
+
+    if video_preview
+      render json: { id: video_preview.id }
+    else
+      render json: { errors: video_previewer.errors }, status: :bad_request
+    end
   end
 
   protected
