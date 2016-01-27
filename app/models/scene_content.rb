@@ -7,7 +7,6 @@ class SceneContent < ActiveRecord::Base
 
   # Validations
   validates :scene, :scene_collection, :data, presence: true
-  validates :scene_collection_id, uniqueness: { scope: :scene_id }
 
   # Scopes
   scope :by_position, -> { order(:position) }
