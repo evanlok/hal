@@ -9,4 +9,7 @@ class Scene < ActiveRecord::Base
   # Validations
   validates :name, presence: true
   validates :name, uniqueness: true
+
+  # Scopes
+  scope :active, -> { where(active: true) }
 end
