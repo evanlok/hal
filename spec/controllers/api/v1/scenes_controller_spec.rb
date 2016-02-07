@@ -9,6 +9,15 @@ RSpec.describe Api::V1::ScenesController do
       expect(response).to be_success
       expect(assigns(:scenes)).to eq([scene])
     end
+
+    context 'with since param' do
+      let!(:scene) { create(:scene) }
+
+      it 'only returns scenes updated after since value' do
+        get :index, since: 1.hour.from_now.to_i, format: :json
+        expect(assigns(:scenes)).to be_empty
+      end
+    end
   end
 
   describe 'GET show' do

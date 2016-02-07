@@ -1,4 +1,4 @@
-json.extract! scene, :name, :active, :created_at, :updated_at
+json.extract! scene, :id, :name, :active, :created_at, :updated_at
 
 json.attributes do
   json.array! scene.scene_attributes do |scene_attribute|
