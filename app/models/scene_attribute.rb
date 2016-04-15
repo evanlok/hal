@@ -1,7 +1,7 @@
 class SceneAttribute < ActiveRecord::Base
   # Associations
   belongs_to :scene_attribute_type
-  belongs_to :scene
+  belongs_to :scene, touch: true
 
   # Validations
   validates :scene_attribute_type, :scene, :name, :display_name, presence: true
