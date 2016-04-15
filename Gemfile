@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.3'
+gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -79,6 +79,7 @@ group :development, :test do
 
   gem 'rspec-rails', '~> 3.0'
   gem 'awesome_print'
+  gem 'rubocop', require: false
 end
 
 group :test do
