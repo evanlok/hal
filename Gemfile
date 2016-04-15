@@ -52,6 +52,7 @@ gem 'oj_mimic_json'
 gem 'hashie'
 gem 'paper_trail'
 gem 'acts_as_list'
+gem 'non-stupid-digest-assets'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-ujs'

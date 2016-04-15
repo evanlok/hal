@@ -127,6 +127,8 @@ GEM
     newrelic_rpm (3.15.1.316)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    non-stupid-digest-assets (1.0.8)
+      sprockets (>= 2.0)
     oj (2.15.0)
     oj_mimic_json (1.0.1)
     orm_adapter (0.5.0)
@@ -289,6 +291,7 @@ DEPENDENCIES
   kaminari-bootstrap (~> 3.0.1)
   lograge
   newrelic_rpm
+  non-stupid-digest-assets
   oj
   oj_mimic_json
   paloma (~> 4.2)
