@@ -3,6 +3,7 @@ HOST: localhost
 WEB_PORT: '3000'
 S3_BUCKET: hal-development
 CDN_URL: https://hal-development.s3.amazonaws.com
+ASSET_CDN_URL:
 AWS_ACCESS_KEY_ID: ACCESS_KEY
 AWS_SECRET_ACCESS_KEY: SECRET_KEY
 FOG_DIRECTORY: hal-development

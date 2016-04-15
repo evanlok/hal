@@ -79,7 +79,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: ENV['HOST'], port: ENV['WEB_PORT'] }
 
-  config.action_controller.asset_host = ENV['CDN_URL']
+  config.action_controller.asset_host = ENV['ASSET_CDN_URL'] if ENV['ASSET_CDN_URL'].present?
 
   config.lograge.enabled = true
 
