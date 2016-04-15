@@ -250,7 +250,9 @@ GEM
       ast (~> 2.2)
     pg (0.18.2)
     powerpack (0.1.1)
-    puma (2.12.3)
+    puma (3.4.0)
+    puma-heroku (1.0.0)
+      puma (~> 3.0)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
@@ -406,6 +408,7 @@ DEPENDENCIES
   paper_trail
   pg
   puma
+  puma-heroku
   quiet_assets
   rails (= 4.2.6)
   rails-assets-ace-builds!
