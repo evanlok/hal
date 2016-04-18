@@ -2,7 +2,7 @@ class Admin::SceneCollectionsController < Admin::BaseController
   before_action :load_scene_collection, only: [:edit, :update, :destroy, :preview]
 
   def index
-    @scene_collections = SceneCollection.includes(scene_contents: :scene).order(id: :desc).page(params[:page])
+    @scene_collections = SceneCollection.order(id: :desc).page(params[:page])
   end
 
   def new

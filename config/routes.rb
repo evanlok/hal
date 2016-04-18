@@ -43,7 +43,6 @@ Rails.application.routes.draw do
 
     resources :scene_collections do
       post :preview, on: :member
-      resources :scene_contents, except: :index
     end
 
     resources :scene_attribute_types
@@ -65,6 +64,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :video_contents, only: [:create, :show]
       resources :scenes, only: [:index, :show]
+      resources :scene_collections, only: [:show, :create, :update]
     end
   end
 end

@@ -53,7 +53,7 @@ FactoryGirl.define do
   factory :scene do
     sequence(:name) { |n| "Scene #{n}" }
     active true
-    vgl_content 'vgl_content'
+    vgl_content 'b.text'
   end
 
   factory :scene_attribute_type do
@@ -68,14 +68,25 @@ FactoryGirl.define do
   end
 
   factory :scene_collection do
-    font 'http://vejeo.s3.amazonaws.com/vidgenie/fonts/lato/Lato-Bold.ttf'
-    music 'https://vejeo.s3.amazonaws.com/vidgenie/audio/music/soothing/soothing-8.mp3'
-  end
-
-  factory :scene_content do
-    scene
-    scene_collection
-    data { { location: 'San Francisco' } }
+    data do
+      {
+        font: 'http://vejeo.s3.amazonaws.com/vidgenie/fonts/lato/Lato-Bold.ttf',
+        music: 'https://vejeo.s3.amazonaws.com/vidgenie/audio/music/soothing/soothing-8.mp3',
+        color: '#cccccc',
+        callback_url: Faker::Internet.url,
+        scenes: [
+          {
+            scene_id: create(:scene).id,
+            data: {
+              city: 'San Francisco',
+              state: 'Caifornia'
+            },
+            transition: 'SlideUp',
+            transition_duration: 2.5
+          }
+        ]
+      }
+    end
   end
 
   factory :video_preview do

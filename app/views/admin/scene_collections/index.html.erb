@@ -7,7 +7,6 @@
 <table class="table">
   <tr>
     <th>ID</th>
-    <th>Scenes</th>
     <th>Created</th>
     <th colspan="2">Updated</th>
   </tr>
@@ -15,11 +14,6 @@
   <% @scene_collections.each do |scene_collection| %>
     <tr>
       <td><%= scene_collection.id %></td>
-      <td>
-        <% scene_collection.scene_contents.each_with_index do |scene_content, i| %>
-          <%= link_to scene_content.scene.name, [:edit, :admin, scene_collection, scene_content] %><%= ',' unless i == scene_collection.scene_contents.length - 1 %>
-        <% end %>
-      </td>
       <td><%= scene_collection.created_at.to_s(:full) %></td>
       <td><%= scene_collection.updated_at.to_s(:full) %></td>
       <td class="actions">

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127071525) do
+ActiveRecord::Schema.define(version: 20160418072641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,26 +86,10 @@ ActiveRecord::Schema.define(version: 20160127071525) do
   add_index "scene_attributes", ["scene_id", "name"], name: "index_scene_attributes_on_scene_id_and_name", unique: true, using: :btree
 
   create_table "scene_collections", force: :cascade do |t|
-    t.text     "font"
-    t.text     "music"
-    t.text     "color"
-    t.text     "callback_url"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.jsonb    "data"
   end
-
-  create_table "scene_contents", force: :cascade do |t|
-    t.integer  "scene_id"
-    t.integer  "scene_collection_id"
-    t.json     "data"
-    t.string   "transition"
-    t.float    "transition_duration", default: 0.0
-    t.integer  "position"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-  end
-
-  add_index "scene_contents", ["scene_collection_id", "scene_id"], name: "index_scene_contents_on_scene_collection_id_and_scene_id", using: :btree
 
   create_table "scenes", force: :cascade do |t|
     t.string   "name"
@@ -139,7 +123,7 @@ ActiveRecord::Schema.define(version: 20160127071525) do
     t.integer  "item_id",    null: false
     t.string   "event",      null: false
     t.string   "whodunnit"
-    t.json     "object"
+    t.jsonb    "object"
     t.datetime "created_at"
   end
 
@@ -147,7 +131,7 @@ ActiveRecord::Schema.define(version: 20160127071525) do
 
   create_table "video_contents", force: :cascade do |t|
     t.string   "uid"
-    t.json     "data"
+    t.jsonb    "data"
     t.integer  "definition_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -170,7 +154,7 @@ ActiveRecord::Schema.define(version: 20160127071525) do
   create_table "video_types", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.json     "schema"
+    t.jsonb    "schema"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end

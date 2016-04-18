@@ -1,23 +1,54 @@
 require 'rails_helper'
 
 RSpec.describe Engine::Definitions::SceneCollectionVideo do
-  let(:scene_collection) { create(:scene_collection) }
   let(:scene) { create(:scene, vgl_content: 'b.text(scene_data.agent_name)') }
-  let!(:scene_content) { create(:scene_content, scene: scene, scene_collection: scene_collection, data: { agent_name: 'Agent Name' }) }
+
+  let(:data) do
+    {
+      font: 'http://vejeo.s3.amazonaws.com/vidgenie/fonts/lato/Lato-Bold.ttf',
+      music: 'https://vejeo.s3.amazonaws.com/vidgenie/audio/music/soothing/soothing-8.mp3',
+      color: '#cccccc',
+      callback_url: Faker::Internet.url,
+      scenes: [
+        {
+          scene_id: scene.id,
+          data: {
+            agent_name: 'John Doe'
+          },
+          transition: 'SlideUp',
+          transition_duration: 2.5
+        },
+        {
+          scene_id: create(:scene).id,
+          data: {
+            city: 'San Francisco'
+          },
+          transition: 'SlideDown',
+          transition_duration: 2.5
+        }
+      ]
+    }
+  end
+
+  let(:scene_collection) { create(:scene_collection, data: data) }
   let(:definition) { described_class.new(scene_collection) }
 
   describe '#to_vgl' do
     it 'evaluates vgl content for each scene' do
       expect(definition.to_vgl).to be_a(String)
-      expect(definition.to_vgl).to include('Agent Name')
+      expect(definition.to_vgl).to include('John Doe')
     end
 
     it 'inserts font vgl' do
-      expect(definition.to_vgl).to match(/set_default_font.+#{scene_collection.font}/)
+      expect(definition.to_vgl).to match(/set_default_font.+#{data[:font]}/)
     end
 
     it 'inserts music vgl' do
-      expect(definition.to_vgl).to match(/audio.+#{scene_collection.music}/)
+      expect(definition.to_vgl).to match(/audio.+#{data[:music]}/)
+    end
+
+    it 'inserts scene transitions' do
+      expect(definition.to_vgl).to match(/transition\("#{data[:scenes][0][:transition]}",#{data[:scenes][1][:transition_duration]}\)/)
     end
   end
 end

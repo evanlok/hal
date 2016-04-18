@@ -1,15 +1,13 @@
 <%= simple_form_for [:admin, @scene_collection] do |f| %>
-  <%= render 'shared/errors', errored_on: @scene_collection %>
-  <%= f.input :font %>
-  <%= f.input :music %>
-  <%= f.input :color %>
+    <%= render 'shared/errors', errored_on: @scene_collection %>
+    <%= f.input :data, as: :text, input_html: { rows: 10 } %>
 
-  <div class="form-actions">
-    <% if @scene_collection.persisted? %>
-      <%= link_to 'Preview', preview_admin_scene_collection_path(@scene_collection), method: :post, remote: true, class: 'preview btn btn-warning' %>
-    <% end %>
+    <div class="form-actions">
+      <% if @scene_collection.persisted? %>
+          <%= link_to 'Preview', preview_admin_scene_collection_path(@scene_collection), method: :post, remote: true, class: 'preview btn btn-warning' %>
+      <% end %>
 
-    <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
-    <%= link_to 'Cancel', admin_scene_collections_path, class: 'btn btn-default' %>
-  </div>
+      <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', admin_scene_collections_path, class: 'btn btn-default' %>
+    </div>
 <% end %>

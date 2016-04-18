@@ -4,25 +4,24 @@ module Engine
       alias_method :scene_collection, :video_content
 
       def content
-        b.audio(scene_collection.music, volume: -15, file: true) if scene_collection.music.present?
-        b.set_default_font(scene_collection.font) if scene_collection.font.present?
+        b.audio(video_data.music, volume: -15, file: true) if video_data.music.present?
+        b.set_default_font(video_data.font) if video_data.font.present?
 
-        scene_contents.each do |scene_content|
+        scene_collection.scenes.each_with_index do |scene, idx|
+          scene_content = scene_collection.video_data.scenes[idx]
+          scene_data = scene_content.data
+          Honeybadger.context(scene_id: scene.id, scene_content: scene_content)
+
           b.stack do
-            scene_content.scene_data.tap do |scene_data|
-              Honeybadger.context(scene_id: scene_content.scene.id, scene_content_id: scene_content.id, scene_data: scene_data)
-              eval(scene_content.scene.vgl_content)
-            end
+            bnd = binding
+            bnd.local_variable_set(:video_data, scene_data)
+            eval(scene.vgl_content, bnd)
           end
 
-          if scene_content.transition.present? && !scene_content.last?
+          if scene_content.transition.present? && scene_content != scene_collection.video_data.scenes.last
             b.transition(scene_content.transition, scene_content.transition_duration)
           end
         end
-      end
-
-      def scene_contents
-        scene_collection.scene_contents.by_position.includes(:scene)
       end
     end
   end

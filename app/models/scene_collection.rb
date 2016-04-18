@@ -1,7 +1,24 @@
 class SceneCollection < ActiveRecord::Base
+  include Previewable
+
   # Associations
-  has_many :scene_contents, -> { order(:position) }, dependent: :destroy
-  has_many :scenes, through: :scene_contents
   has_one :video, as: :videoable, dependent: :destroy
-  has_many :video_previews, as: :previewable, dependent: :delete_all
+
+  def scenes
+    if data['scenes'].present?
+      scene_ids = data['scenes'].map { |scene_data| scene_data['scene_id'] }
+      scenes_by_id = Scene.where(id: scene_ids).index_by(&:id)
+      scene_ids.map { |scene_id| scenes_by_id[scene_id] }
+    else
+      []
+    end
+  end
+
+  def callback_url
+    video_data.callback_url
+  end
+
+  def video_data
+    @video_data ||= Hashie::Mash.new(data)
+  end
 end

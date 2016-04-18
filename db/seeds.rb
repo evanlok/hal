@@ -122,20 +122,22 @@ SceneAttribute.create!(
   name: 'location_video'
 )
 
-scene_collection = SceneCollection.create!(
+SceneCollection.create!(
   color: 'blue: "0,112,238", white: "255,255,255", gray: "136, 136, 136"',
   font: 'http://vejeo.s3.amazonaws.com/vidgenie/fonts/lato/Lato-Bold.ttf',
   music: 'https://vejeo.s3.amazonaws.com/vidgenie/audio/music/soothing/soothing-8.mp3',
-)
-
-SceneContent.create!(
-  scene: scene,
-  scene_collection: scene_collection,
-  transition: 'SlideUp',
-  transition_duration: 2.5,
   data: {
-    agent_name: 'John Doe',
-    agent_photo: 'https://houztrendz-staging.s3.amazonaws.com/videos/assets/1/agent-test-photo.jpg',
-    location_video: 'https://video-snippets.s3.amazonaws.com/encoded/7800/49514dee-9957-448f-a90c-1a8a45644bde_720.mp4'
+    scenes: [
+      {
+        scene_id: scene.id,
+        data: {
+          agent_name: 'John Doe',
+          agent_photo: 'https://houztrendz-staging.s3.amazonaws.com/videos/assets/1/agent-test-photo.jpg',
+          location_video: 'https://video-snippets.s3.amazonaws.com/encoded/7800/49514dee-9957-448f-a90c-1a8a45644bde_720.mp4'
+        },
+        transition: 'SlideUp',
+        transition_duratiion: 2.5
+      }
+    ]
   }
 )
