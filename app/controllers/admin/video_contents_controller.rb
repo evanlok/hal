@@ -2,7 +2,7 @@ class Admin::VideoContentsController < Admin::BaseController
   before_action :load_video_content, only: [:show, :edit, :update, :destroy]
 
   def index
-    @video_contents = VideoContent.includes(:video, { definition: :video_type}).order(id: :desc).page(params[:page])
+    @video_contents = VideoContent.includes(definition: :video_type).order(id: :desc).page(params[:page])
   end
 
   def new

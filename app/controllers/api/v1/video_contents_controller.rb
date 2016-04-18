@@ -12,8 +12,7 @@ module Api::V1
       @video_content = VideoContent.where(uid: video_content_params[:uid], definition: definition).first_or_initialize
       @video_content.attributes = video_content_params
 
-      if @video_content.save
-        VideoGenerator.new(@video_content).generate
+      if @video_content.save && @video_content.generate
         render status: :created
       else
         render json: { errors: @video_content.errors.full_messages }, status: :bad_request

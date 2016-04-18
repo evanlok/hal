@@ -1,7 +1,10 @@
 class VideoContent < ActiveRecord::Base
+  include Previewable
+  include Generatable
+
   # Associations
   belongs_to :definition
-  has_one :video, as: :videoable, dependent: :destroy
+  has_many :videos, as: :videoable, dependent: :destroy
 
   # Validations
   validates :data, :definition, presence: true

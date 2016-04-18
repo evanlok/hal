@@ -15,7 +15,7 @@ RSpec.describe Api::V1::VideoContentsController do
     end
 
     it 'creates video content record and generates video' do
-      expect_any_instance_of(VideoGenerator).to receive(:generate)
+      expect_any_instance_of(VideoContent).to receive(:generate) { true }
       post :create, video_content_attributes.merge(format: :json)
       expect(response).to have_http_status(201)
     end
@@ -31,7 +31,7 @@ RSpec.describe Api::V1::VideoContentsController do
       let!(:video_content) { create(:video_content) }
 
       it 'updates existing record' do
-        expect_any_instance_of(VideoGenerator).to receive(:generate)
+        expect_any_instance_of(VideoContent).to receive(:generate) { true }
         expect {
           post :create,
                uid: video_content.uid,

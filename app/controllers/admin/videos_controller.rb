@@ -2,12 +2,12 @@ class Admin::VideosController < Admin::BaseController
   before_action :find_videoable
 
   def create
-    VideoGenerator.new(@videoable).generate
+    @videoable.generate
     redirect_to [:admin, @videoable], notice: "Generated video with definition: #{@videoable.definition.name}"
   end
 
   def create_preview
-    VideoGenerator.new(@videoable).generate(stream_only: true)
+    @videoable.preview
     redirect_to [@videoable.video, {autoplay: 1}], notice: "Generated preview video with definition: #{@videoable.definition.name}"
   end
 

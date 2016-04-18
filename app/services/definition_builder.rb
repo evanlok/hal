@@ -1,4 +1,4 @@
-class VGLGenerator
+class DefinitionBuilder
   SKETCH_TEMPLATE = <<-EOS
 module Engine
   module Definitions
@@ -41,9 +41,5 @@ EOS
 
   def definition_instance
     @definition_instance ||= definition_class.new(video_content)
-  end
-
-  def vgl
-    @vgl ||= definition_instance.to_vgl
   end
 end

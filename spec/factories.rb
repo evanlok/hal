@@ -17,8 +17,8 @@ FactoryGirl.define do
     sequence(:name) { |n| "Defintion#{n}" }
     sequence(:class_name) { |n| "Defintion#{n}" }
     active true
-    vgl_header 'vgl_header'
-    vgl_content 'vgl_content'
+    vgl_header 'def header_method; end'
+    vgl_content 'b.text'
   end
 
   factory :video do

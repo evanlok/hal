@@ -1,8 +1,11 @@
 class SceneCollection < ActiveRecord::Base
   include Previewable
+  include Generatable
 
-  # Associations
-  has_one :video, as: :videoable, dependent: :destroy
+  def data=(val)
+    @video_data = nil
+    super
+  end
 
   def scenes
     if data['scenes'].present?
