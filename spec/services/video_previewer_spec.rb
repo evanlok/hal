@@ -17,7 +17,6 @@ RSpec.describe VideoPreviewer do
       }
 
       expect_any_instance_of(VidgenieAPIClient).to receive(:post_video).with(expected_params)
-      expect(video_previewer).to receive(:build_vgl) { 'vgl' }
       video_previewer.create_video_preview
     end
 
@@ -27,23 +26,23 @@ RSpec.describe VideoPreviewer do
       expect(VideoPreview.last.previewable).to eq(scene)
     end
 
-    context 'when errors are present' do
+    context 'when invalid' do
       it 'returns false' do
-        video_previewer.errors << 'error'
+        expect(video_previewer).to receive(:valid?) { false }
         expect(video_previewer.create_video_preview).to be false
       end
     end
   end
 
-  describe '#build_vgl' do
-    it 'returns definition vgl' do
-      expect(video_previewer.build_vgl).to eq('vgl')
+  describe '#valid?' do
+    it 'returns true when vgl is valid' do
+      expect(video_previewer.valid?).to be true
     end
 
-    context 'when vgl compilation fails' do
-      it 'assigns message to errors array' do
-        expect(definition).to receive(:to_vgl).and_raise(StandardError.new('error message'))
-        video_previewer.build_vgl
+    context 'when vgl has build errors' do
+      it 'returns false and sets errors' do
+        expect(definition).to receive(:to_vgl).and_raise(StandardError, 'error message')
+        expect(video_previewer.valid?).to be false
         expect(video_previewer.errors).to eq(['error message'])
       end
     end

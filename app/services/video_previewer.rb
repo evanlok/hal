@@ -9,16 +9,8 @@ class VideoPreviewer
     @errors = []
   end
 
-  def build_vgl
-    begin
-      definition.to_vgl
-    rescue => e
-      errors << e.message
-    end
-  end
-
   def create_video_preview
-    return false if errors.present?
+    return false unless valid?
 
     video_preview = VideoPreview.create(previewable: reference)
     params = {
@@ -32,5 +24,19 @@ class VideoPreviewer
 
     VidgenieAPIClient.new.post_video(params)
     video_preview
+  end
+
+  def valid?
+    build_vgl && errors.empty?
+  end
+
+  private
+
+  def build_vgl
+    begin
+      @vgl ||= definition.to_vgl
+    rescue => e
+      errors << e.message
+    end
   end
 end
