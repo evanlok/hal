@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe VideoCallbackNotifier do
   let(:video_content) { create(:video_content, callback_url: 'http://www.houztrendz.com/callback') }
   let!(:video) { create(:video, videoable: video_content) }
-  let(:notifier) { VideoCallbackNotifier.new(video_content) }
+  let(:notifier) { VideoCallbackNotifier.new(video) }
 
   describe '#send_callback_notification' do
     it 'sends POST request to callback url' do
