@@ -5,8 +5,8 @@ module Previewable
     has_many :video_previews, as: :previewable, dependent: :delete_all
   end
 
-  def preview
-    definition = DefinitionFactory.fetch(self)
+  def preview(definition = nil)
+    definition ||= DefinitionFactory.fetch(self)
     video_previewer = VideoPreviewer.new(definition, self)
     video_preview = video_previewer.create_video_preview
 

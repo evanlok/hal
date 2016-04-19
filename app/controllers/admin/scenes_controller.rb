@@ -44,16 +44,20 @@ class Admin::ScenesController < Admin::BaseController
   end
 
   def preview
-    @scene = Scene.find(params[:scene_id]) if params[:scene_id].present?
+    if params[:scene_id].present?
+      @scene = Scene.find(params[:scene_id])
+    else
+      @scene = Scene.new
+    end
+
     scene_data = params[:scene_data].present? ? JSON.parse(params[:scene_data]) : {}
     scene_preview_video = Engine::Definitions::ScenePreviewVideo.new(params[:scene_vgl], scene_data)
-    video_previewer = VideoPreviewer.new(scene_preview_video, @scene)
-    video_preview = video_previewer.create_video_preview
+    video_preview = @scene.preview(scene_preview_video)
 
     if video_preview
       render json: { id: video_preview.id }
     else
-      render json: { errors: video_previewer.errors }, status: :bad_request
+      render json: { errors: @scene.errors.full_messages }, status: :bad_request
     end
   end
 
