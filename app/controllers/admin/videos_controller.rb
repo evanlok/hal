@@ -1,5 +1,9 @@
 class Admin::VideosController < Admin::BaseController
-  before_action :find_videoable
+  before_action :find_videoable, except: [:index]
+
+  def index
+    @videos = Video.order(id: :desc).page(params[:page]).per(50)
+  end
 
   def create
     @videoable.generate

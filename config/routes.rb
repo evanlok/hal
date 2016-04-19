@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     resources :video_types
     resources :definitions
     resources :video_contents, concerns: :videoable
+    resources :videos, only: [:index]
 
     resources :scenes do
       post :preview, on: :collection
