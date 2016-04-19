@@ -8,7 +8,7 @@ class CallbacksController < ApplicationController
 
     if video_url && status == 'finished'
       filename = File.basename(video_url)
-      duration = params['input']['duration_in_ms'].to_i
+      duration = params['input']['duration_in_ms'].to_i / 1000
       @video.update_attributes(filename: filename, duration: duration)
       VideoCallbackNotifier.notify(@video) if @video.videoable.respond_to?(:callback_url)
     end
