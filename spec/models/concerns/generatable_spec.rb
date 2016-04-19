@@ -30,3 +30,7 @@ end
 RSpec.describe SceneCollection do
   it_behaves_like Generatable
 end
+
+RSpec.describe VideoContent do
+  it_behaves_like Generatable
+end

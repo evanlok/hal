@@ -40,3 +40,7 @@ end
 RSpec.describe Scene do
   it_behaves_like Previewable
 end
+
+RSpec.describe VideoContent do
+  it_behaves_like Previewable
+end
