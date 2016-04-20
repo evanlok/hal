@@ -25,6 +25,9 @@ FactoryGirl.define do
     filename { "#{SecureRandom.uuid}.mp4" }
     duration 100
     association :videoable, factory: :video_content
+    callback_url { Faker::Internet.url }
+    stream_callback_url { Faker::Internet.url }
+    stream_url { Faker::Internet.url }
   end
 
   factory :video_content do
@@ -91,5 +94,6 @@ FactoryGirl.define do
 
   factory :video_preview do
     stream_url 'http://www.onvedeo.com/stream.m3u8'
+    callback_url { Faker::Internet.url }
   end
 end

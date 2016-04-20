@@ -13,7 +13,6 @@ RSpec.describe Api::V1::SceneCollectionsController do
 
   describe 'POST create' do
     it 'creates new SceneCollection and triggers generation' do
-      expect_any_instance_of(SceneCollection).to receive(:generate) { true }
       post :create, scene_collection.data.merge(format: :json)
       expect(response).to have_http_status(:created)
       expect(assigns(:scene_collection).data).to eq(scene_collection.data)
@@ -24,10 +23,25 @@ RSpec.describe Api::V1::SceneCollectionsController do
     let(:existing_scene_collection) { create(:scene_collection, data: {}) }
 
     it 'updates existing scene collection' do
-      expect_any_instance_of(SceneCollection).to receive(:generate) { true }
       patch :update, scene_collection.data.merge(id: existing_scene_collection, format: :json)
       expect(response).to be_success
       expect(assigns(:scene_collection).data).to eq(scene_collection.data)
+    end
+  end
+
+  describe 'POST generate' do
+    it 'triggers video generation' do
+      expect_any_instance_of(SceneCollection).to receive(:generate) { true }
+      post :generate, id: scene_collection.id
+      expect(response).to be_success
+    end
+  end
+
+  describe 'POST preview' do
+    it 'triggers preview generation' do
+      expect_any_instance_of(SceneCollection).to receive(:preview) { true }
+      post :preview, id: scene_collection.id
+      expect(response).to be_success
     end
   end
 end

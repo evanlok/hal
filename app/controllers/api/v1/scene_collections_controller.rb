@@ -1,13 +1,14 @@
 class Api::V1::SceneCollectionsController < Api::V1::BaseController
+  before_action :load_scene_collection, except: :create
+
   def show
-    @scene_collection = SceneCollection.find(params[:id])
     render json: scene_collection_json(@scene_collection)
   end
 
   def create
     @scene_collection = SceneCollection.new(data: scene_collection_params)
 
-    if @scene_collection.save && @scene_collection.generate
+    if @scene_collection.save
       render json: scene_collection_json(@scene_collection), status: :created
     else
       render json: { errors: @scene_collection.errors.full_messages }, status: :unprocessable_entity
@@ -15,16 +16,34 @@ class Api::V1::SceneCollectionsController < Api::V1::BaseController
   end
 
   def update
-    @scene_collection = SceneCollection.find(params[:id])
-
-    if @scene_collection.update(data: scene_collection_params) && @scene_collection.generate
+    if @scene_collection.update(data: scene_collection_params)
       render json: scene_collection_json(@scene_collection)
     else
       render json: { errors: @scene_collection.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
+  def generate
+    if @scene_collection.generate(callback_url: params[:callback_url], stream_callback_url: params[:stream_callback_url])
+      render json: { id: @scene_collection.id, generate: true, callback_url: params[:callback_url], stream_callback_url: params[:stream_callback_url] }
+    else
+      render json: { errors: @scene_collection.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
+  def preview
+    if @scene_collection.preview(callback_url: params[:callback_url])
+      render json: { id: @scene_collection.id, preview: true, callback_url: params[:callback_url] }
+    else
+      render json: { errors: @scene_collection.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   private
+
+  def load_scene_collection
+    @scene_collection = SceneCollection.find(params[:id])
+  end
 
   def scene_collection_params
     params.permit(:font, :music, :color, :callback_url, scenes: [:scene_id, :transition, :transition_duration]).tap do |whitelisted|

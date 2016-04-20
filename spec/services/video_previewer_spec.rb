@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe VideoPreviewer do
   let(:definition) { double(:definition, to_vgl: 'vgl') }
   let(:scene) { create(:scene) }
-  let(:video_previewer) { VideoPreviewer.new(definition, scene) }
+  let(:video_previewer) { VideoPreviewer.new(definition) }
 
   describe '#create_video_preview' do
     it 'posts video to vidgenie API' do
@@ -22,8 +22,14 @@ RSpec.describe VideoPreviewer do
 
     it 'creates VideoPreview with reference' do
       allow_any_instance_of(VidgenieAPIClient).to receive(:post_video)
-      expect { video_previewer.create_video_preview }.to change { VideoPreview.count }.by(1)
+      expect { video_previewer.create_video_preview(reference: scene) }.to change { VideoPreview.count }.by(1)
       expect(VideoPreview.last.previewable).to eq(scene)
+    end
+
+    it 'creates VideoPreview with callback_url' do
+      allow_any_instance_of(VidgenieAPIClient).to receive(:post_video)
+      expect { video_previewer.create_video_preview(callback_url: 'callback') }.to change { VideoPreview.count }.by(1)
+      expect(VideoPreview.last.callback_url).to eq('callback')
     end
 
     context 'when invalid' do

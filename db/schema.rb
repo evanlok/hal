@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160418072641) do
+ActiveRecord::Schema.define(version: 20160419234201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 20160418072641) do
     t.text     "stream_url"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.text     "callback_url"
   end
 
   add_index "video_previews", ["previewable_id", "previewable_type"], name: "index_video_previews_on_previewable_id_and_previewable_type", using: :btree
@@ -165,9 +166,11 @@ ActiveRecord::Schema.define(version: 20160418072641) do
     t.string   "filename"
     t.integer  "duration"
     t.string   "thumbnail_url"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "stream_url"
+    t.text     "callback_url"
+    t.text     "stream_callback_url"
   end
 
   add_index "videos", ["videoable_id", "videoable_type"], name: "index_videos_on_videoable_id_and_videoable_type", using: :btree

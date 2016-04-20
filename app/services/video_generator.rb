@@ -7,9 +7,9 @@ class VideoGenerator
     @errors = []
   end
 
-  def generate(priority = 'normal')
+  def generate(priority: 'normal', callback_url: nil, stream_callback_url: nil)
     return false unless valid?
-    video = content.videos.create
+    video = content.videos.create(callback_url: callback_url, stream_callback_url: stream_callback_url)
     payload = payload(priority: priority, video: video)
     VidgenieAPIClient.new.post_video(payload)
     video

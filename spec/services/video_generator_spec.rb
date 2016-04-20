@@ -19,6 +19,15 @@ RSpec.describe VideoGenerator do
       expect(video_content).to receive(:videos) { double(:videos, create: double(:video)) }
       subject.generate
     end
+
+    it 'creates Video with callback_url and stream_callback_url' do
+      expect(subject).to receive(:payload) { 'params' }
+      expect_any_instance_of(VidgenieAPIClient).to receive(:post_video).with('params')
+      videos_association = double(:videos)
+      expect(video_content).to receive(:videos) { videos_association }
+      expect(videos_association).to receive(:create).with(callback_url: 'callback', stream_callback_url: 'stream')
+      subject.generate(callback_url: 'callback', stream_callback_url: 'stream')
+    end
   end
 
   describe '#valid?' do

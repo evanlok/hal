@@ -16,7 +16,7 @@ RSpec.shared_examples_for Previewable do
       it 'uses provided definition' do
         expect(DefinitionFactory).to_not receive(:fetch)
         expect_any_instance_of(VideoPreviewer).to receive(:create_video_preview) { video_preview }
-        subject.preview(definition)
+        subject.preview(definition: definition)
       end
     end
 

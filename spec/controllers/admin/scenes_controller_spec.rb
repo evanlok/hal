@@ -10,14 +10,14 @@ RSpec.describe Admin::ScenesController do
     let(:scene) { create(:scene, vgl_content: "b.text('TEXT')") }
 
     it 'creates VideoPreview for scene' do
-      expect_any_instance_of(Scene).to receive(:preview).with(kind_of(Engine::Definitions::ScenePreviewVideo)) { double(:video_preview, id: 10) }
+      expect_any_instance_of(Scene).to receive(:preview).with(definition: kind_of(Engine::Definitions::ScenePreviewVideo)) { double(:video_preview, id: 10) }
       post :preview, scene_id: scene.id, scene_vgl: scene.vgl_content, scene_data: {}.to_json
       expect(response).to be_success
     end
 
     context 'when preview has errors' do
       it 'returns bad request status' do
-        expect_any_instance_of(Scene).to receive(:preview).with(kind_of(Engine::Definitions::ScenePreviewVideo)) { false }
+        expect_any_instance_of(Scene).to receive(:preview).with(definition: kind_of(Engine::Definitions::ScenePreviewVideo)) { false }
         post :preview, scene_id: scene.id, scene_vgl: scene.vgl_content, scene_data: {}.to_json
         expect(response).to have_http_status(:bad_request)
       end

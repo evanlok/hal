@@ -13,10 +13,10 @@ module Generatable
     end
   end
 
-  def generate(priority = 'normal')
+  def generate(*args)
     definition = DefinitionFactory.fetch(self)
     video_generator = VideoGenerator.new(definition)
-    video = video_generator.generate(priority)
+    video = video_generator.generate(*args)
 
     if video_generator.errors.present?
       video_generator.errors.each { |error| errors.add(:base, error) }

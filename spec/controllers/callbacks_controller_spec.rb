@@ -18,7 +18,7 @@ RSpec.describe CallbacksController do
     end
 
     it 'updates video and sends callback notification' do
-      expect(VideoCallbackNotifier).to receive(:notify).with(video)
+      expect(Notifiers::VideoCallbackNotifier).to receive(:notify).with(video)
       post :encoder, payload.merge(video_id: video.id)
       expect(response).to be_success
       video.reload
@@ -30,6 +30,7 @@ RSpec.describe CallbacksController do
     let(:video) { create(:video, stream_url: nil) }
 
     it 'updates video stream url' do
+      expect(Notifiers::StreamCallbackNotifier).to receive(:notify).with(video)
       post :stream, video_id: video.id, stream: { url: 'stream_url', reference: { video_id: video.id } }
       expect(response).to be_success
       expect(video.reload.stream_url).to eq('stream_url')
@@ -40,6 +41,7 @@ RSpec.describe CallbacksController do
     let!(:video_preview) { create(:video_preview, previewable: scene_collection) }
 
     it 'updates video preview stream_url' do
+      expect(Notifiers::PreviewCallbackNotifier).to receive(:notify).with(video_preview)
       post :preview, video_id: video_preview.id, stream: { url: 'stream_url' }
       expect(response).to be_success
       expect(video_preview.reload).to have_attributes(stream_url: 'stream_url')
