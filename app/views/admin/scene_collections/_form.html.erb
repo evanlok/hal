@@ -1,6 +1,6 @@
 <%= simple_form_for [:admin, @scene_collection] do |f| %>
     <%= render 'shared/errors', errored_on: @scene_collection %>
-    <%= f.input :data, as: :text, input_html: { rows: 10 } %>
+    <%= f.input :data, as: :text, input_html: { rows: 10, value: f.object.data_before_type_cast } %>
 
     <div class="form-actions">
       <% if @scene_collection.persisted? %>
