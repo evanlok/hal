@@ -9,7 +9,7 @@ class SceneCollection < ActiveRecord::Base
 
   def scenes
     if data['scenes'].present?
-      scene_ids = data['scenes'].map { |scene_data| scene_data['scene_id'] }
+      scene_ids = data['scenes'].map { |scene_data| scene_data['scene_id'].to_i }
       scenes_by_id = Scene.where(id: scene_ids).index_by(&:id)
       scene_ids.map { |scene_id| scenes_by_id[scene_id] }
     else
