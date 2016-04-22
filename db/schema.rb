@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160419234201) do
+ActiveRecord::Schema.define(version: 20160422175256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20160419234201) do
     t.string   "display_name"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "position"
   end
 
   add_index "scene_attributes", ["scene_attribute_type_id"], name: "index_scene_attributes_on_scene_attribute_type_id", using: :btree

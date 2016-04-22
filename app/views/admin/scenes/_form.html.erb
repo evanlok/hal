@@ -6,11 +6,14 @@
   <% if @scene.persisted? %>
     <div class="form-group">
       <h4>Scene Attributes</h4>
-      <ul>
+      <ol class="scene-attributes">
         <% @scene.scene_attributes.includes(:scene_attribute_type).each do |scene_attribute| %>
-          <li><%= scene_attribute.name %> (<%= scene_attribute.scene_attribute_type.name %>) - <%= scene_attribute.display_name %></li>
+          <li data-id="<%= scene_attribute.id %>">
+            <i class="fa fa-bars handle"></i>
+            <%= scene_attribute.name %> (<%= scene_attribute.scene_attribute_type.name %>) - <%= scene_attribute.display_name %>
+          </li>
         <% end %>
-      </ul>
+      </ol>
 
       <%= link_to 'Edit Scene Attributes', [:admin, @scene, SceneAttribute] %>
     </div>

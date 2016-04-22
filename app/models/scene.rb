@@ -4,7 +4,7 @@ class Scene < ActiveRecord::Base
   has_paper_trail
 
   # Associations
-  has_many :scene_attributes, dependent: :destroy
+  has_many :scene_attributes, -> { order(:position) }, dependent: :destroy
 
   # Validations
   validates :name, presence: true

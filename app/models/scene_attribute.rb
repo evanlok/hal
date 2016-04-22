@@ -1,4 +1,6 @@
 class SceneAttribute < ActiveRecord::Base
+  acts_as_list scope: :scene_id
+
   # Associations
   belongs_to :scene_attribute_type
   belongs_to :scene, touch: true

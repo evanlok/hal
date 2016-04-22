@@ -1,6 +1,7 @@
 var ScenesController = Paloma.controller('Admin/Scenes');
 
 ScenesController.prototype.edit = function () {
+  var params = this.params;
   var vglContentEditor = ace.edit($('#vgl_content .editor')[0]);
   vglContentEditor.getSession().setMode('ace/mode/ruby');
   vglContentEditor.setTheme("ace/theme/twilight");
@@ -13,6 +14,25 @@ ScenesController.prototype.edit = function () {
     e.preventDefault();
     submitPreview();
   });
+
+  if ($(".scene-attributes").length) {
+    Sortable.create($(".scene-attributes")[0], {
+      handle: '.handle',
+      onUpdate: function (event) {
+        var itemEl = event.item;
+        var sceneAttributeId = $(itemEl).data('id');
+
+        $.ajax({
+          url: '/admin/scenes/' + params.scene_id + '/scene_attributes/' + sceneAttributeId + '.json',
+          method: 'PATCH',
+          contentType: 'application/json',
+          data: JSON.stringify({
+            position: event.newIndex + 1
+          })
+        });
+      }
+    });
+  }
 
   function submitPreview() {
     var sceneId = $('#scene_id').val();

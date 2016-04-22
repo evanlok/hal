@@ -27,13 +27,15 @@ class Admin::ScenesController < Admin::BaseController
     if params[:version_id].present?
       @scene = @scene.versions.find(params[:version_id]).reify
     end
+
+    js scene_id: @scene.id
   end
 
   def update
     if @scene.update(scene_params)
       redirect_to [:edit, :admin, @scene], notice: "Updated scene: #{@scene.name}"
     else
-      js :edit
+      js :edit, scene_id: @scene.id
       render :edit
     end
   end

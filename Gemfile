@@ -63,6 +63,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-ace-builds'
   gem 'rails-assets-lodash'
   gem 'rails-assets-pnotify'
+  gem 'rails-assets-Sortable'
 end
 
 group :development do

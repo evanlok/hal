@@ -25,9 +25,15 @@ class Admin::SceneAttributesController < Admin::BaseController
 
   def update
     if @scene_attribute.update(scene_attribute_params)
-      redirect_to [:admin, @scene, SceneAttribute], notice: "Updated scene attribute: #{@scene_attribute.name}"
+      respond_to do |format|
+        format.html { redirect_to [:admin, @scene, SceneAttribute], notice: "Updated scene attribute: #{@scene_attribute.name}" }
+        format.json { render json: @scene_attribute }
+      end
     else
-      render :edit
+      respond_to do |format|
+        format.html { render :edit }
+        format.json { render json: @scene_attribute.errors.full_messages, status: :unprocessable_entity }
+      end
     end
   end
 
