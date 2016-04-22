@@ -10,7 +10,8 @@ RSpec.describe CallbacksController do
       {
         status: 'finished',
         outputs: [
-          { label: 'medium', url: url }
+          { label: 'medium', url: url },
+          { label: 'high', url: url, thumbnail: { url: 'thumbnail.jpg' } },
         ],
         input: { duration_in_ms: 10000 },
         reference_id: video.id
@@ -22,7 +23,7 @@ RSpec.describe CallbacksController do
       post :encoder, payload.merge(video_id: video.id)
       expect(response).to be_success
       video.reload
-      expect(video).to have_attributes(filename: 'video.mp4', duration: 10)
+      expect(video).to have_attributes(filename: 'video.mp4', duration: 10, thumbnail_url: 'thumbnail.jpg')
     end
   end
 

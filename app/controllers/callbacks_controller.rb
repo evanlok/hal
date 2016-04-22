@@ -5,12 +5,13 @@ class CallbacksController < ApplicationController
   # Triggered by video generations
   def encoder
     status = params[:status]
-    video_url = params['outputs'].find { |o| o['label'] == 'medium' }.try(:[], 'url')
+    video_url = params[:outputs].find { |o| o[:label] == 'medium' }.dig(:url)
+    thumbnail_url = params[:outputs].find { |o| o[:label] == 'high' }.dig(:thumbnail, :url)
 
     if video_url && status == 'finished'
       filename = File.basename(video_url)
-      duration = params['input']['duration_in_ms'].to_i / 1000
-      @video.update_attributes(filename: filename, duration: duration)
+      duration = params[:input][:duration_in_ms].to_i / 1000
+      @video.update_attributes(filename: filename, duration: duration, thumbnail_url: thumbnail_url)
       Notifiers::VideoCallbackNotifier.notify(@video)
     end
 
