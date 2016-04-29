@@ -48,7 +48,7 @@ RSpec.describe Engine::Definitions::SceneCollectionVideo do
     end
 
     it 'inserts scene transitions' do
-      expect(definition.to_vgl).to match(/transition\("#{data[:scenes][0][:transition]}",#{data[:scenes][1][:transition_duration]}\)/)
+      expect(definition.to_vgl).to match(/transition\("#{data[:scenes][0][:transition]}",1\)/)
     end
   end
 end

@@ -19,7 +19,7 @@ module Engine
           end
 
           if scene_content.transition.present? && scene_content != scene_collection.video_data.scenes.last
-            b.transition(scene_content.transition, scene_content.transition_duration)
+            b.transition(scene_content.transition, 1)
           end
         end
       end
