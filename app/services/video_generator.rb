@@ -15,7 +15,7 @@ class VideoGenerator
     video
   end
 
-  def payload(priority: 'normal', video: video)
+  def payload(priority: 'normal', video:)
     attrs = {
       video: {
         reference: { type: video.videoable_type, id: video.videoable_id, video_id: video.id },

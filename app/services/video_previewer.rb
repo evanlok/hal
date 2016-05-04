@@ -8,7 +8,7 @@ class VideoPreviewer
     @errors = []
   end
 
-  def create_video_preview(reference: reference, callback_url: nil)
+  def create_video_preview(reference: nil, callback_url: nil)
     return false unless valid?
 
     video_preview = VideoPreview.create(previewable: reference, callback_url: callback_url)
