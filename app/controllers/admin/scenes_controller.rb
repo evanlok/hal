@@ -22,8 +22,6 @@ class Admin::ScenesController < Admin::BaseController
   end
 
   def edit
-    @versions = @scene.versions.pluck(:created_at, :id).reverse.map { |date, id| [date.to_s(:full), id] }
-
     if params[:version_id].present?
       @scene = @scene.versions.find(params[:version_id]).reify
     end
