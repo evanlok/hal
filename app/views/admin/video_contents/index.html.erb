@@ -27,12 +27,6 @@
           <i class="fa fa-eye" title="Show"></i>
         <% end %>
 
-        <% if video_content.video %>
-          <%= link_to video_path(video_content.video), target: '_blank' do %>
-            <i class="fa fa-play-circle" title="Embed URL"></i>
-          <% end %>
-        <% end %>
-
         <%= link_to [:edit, :admin, video_content] do %>
           <i class="fa fa-pencil" title="Edit"></i>
         <% end %>

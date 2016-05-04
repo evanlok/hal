@@ -41,7 +41,7 @@ class OnvedeoVideoEncoder
     [
       video_output('low', "#{filename}_240.mp4", 428, 240),
       video_output('medium', "#{filename}.mp4", 640, 360, {
-        thumbnails: {
+        thumbnail: {
           format: 'jpg',
           number: 1,
           size: '640x360',
@@ -55,7 +55,7 @@ class OnvedeoVideoEncoder
   def hd_outputs
     [
       video_output('high', "#{filename}_720.mp4", 1280, 720, {
-        thumbnails: {
+        thumbnail: {
           format: 'jpg',
           number: 1,
           size: '1280x720',

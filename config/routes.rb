@@ -13,11 +13,14 @@ Rails.application.routes.draw do
     get :stream, on: :member
   end
 
+  resources :video_previews, only: :show
+
   get '/fth_videos/:ftb_id', to: 'find_the_best_locations#fth_embed', as: :fth_video
 
   scope '/callbacks/:video_id' do
     post 'encoder', to: 'callbacks#encoder', as: :encoder_callback
     post 'stream', to: 'callbacks#stream', as: :stream_callback
+    post 'preview', to: 'callbacks#preview', as: :preview_callback
   end
 
   namespace :admin do
@@ -32,6 +35,18 @@ Rails.application.routes.draw do
     resources :video_types
     resources :definitions
     resources :video_contents, concerns: :videoable
+    resources :videos, only: [:index]
+
+    resources :scenes do
+      post :preview, on: :collection
+      resources :scene_attributes
+    end
+
+    resources :scene_collections do
+      post :preview, on: :member
+    end
+
+    resources :scene_attribute_types
 
     resources :find_the_best_locations, concerns: :videoable do
       collection do
@@ -48,7 +63,14 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :video_contents, only: [:create]
+      resources :video_contents, only: [:create, :show]
+      resources :scenes, only: [:index, :show]
+      resources :scene_collections, only: [:show, :create, :update] do
+        member do
+          post :generate
+          post :preview
+        end
+      end
     end
   end
 end

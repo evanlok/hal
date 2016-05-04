@@ -17,14 +17,17 @@ FactoryGirl.define do
     sequence(:name) { |n| "Defintion#{n}" }
     sequence(:class_name) { |n| "Defintion#{n}" }
     active true
-    vgl_header 'vgl_header'
-    vgl_content 'vgl_content'
+    vgl_header 'def header_method; end'
+    vgl_content 'b.text'
   end
 
   factory :video do
     filename { "#{SecureRandom.uuid}.mp4" }
     duration 100
     association :videoable, factory: :video_content
+    callback_url { Faker::Internet.url }
+    stream_callback_url { Faker::Internet.url }
+    stream_url { Faker::Internet.url }
   end
 
   factory :video_content do
@@ -48,5 +51,49 @@ FactoryGirl.define do
     list_price_change '4.60%'
     list_price_end 'higher than it was a year ago'
     market_text 'While the typical home is on the market for about 4 fewer weeks before being sold'
+  end
+
+  factory :scene do
+    sequence(:name) { |n| "Scene #{n}" }
+    active true
+    vgl_content 'b.text'
+  end
+
+  factory :scene_attribute_type do
+    sequence(:name) { |n| "Scene Attribute #{n}" }
+  end
+
+  factory :scene_attribute do
+    scene_attribute_type
+    scene
+    sequence(:name) { |n| "attr_#{n}" }
+    sequence(:display_name) { |n| "Attribute #{n}" }
+  end
+
+  factory :scene_collection do
+    data do
+      {
+        font: 'http://vejeo.s3.amazonaws.com/vidgenie/fonts/lato/Lato-Bold.ttf',
+        music: 'https://vejeo.s3.amazonaws.com/vidgenie/audio/music/soothing/soothing-8.mp3',
+        color: '#cccccc',
+        callback_url: Faker::Internet.url,
+        scenes: [
+          {
+            scene_id: create(:scene).id,
+            data: {
+              city: 'San Francisco',
+              state: 'Caifornia'
+            },
+            transition: 'SlideUp',
+            transition_duration: 2.5
+          }
+        ]
+      }
+    end
+  end
+
+  factory :video_preview do
+    stream_url 'http://www.onvedeo.com/stream.m3u8'
+    callback_url { Faker::Internet.url }
   end
 end

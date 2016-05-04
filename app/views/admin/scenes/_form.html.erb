@@ -1,0 +1,55 @@
+<%= simple_form_for [:admin, @scene] do |f| %>
+  <%= render 'shared/errors', errored_on: @scene %>
+  <%= f.input :name, required: true %>
+  <%= f.input :active %>
+
+  <% if @scene.persisted? %>
+    <div class="form-group">
+      <h4>Scene Attributes</h4>
+      <ol class="scene-attributes">
+        <% @scene.scene_attributes.includes(:scene_attribute_type).each do |scene_attribute| %>
+          <li data-id="<%= scene_attribute.id %>">
+            <i class="fa fa-bars handle"></i>
+            <%= scene_attribute.name %> (<%= scene_attribute.scene_attribute_type.name %>) - <%= scene_attribute.display_name %>
+          </li>
+        <% end %>
+      </ol>
+
+      <%= link_to 'Edit Scene Attributes', [:admin, @scene, SceneAttribute] %>
+    </div>
+  <% end %>
+
+  <div id="vgl_content">
+    <strong>VGL Content</strong>
+    <%= content_tag :div, @scene.vgl_content, class: 'editor editor-large' %>
+    <%= f.hidden_field :vgl_content %>
+  </div>
+
+  <div class="form-actions">
+    <%= button_tag 'Preview', type: 'button', class: 'btn btn-warning', data: { toggle: 'modal', target: '#preview-modal' } %>
+    <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', admin_scenes_path, class: 'btn btn-default' %>
+  </div>
+<% end %>
+
+<div id="preview-modal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+
+        <h4 class="modal-title">Preview Scene</h4>
+      </div>
+      <div class="modal-body">
+        <%= label_tag :scene_data, 'Scene Data (JSON)' %>
+        <%= text_area_tag :scene_data, nil, class: 'form-control', rows: 10 %>
+        <%= hidden_field_tag :scene_id, @scene.id, id: 'scene_id' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="preview btn btn-primary">Generate Preview</button>
+      </div>
+    </div>
+  </div>
+</div>

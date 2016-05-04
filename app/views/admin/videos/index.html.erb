@@ -1,0 +1,47 @@
+<h1>Videos</h1>
+
+<table class="table">
+  <tr>
+    <td>ID</td>
+    <th>Item</th>
+    <th>URL (360p)</th>
+    <th>URL (720p)</th>
+    <th>Stream URL</th>
+    <th>Thumbnail URL</th>
+    <th>Duration</th>
+    <th>Created</th>
+    <th colspan="2">Updated</th>
+  </tr>
+
+  <% @videos.each do |video| %>
+      <tr>
+        <td><%= video.id %></td>
+        <td><%= "#{video.videoable_type} ##{video.videoable_id}" %></td>
+        <td>
+          <% if video.url(360) %>
+              <%= link_to '360p URL', video.url(360), target: '_blank' %>
+          <% end %>
+        </td>
+        <td>
+          <% if video.url(720) %>
+              <%= link_to '720p URL', video.url(720), target: '_blank' %>
+          <% end %>
+        </td>
+        <td>
+          <% if video.stream_url %>
+              <%= link_to 'Stream', video.stream_url, target: '_blank' %>
+          <% end %>
+        </td>
+        <td>
+          <% if video.thumbnail_url %>
+              <%= link_to 'Image', video.thumbnail_url, target: '_blank' %>
+          <% end %>
+        </td>
+        <td><%= video.duration %></td>
+        <td><%= video.created_at.to_s(:full) %></td>
+        <td><%= video.updated_at.to_s(:full) %></td>
+      </tr>
+  <% end %>
+</table>
+
+<%= paginate @videos %>

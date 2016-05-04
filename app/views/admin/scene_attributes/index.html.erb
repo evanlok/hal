@@ -1,0 +1,42 @@
+<h1>Scene Attributes for <%= @scene.name %></h1>
+
+<p>
+  <%= link_to 'New Scene Attribute', new_admin_scene_scene_attribute_path(@scene), class: 'btn btn-primary' %>
+</p>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Display Name</th>
+    <th>Type</th>
+    <th>Created</th>
+    <th colspan="2">Updated</th>
+  </tr>
+
+  <% @scene_attributes.each do |scene_attribute| %>
+    <tr>
+      <td><%= scene_attribute.id %></td>
+      <td><%= scene_attribute.name %></td>
+      <td><%= scene_attribute.display_name %></td>
+      <td><%= scene_attribute.scene_attribute_type.name %></td>
+      <td><%= scene_attribute.created_at.to_s(:full) %></td>
+      <td><%= scene_attribute.updated_at.to_s(:full) %></td>
+      <td class="actions">
+        <%= link_to [:edit, :admin, @scene, scene_attribute] do %>
+          <i class="fa fa-pencil" title="Edit"></i>
+        <% end %>
+
+        <%= link_to [:admin, @scene, scene_attribute], method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="fa fa-trash-o" title="Delete"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= paginate @scene_attributes %>
+
+<p>
+  <%= link_to 'Back to scene', [:edit, :admin, @scene] %>
+</p>

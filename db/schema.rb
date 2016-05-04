@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911064303) do
+ActiveRecord::Schema.define(version: 20160422175256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,39 @@ ActiveRecord::Schema.define(version: 20150911064303) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "scene_attribute_types", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "scene_attributes", force: :cascade do |t|
+    t.integer  "scene_id"
+    t.integer  "scene_attribute_type_id"
+    t.string   "name"
+    t.string   "display_name"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "position"
+  end
+
+  add_index "scene_attributes", ["scene_attribute_type_id"], name: "index_scene_attributes_on_scene_attribute_type_id", using: :btree
+  add_index "scene_attributes", ["scene_id", "name"], name: "index_scene_attributes_on_scene_id_and_name", unique: true, using: :btree
+
+  create_table "scene_collections", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.jsonb    "data"
+  end
+
+  create_table "scenes", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "active",      default: false
+    t.text     "vgl_content"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -91,7 +124,7 @@ ActiveRecord::Schema.define(version: 20150911064303) do
     t.integer  "item_id",    null: false
     t.string   "event",      null: false
     t.string   "whodunnit"
-    t.json     "object"
+    t.jsonb    "object"
     t.datetime "created_at"
   end
 
@@ -99,7 +132,7 @@ ActiveRecord::Schema.define(version: 20150911064303) do
 
   create_table "video_contents", force: :cascade do |t|
     t.string   "uid"
-    t.json     "data"
+    t.jsonb    "data"
     t.integer  "definition_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -109,10 +142,21 @@ ActiveRecord::Schema.define(version: 20150911064303) do
   add_index "video_contents", ["definition_id"], name: "index_video_contents_on_definition_id", using: :btree
   add_index "video_contents", ["uid"], name: "index_video_contents_on_uid", using: :btree
 
+  create_table "video_previews", force: :cascade do |t|
+    t.integer  "previewable_id"
+    t.string   "previewable_type"
+    t.text     "stream_url"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.text     "callback_url"
+  end
+
+  add_index "video_previews", ["previewable_id", "previewable_type"], name: "index_video_previews_on_previewable_id_and_previewable_type", using: :btree
+
   create_table "video_types", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.json     "schema"
+    t.jsonb    "schema"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -123,9 +167,11 @@ ActiveRecord::Schema.define(version: 20150911064303) do
     t.string   "filename"
     t.integer  "duration"
     t.string   "thumbnail_url"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "stream_url"
+    t.text     "callback_url"
+    t.text     "stream_callback_url"
   end
 
   add_index "videos", ["videoable_id", "videoable_type"], name: "index_videos_on_videoable_id_and_videoable_type", using: :btree

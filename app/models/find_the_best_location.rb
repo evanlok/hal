@@ -1,4 +1,6 @@
 class FindTheBestLocation < ActiveRecord::Base
+  include Generatable
+
   extend FriendlyId
   friendly_id :county, use: [:slugged, :history, :finders]
 
@@ -6,7 +8,6 @@ class FindTheBestLocation < ActiveRecord::Base
 
   # Associations
   belongs_to :definition
-  has_one :video, as: :videoable, dependent: :destroy
 
   # Validations
   validates :ftb_id, :county, :definition, presence: true

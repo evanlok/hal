@@ -1,0 +1,31 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <a role="button" data-toggle="collapse" href="#versioning" aria-expanded="false" aria-controls="versioning">
+        Version:
+
+        <% if record.version %>
+            <%= record.version.try(:created_at).to_s(:full) %>
+        <% else %>
+            Live
+        <% end %>
+      </a>
+    </h3>
+  </div>
+
+  <div id="versioning" class="panel-collapse collapse">
+    <div class="panel-body">
+      <%= form_tag [:edit, :admin, record], method: :get do %>
+          <div>
+            <%= label_tag :verion_id, 'Versions' %>
+            <% versions = record.versions.pluck(:created_at, :id).reverse.map { |date, id| [date.to_s(:full), id] } %>
+            <%= select_tag :version_id, options_for_select(versions, record.version.try(:id)), include_blank: 'Live', class: 'form-control' %>
+          </div>
+
+          <div class="form-actions">
+            <%= submit_tag 'Change', class: 'btn btn-primary' %>
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

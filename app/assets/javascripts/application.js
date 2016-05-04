@@ -2,4 +2,9 @@
 //= require bootstrap-sass-official
 //= require jquery-ujs
 //= require paloma
+//= require lodash
+//= require pnotify/pnotify.js
+//= require pnotify
+//= require pnotify_config
+//= require Sortable/Sortable
 //= require_tree ./paloma
