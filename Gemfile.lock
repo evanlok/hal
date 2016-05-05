@@ -57,6 +57,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    color (1.8)
     concurrent-ruby (1.0.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -276,6 +277,7 @@ DEPENDENCIES
   byebug
   climate_control
   coffee-rails (~> 4.1)
+  color
   devise
   factory_girl_rails
   faker

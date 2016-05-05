@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Engine::Definitions::SceneCollectionVideo do
-  let(:scene) { create(:scene, vgl_content: 'b.text(scene_data.agent_name)') }
+  let(:scene) { create(:scene, vgl_content: 'b.text(scene_data.agent_name); b.rect(0, 0, 10, 10, color: global_color)') }
 
   let(:data) do
     {
@@ -49,6 +49,10 @@ RSpec.describe Engine::Definitions::SceneCollectionVideo do
 
     it 'inserts scene transitions' do
       expect(definition.to_vgl).to match(/transition\("#{data[:scenes][0][:transition]}",1\)/)
+    end
+
+    it 'converts color to RGB' do
+      expect(definition.to_vgl).to match(/:color=>"204,204,204"/)
     end
   end
 end

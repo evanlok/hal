@@ -54,6 +54,7 @@ gem 'hashie'
 gem 'paper_trail'
 gem 'acts_as_list'
 gem 'non-stupid-digest-assets'
+gem 'color'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-ujs'

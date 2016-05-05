@@ -14,6 +14,7 @@ module Engine
 
           b.stack do
             bnd = binding
+            bnd.local_variable_set(:global_color, hex_to_rgb_string(video_data.color))
             bnd.local_variable_set(:video_data, scene_data)
             eval(scene.vgl_content, bnd)
           end
@@ -22,6 +23,13 @@ module Engine
             b.transition(scene_content.transition, 1)
           end
         end
+      end
+
+      private
+
+      def hex_to_rgb_string(hex)
+        color = Color::RGB.by_hex(hex)
+        "#{color.red.to_i},#{color.green.to_i},#{color.blue.to_i}"
       end
     end
   end
