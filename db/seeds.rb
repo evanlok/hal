@@ -123,7 +123,7 @@ SceneAttribute.create!(
 )
 
 SceneCollection.create!(
-  color: 'blue: "0,112,238", white: "255,255,255", gray: "136, 136, 136"',
+  color: '#1437F0',
   font: 'http://vejeo.s3.amazonaws.com/vidgenie/fonts/lato/Lato-Bold.ttf',
   music: 'https://vejeo.s3.amazonaws.com/vidgenie/audio/music/soothing/soothing-8.mp3',
   data: {
