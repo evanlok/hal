@@ -28,6 +28,7 @@ module Engine
       private
 
       def hex_to_rgb_string(hex)
+        return if hex.blank?
         color = Color::RGB.by_hex(hex)
         "#{color.red.to_i},#{color.green.to_i},#{color.blue.to_i}"
       end
