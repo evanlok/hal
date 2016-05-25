@@ -9,7 +9,7 @@ class OnvedeoVideoEncoder
     {
       reference_id: video.id,
       notifications: notifications,
-      outputs: sd_outputs + hd_outputs
+      outputs: outputs
     }
   end
 
@@ -37,33 +37,20 @@ class OnvedeoVideoEncoder
     output.merge!(options)
   end
 
-  def sd_outputs
-    [
-      video_output('low', "#{filename}_240.mp4", 428, 240),
-      video_output('medium', "#{filename}.mp4", 640, 360, {
-        thumbnail: {
-          format: 'jpg',
-          number: 1,
-          size: '640x360',
-          base_url: base_url,
-          filename: 'thumb'
-        }
-      })
-    ]
-  end
+  def outputs
+    raise "Video #{video.id} has no resolutions assigned" if video.resolutions.blank?
 
-  def hd_outputs
-    [
-      video_output('high', "#{filename}_720.mp4", 1280, 720, {
+    video.resolutions.map do |name, (width, height)|
+      video_output(name, "#{filename}_#{height}.mp4", width, height, {
         thumbnail: {
           format: 'jpg',
           number: 1,
-          size: '1280x720',
+          size: "#{width}x#{height}",
           base_url: base_url,
-          filename: 'thumb_720'
+          filename: "thumb_#{height}"
         }
       })
-    ]
+    end
   end
 
   def notifications

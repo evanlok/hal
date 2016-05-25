@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160422175256) do
+ActiveRecord::Schema.define(version: 20160525173249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,8 @@ ActiveRecord::Schema.define(version: 20160422175256) do
     t.text     "vgl_content"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "width"
+    t.integer  "height"
   end
 
   create_table "users", force: :cascade do |t|
@@ -172,6 +174,7 @@ ActiveRecord::Schema.define(version: 20160422175256) do
     t.string   "stream_url"
     t.text     "callback_url"
     t.text     "stream_callback_url"
+    t.jsonb    "resolutions"
   end
 
   add_index "videos", ["videoable_id", "videoable_type"], name: "index_videos_on_videoable_id_and_videoable_type", using: :btree

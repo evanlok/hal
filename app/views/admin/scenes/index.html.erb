@@ -9,6 +9,8 @@
     <th>ID</th>
     <th>Name</th>
     <th>Active</th>
+    <th>Width</th>
+    <th>Height</th>
     <th>Created</th>
     <th colspan="2">Updated</th>
   </tr>
@@ -24,6 +26,8 @@
           <i class="fa fa-times text-danger"></i>
         <% end %>
       </td>
+      <td><%= scene.width %></td>
+      <td><%= scene.height %></td>
       <td><%= scene.created_at.to_s(:full) %></td>
       <td><%= scene.updated_at.to_s(:full) %></td>
       <td class="actions">

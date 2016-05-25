@@ -9,7 +9,8 @@ class VideoGenerator
 
   def generate(priority: 'normal', callback_url: nil, stream_callback_url: nil)
     return false unless valid?
-    video = content.videos.create(callback_url: callback_url, stream_callback_url: stream_callback_url)
+    resolutions = VideoResolutions.new(definition.width, definition.height).json
+    video = content.videos.create(callback_url: callback_url, stream_callback_url: stream_callback_url, resolutions: resolutions)
     payload = payload(priority: priority, video: video)
     VidgenieAPIClient.new.post_video(payload)
     video
@@ -21,7 +22,9 @@ class VideoGenerator
         reference: { type: video.videoable_type, id: video.videoable_id, video_id: video.id },
         vgl: build_vgl,
         priority: priority,
-        stream_callback_url: Rails.application.routes.url_helpers.stream_callback_url(video_id: video.id, host: ENV['HOST'], port: ENV['WEB_PORT'])
+        stream_callback_url: Rails.application.routes.url_helpers.stream_callback_url(video_id: video.id, host: ENV['HOST'], port: ENV['WEB_PORT']),
+        width: definition.width,
+        height: definition.height
       }
     }
 

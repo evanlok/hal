@@ -17,7 +17,9 @@ class VideoPreviewer
         vgl: build_vgl,
         priority: DEFAULT_PRIORITY,
         stream_only: true,
-        stream_callback_url: Rails.application.routes.url_helpers.preview_callback_url(video_id: video_preview.id, host: ENV['HOST'], port: ENV['WEB_PORT'])
+        stream_callback_url: Rails.application.routes.url_helpers.preview_callback_url(video_id: video_preview.id, host: ENV['HOST'], port: ENV['WEB_PORT']),
+        width: definition.width,
+        height: definition.height
       }
     }
 

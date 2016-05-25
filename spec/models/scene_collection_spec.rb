@@ -52,4 +52,20 @@ RSpec.describe SceneCollection do
       expect(scene_collection.video_data).to be_present
     end
   end
+
+  describe 'validations' do
+    describe '#scenes_have_same_dimensions?' do
+      it 'is valid when scenes contain same resolutions' do
+        expect(scene_collection).to be_valid
+      end
+
+      context 'when scenes have different resolutions' do
+        let(:location_scene) { create(:scene, width: 600, height: 600) }
+
+        it 'is invalid when scenes have different widths or heights' do
+          expect(scene_collection).to_not be_valid
+        end
+      end
+    end
+  end
 end

@@ -28,6 +28,13 @@ FactoryGirl.define do
     callback_url { Faker::Internet.url }
     stream_callback_url { Faker::Internet.url }
     stream_url { Faker::Internet.url }
+    resolutions do
+      {
+        low: [246, 240],
+        medium: [640, 360],
+        high: [1280, 720]
+      }
+    end
   end
 
   factory :video_content do
@@ -57,6 +64,8 @@ FactoryGirl.define do
     sequence(:name) { |n| "Scene #{n}" }
     active true
     vgl_content 'b.text'
+    width 1280
+    height 720
   end
 
   factory :scene_attribute_type do

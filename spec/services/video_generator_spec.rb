@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe VideoGenerator do
   let(:video_content) { double(:content) }
-  let(:definition) { double(:definition, video_content: video_content, to_vgl: 'vgl') }
+  let(:definition) { double(:definition, video_content: video_content, to_vgl: 'vgl', width: 1280, height: 720) }
   subject { VideoGenerator.new(definition) }
 
   describe '#generate' do
@@ -25,7 +25,7 @@ RSpec.describe VideoGenerator do
       expect_any_instance_of(VidgenieAPIClient).to receive(:post_video).with('params')
       videos_association = double(:videos)
       expect(video_content).to receive(:videos) { videos_association }
-      expect(videos_association).to receive(:create).with(callback_url: 'callback', stream_callback_url: 'stream')
+      expect(videos_association).to receive(:create).with(callback_url: 'callback', stream_callback_url: 'stream', resolutions: kind_of(Hash))
       subject.generate(callback_url: 'callback', stream_callback_url: 'stream')
     end
   end
@@ -62,7 +62,9 @@ RSpec.describe VideoGenerator do
           vgl: 'vgl',
           priority: 'normal',
           stream_callback_url: 'http://www.hal.com/callbacks/100/stream',
-          encoding_settings: 'encoder_settings'
+          encoding_settings: 'encoder_settings',
+          width: definition.width,
+          height: definition.height,
         }
       }
 
