@@ -4,8 +4,8 @@
   <tr>
     <td>ID</td>
     <th>Item</th>
-    <th>URL (360p)</th>
-    <th>URL (720p)</th>
+    <th>URL (SD)</th>
+    <th>URL (HD)</th>
     <th>Stream URL</th>
     <th>Thumbnail URL</th>
     <th>Duration</th>
@@ -19,12 +19,12 @@
         <td><%= "#{video.videoable_type} ##{video.videoable_id}" %></td>
         <td>
           <% if video.filename %>
-              <%= link_to '360p URL', video.url(video.resolutions['medium'][1]), target: '_blank' %>
+              <%= link_to "#{video.resolutions['medium'].join('x')}", video.url(video.resolutions.dig('medium', 1)), target: '_blank' %>
           <% end %>
         </td>
         <td>
           <% if video.filename %>
-              <%= link_to '720p URL', video.url(video.resolutions['high'][1]), target: '_blank' %>
+              <%= link_to "#{video.resolutions['high'].join('x')}", video.url(video.resolutions.dig('high', 1)), target: '_blank' %>
           <% end %>
         </td>
         <td>
