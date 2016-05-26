@@ -51,7 +51,7 @@ class Admin::ScenesController < Admin::BaseController
     end
 
     scene_data = params[:scene_data].present? ? JSON.parse(params[:scene_data]) : {}
-    scene_preview_video = Engine::Definitions::ScenePreviewVideo.new(params[:scene_vgl], scene_data)
+    scene_preview_video = Engine::Definitions::ScenePreviewVideo.new(params[:scene_vgl], scene_data, width: params[:width], height: params[:height])
     video_preview = @scene.preview(definition: scene_preview_video)
 
     if video_preview

@@ -38,13 +38,17 @@ ScenesController.prototype.edit = function () {
     var sceneId = $('#scene_id').val();
     var sceneVGL = vglContentEditor.getValue();
     var sceneData = $('#scene_data').val();
+    var sceneWidth = $('#scene_width').val();
+    var sceneHeight = $('#scene_height').val();
 
     $.ajax({
       url: '/admin/scenes/preview',
       data: {
         scene_id: sceneId,
         scene_vgl: sceneVGL,
-        scene_data: sceneData
+        scene_data: sceneData,
+        width: sceneWidth,
+        height: sceneHeight
       },
       method: 'POST'
     }).done(function onSuccess(data) {
