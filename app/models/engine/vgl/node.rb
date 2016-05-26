@@ -24,8 +24,6 @@ module Engine
       end
 
       def serialize
-        return nil if @args.empty? and @children.empty?
-
         @vgl = ""
         @vgl << %Q[node.] if @parent and @parent.scope and @parent.scope.arity > 0
         @vgl << %Q[#{@name}]
@@ -80,6 +78,8 @@ module Engine
 
       def serialize_chain
         @chain.each do |node|
+          puts @vgl.inspect
+          puts node.inspect
           @vgl << "." + node.serialize
         end
       end
