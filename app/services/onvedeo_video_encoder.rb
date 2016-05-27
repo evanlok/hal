@@ -43,11 +43,10 @@ class OnvedeoVideoEncoder
     video.resolutions.map do |name, (width, height)|
       video_output(name, "#{filename}_#{height}.mp4", width, height, {
         thumbnail: {
-          format: 'jpg',
-          number: 1,
-          size: "#{width}x#{height}",
+          resolution: "#{width}x#{height}",
+          seek_time: 1,
           base_url: base_url,
-          filename: "thumb_#{height}"
+          filename: "thumb_#{height}.jpg"
         }
       })
     end
