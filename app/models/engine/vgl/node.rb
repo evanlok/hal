@@ -24,8 +24,6 @@ module Engine
       end
 
       def serialize
-        return nil if @args.empty? and @children.empty?
-
         @vgl = ""
         @vgl << %Q[node.] if @parent and @parent.scope and @parent.scope.arity > 0
         @vgl << %Q[#{@name}]

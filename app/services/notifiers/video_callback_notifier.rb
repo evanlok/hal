@@ -23,18 +23,13 @@ module Notifiers
         thumbnail_url: video.thumbnail_url,
         duration: video.duration,
         embed_url: url_helpers.video_url(video, host: ENV['HOST'], port: ENV['WEB_PORT']),
-        videos: [
+        videos: video.resolutions.map do |_name, (width, height)|
           {
-            url: video.url,
-            width: 640,
-            height: 360
-          },
-          {
-            url: video.url(720),
-            width: 1280,
-            height: 720
+            url: video.url(height),
+            width: width,
+            height: height
           }
-        ]
+        end
       }
     end
   end

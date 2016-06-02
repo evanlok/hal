@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe VideoPreviewer do
-  let(:definition) { double(:definition, to_vgl: 'vgl') }
+  let(:definition) { double(:definition, to_vgl: 'vgl', width: 1280, height: 720) }
   let(:scene) { create(:scene) }
   let(:video_previewer) { VideoPreviewer.new(definition) }
 
@@ -12,7 +12,9 @@ RSpec.describe VideoPreviewer do
           vgl: 'vgl',
           priority: VideoPreviewer::DEFAULT_PRIORITY,
           stream_only: true,
-          stream_callback_url: /\/callbacks\/\d+\/preview/
+          stream_callback_url: /\/callbacks\/\d+\/preview/,
+          width: 1280,
+          height: 720
         }
       }
 

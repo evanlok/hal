@@ -9,9 +9,10 @@ class CallbacksController < ApplicationController
     thumbnail_url = params[:outputs].find { |o| o[:label] == 'high' }.dig(:thumbnail, :url)
 
     if video_url && status == 'finished'
-      filename = File.basename(video_url)
+      filename, ext = File.basename(video_url).split('.')
+      unversioned_name = [filename.gsub(/_\d+\z/, ''), ext].join('.')
       duration = params[:input][:duration_in_ms].to_i / 1000
-      @video.update_attributes(filename: filename, duration: duration, thumbnail_url: thumbnail_url)
+      @video.update_attributes(filename: unversioned_name, duration: duration, thumbnail_url: thumbnail_url)
       Notifiers::VideoCallbackNotifier.notify(@video)
     end
 

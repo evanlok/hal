@@ -5,13 +5,12 @@ RSpec.describe CallbacksController do
   let(:video) { create(:video, videoable: scene_collection) }
 
   describe 'POST encoder' do
-    let(:url) { 'http://www.houztrendz.com/video.mp4' }
     let(:payload) do
       {
         status: 'finished',
         outputs: [
-          { label: 'medium', url: url },
-          { label: 'high', url: url, thumbnail: { url: 'thumbnail.jpg' } },
+          { label: 'medium', url: 'http://www.houztrendz.com/video_360.mp4', thumbnail: { url: 'thumbnail_360.jpg' } },
+          { label: 'high', url: 'http://www.houztrendz.com/video_720.mp4', thumbnail: { url: 'thumbnail_720.jpg' } },
         ],
         input: { duration_in_ms: 10000 },
         reference_id: video.id
@@ -23,7 +22,7 @@ RSpec.describe CallbacksController do
       post :encoder, payload.merge(video_id: video.id)
       expect(response).to be_success
       video.reload
-      expect(video).to have_attributes(filename: 'video.mp4', duration: 10, thumbnail_url: 'thumbnail.jpg')
+      expect(video).to have_attributes(filename: 'video.mp4', duration: 10, thumbnail_url: 'thumbnail_720.jpg')
     end
   end
 

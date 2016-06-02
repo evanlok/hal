@@ -6,6 +6,9 @@ module Engine
       include Engine::Definitions::StyleDSL
       include Engine::Definitions::Helpers
 
+      DEFAULT_WIDTH = 1280
+      DEFAULT_HEIGHT = 720
+
       attr_reader :video_content, :currency, :language_name, :asset_folder, :builder
       alias :b :builder
       delegate :video_data, to: :video_content
@@ -38,6 +41,22 @@ module Engine
 
       def content
         raise NotImplementedError.new('All subclasses of AbstractDefinition must override #content.')
+      end
+
+      def width
+        if video_content.respond_to?(:width) && video_content.width
+          video_content.width
+        else
+          DEFAULT_WIDTH
+        end
+      end
+
+      def height
+        if video_content.respond_to?(:height) && video_content.height
+          video_content.height
+        else
+          DEFAULT_HEIGHT
+        end
       end
 
       # TODO: Remove once all ftb_location references are changed to video_data or VideoContent objects

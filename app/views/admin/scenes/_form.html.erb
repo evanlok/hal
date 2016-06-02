@@ -2,6 +2,8 @@
   <%= render 'shared/errors', errored_on: @scene %>
   <%= f.input :name, required: true %>
   <%= f.input :active %>
+  <%= f.input :width %>
+  <%= f.input :height %>
 
   <% if @scene.persisted? %>
     <div class="form-group">
