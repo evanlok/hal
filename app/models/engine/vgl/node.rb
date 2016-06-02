@@ -78,8 +78,6 @@ module Engine
 
       def serialize_chain
         @chain.each do |node|
-          puts @vgl.inspect
-          puts node.inspect
           @vgl << "." + node.serialize
         end
       end
