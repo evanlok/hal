@@ -10,7 +10,7 @@
     <th>Name</th>
     <th>Display Name</th>
     <th>Type</th>
-    <th>Created</th>
+    <th>Description</th>
     <th colspan="2">Updated</th>
   </tr>
 
@@ -20,7 +20,7 @@
       <td><%= scene_attribute.name %></td>
       <td><%= scene_attribute.display_name %></td>
       <td><%= scene_attribute.scene_attribute_type.name %></td>
-      <td><%= scene_attribute.created_at.to_s(:full) %></td>
+      <td><%= truncate(scene_attribute.description) %></td>
       <td><%= scene_attribute.updated_at.to_s(:full) %></td>
       <td class="actions">
         <%= link_to [:edit, :admin, @scene, scene_attribute] do %>

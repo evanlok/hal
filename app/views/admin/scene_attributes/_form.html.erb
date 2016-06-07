@@ -3,6 +3,7 @@
   <%= f.input :name %>
   <%= f.input :display_name %>
   <%= f.association :scene_attribute_type, prompt: 'Select a scene attribute type' %>
+  <%= f.input :description, input_html: { rows: 3 } %>
 
   <div class="form-actions">
     <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
