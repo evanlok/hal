@@ -7,7 +7,7 @@ class Scene < ActiveRecord::Base
   has_many :scene_attributes, -> { order(:position) }, dependent: :destroy
 
   # Validations
-  validates :name, :width, :height, presence: true
+  validates :name, :width, :height, :duration, presence: true
   validates :name, uniqueness: true
   validates :width, :height, numericality: { greater_than: 0 }
 
