@@ -44,4 +44,12 @@ RSpec.describe Api::V1::SceneCollectionsController do
       expect(response).to be_success
     end
   end
+
+  describe 'DELETE destroy' do
+    it 'deletes record' do
+      delete :destroy, id: scene_collection
+      expect(response).to be_success
+      expect(SceneCollection.where(id: scene_collection.id).exists?).to be false
+    end
+  end
 end
