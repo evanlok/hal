@@ -40,6 +40,7 @@ ScenesController.prototype.edit = function () {
     var sceneData = $('#scene_data').val();
     var sceneWidth = $('#scene_width').val();
     var sceneHeight = $('#scene_height').val();
+    var sceneBackground = $('#scene_background').val();
 
     $.ajax({
       url: '/admin/scenes/preview',
@@ -48,7 +49,8 @@ ScenesController.prototype.edit = function () {
         scene_vgl: sceneVGL,
         scene_data: sceneData,
         width: sceneWidth,
-        height: sceneHeight
+        height: sceneHeight,
+        background: sceneBackground
       },
       method: 'POST'
     }).done(function onSuccess(data) {

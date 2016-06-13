@@ -67,6 +67,7 @@ FactoryGirl.define do
     width 1280
     height 720
     duration 10
+    background '0,0,0'
   end
 
   factory :scene_attribute_type do

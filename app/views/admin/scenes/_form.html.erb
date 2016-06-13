@@ -5,6 +5,7 @@
   <%= f.input :width %>
   <%= f.input :height %>
   <%= f.input :duration %>
+  <%= f.input :background, hint: 'Use comma separated numbers: 255,255,255' %>
 
   <% if @scene.persisted? %>
     <div class="form-group">
