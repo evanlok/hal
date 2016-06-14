@@ -10,10 +10,11 @@ module Engine
         @scene_data = Hashie::Mash.new(scene_data.present? ? scene_data : {})
         @width = width
         @height = height
+        @background = background
       end
 
       def content
-        b.stack(background: background) do
+        b.stack(background: @background) do
           eval(scene_vgl)
         end
       end
