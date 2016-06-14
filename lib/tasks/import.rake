@@ -5,4 +5,8 @@ namespace :import do
 
     Importers::FindTheBestLocationCSVImporter.new(args.file).import
   end
+
+  task :avid_ratings => :environment do
+    Importers::AvidRatingsImporter.new.import_and_generate
+  end
 end
