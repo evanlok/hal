@@ -9,3 +9,6 @@ WEB_CONCURRENCY: '1'
 AWS_ACCESS_KEY_ID: access_key
 AWS_SECRET_ACCESS_KEY: secret_key
 AWS_REGION: 'us-east-1'
+AVID_RATINGS_USERNAME: avid_user
+AVID_RATINGS_PASSWORD: avid_password
+AVID_RATINGS_SERVER_URL: https://api.gotourhd.com

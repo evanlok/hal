@@ -1,6 +1,6 @@
 <%= simple_form_for [:admin, @video_type] do |f| %>
   <%= render 'shared/errors', errored_on: @video_type %>
-  <%= f.input :name, required: true, hint: 'Must start witha uppercase letter and can only contain letters, numeners, and underscores' %>
+  <%= f.input :name, required: true, hint: 'Must start with a uppercase letter and can only contain letters, numbers, and underscores' %>
   <%= f.input :description %>
 
   <div class="form-actions">
