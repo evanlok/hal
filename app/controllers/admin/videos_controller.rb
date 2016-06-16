@@ -12,7 +12,12 @@ class Admin::VideosController < Admin::BaseController
 
   def create_preview
     video_preview = @videoable.preview
-    redirect_to video_preview, notice: "Generated preview video with definition: #{@videoable.definition.name}"
+
+    if video_preview
+      redirect_to video_preview, notice: "Generated preview video with definition: #{@videoable.definition.name}"
+    else
+      render text: @videoable.errors.full_messages.join("\n")
+    end
   end
 
   protected
