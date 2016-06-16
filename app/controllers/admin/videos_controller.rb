@@ -11,8 +11,8 @@ class Admin::VideosController < Admin::BaseController
   end
 
   def create_preview
-    @videoable.preview
-    redirect_to [@videoable.video, {autoplay: 1}], notice: "Generated preview video with definition: #{@videoable.definition.name}"
+    video_preview = @videoable.preview
+    redirect_to video_preview, notice: "Generated preview video with definition: #{@videoable.definition.name}"
   end
 
   protected
