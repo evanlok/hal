@@ -12,7 +12,7 @@ module Engine
           scene_data = scene_content.data
           Honeybadger.context(scene_id: scene.id, scene_content: scene_content)
 
-          b.stack do
+          b.stack(background: scene.background) do
             bnd = binding
             bnd.local_variable_set(:global_color, hex_to_rgb_string(video_data.color))
             bnd.local_variable_set(:video_data, scene_data)

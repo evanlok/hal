@@ -65,7 +65,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :video_contents, only: [:create, :show]
       resources :scenes, only: [:index, :show]
-      resources :scene_collections, only: [:show, :create, :update] do
+      resources :scene_collections, only: [:show, :create, :update, :destroy] do
         member do
           post :generate
           post :preview

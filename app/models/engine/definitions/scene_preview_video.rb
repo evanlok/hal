@@ -5,15 +5,16 @@ module Engine
 
       alias :video_data :scene_data
 
-      def initialize(scene_vgl, scene_data = {}, width: nil, height: nil)
+      def initialize(scene_vgl, scene_data = {}, width: nil, height: nil, background: nil)
         @scene_vgl = scene_vgl
         @scene_data = Hashie::Mash.new(scene_data.present? ? scene_data : {})
         @width = width
         @height = height
+        @background = background
       end
 
       def content
-        b.stack do
+        b.stack(background: @background) do
           eval(scene_vgl)
         end
       end

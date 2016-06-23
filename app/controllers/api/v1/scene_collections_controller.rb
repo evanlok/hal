@@ -23,6 +23,11 @@ class Api::V1::SceneCollectionsController < Api::V1::BaseController
     end
   end
 
+  def destroy
+    @scene_collection.destroy
+    render json: { id: @scene_collection.id }
+  end
+
   def generate
     if @scene_collection.generate(callback_url: params[:callback_url], stream_callback_url: params[:stream_callback_url])
       render json: { id: @scene_collection.id, generate: true, callback_url: params[:callback_url], stream_callback_url: params[:stream_callback_url] }

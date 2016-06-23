@@ -55,6 +55,7 @@ gem 'paper_trail'
 gem 'acts_as_list'
 gem 'non-stupid-digest-assets'
 gem 'color'
+gem 'aws-sdk', '~> 2.3'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-ujs'

@@ -54,5 +54,9 @@ RSpec.describe Engine::Definitions::SceneCollectionVideo do
     it 'converts color to RGB' do
       expect(definition.to_vgl).to match(/:color=>"204,204,204"/)
     end
+
+    it 'sets scene background color' do
+      expect(definition.to_vgl).to match(/:background=>"#{scene.background}"/)
+    end
   end
 end

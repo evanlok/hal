@@ -6,3 +6,6 @@ CDN_URL: https://hal-development.s3.amazonaws.com
 MIXPANEL_TOKEN: token
 HONEYBADGER_ENV: development
 WEB_CONCURRENCY: '1'
+AWS_ACCESS_KEY_ID: access_key
+AWS_SECRET_ACCESS_KEY: secret_key
+AWS_REGION: 'us-east-1'
