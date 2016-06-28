@@ -13,12 +13,12 @@ RSpec.describe Admin::VideosController do
   end
 
   describe 'POST create_preview' do
-    let!(:video) { create(:video, videoable: video_content) }
+    let(:video_preview) { create(:video_preview) }
 
     it 'generates new preview video' do
-      expect_any_instance_of(VideoContent).to receive(:preview)
+      expect_any_instance_of(VideoContent).to receive(:preview) { video_preview }
       post :create_preview, video_content_id: video_content.id
-      expect(response).to redirect_to(video_url(video, autoplay: 1))
+      expect(response).to redirect_to(video_preview_url(video_preview))
     end
   end
 end

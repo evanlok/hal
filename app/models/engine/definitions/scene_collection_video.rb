@@ -4,7 +4,14 @@ module Engine
       alias_method :scene_collection, :video_content
 
       def content
-        b.audio(video_data.music, volume: -15, file: true) if video_data.music.present?
+        if video_data.user_audio.present?
+          b.audio(video_data.user_audio, volume: -5, file: true)
+          music_volume = -20
+        else
+          music_volume = -15
+        end
+
+        b.audio(video_data.music, volume: music_volume, file: true) if video_data.music.present?
         b.set_default_font(video_data.font) if video_data.font.present?
 
         scene_collection.scenes.each_with_index do |scene, idx|

@@ -58,5 +58,19 @@ RSpec.describe Engine::Definitions::SceneCollectionVideo do
     it 'sets scene background color' do
       expect(definition.to_vgl).to match(/:background=>"#{scene.background}"/)
     end
+
+    context 'with user audio' do
+      before do
+        data.merge!(user_audio: 'https://vejeo.s3.amazonaws.com/vidgenie/audio/music/soothing/user-audio.mp3')
+      end
+
+      it 'inserts user audio vgl' do
+        expect(definition.to_vgl).to match(/audio\("#{data[:user_audio]}", {:volume=>-5, :file=>true}\)/)
+      end
+
+      it 'lowers music volume' do
+        expect(definition.to_vgl).to match(/audio\("#{data[:music]}", {:volume=>-20/)
+      end
+    end
   end
 end
