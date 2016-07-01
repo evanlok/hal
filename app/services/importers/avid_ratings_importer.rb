@@ -11,7 +11,8 @@ module Importers
 
       VideoContent.where(definition: @definition).find_each do |video_content|
         begin
-          video_content.generate
+          callback_url = "#{ENV['AVID_RATINGS_SERVER_URL']}/v1.0/arsql/onvedeo/videoreports/#{report['id']}"
+          video_content.generate(callback_url: callback_url)
         rescue => e
           Honeybadger.notify(e, context: { video_content_id: video_content.id })
         end
@@ -22,7 +23,6 @@ module Importers
       fetch_reports.each do |report|
         begin
           video_content = VideoContent.where(definition: @definition, uid: report['id']).first_or_initialize
-          video_content.callback_url = "#{ENV['AVID_RATINGS_SERVER_URL']}/v1.0/arsql/onvedeo/videoreports/#{report['id']}"
           video_content.data = report
           video_content.save!
         rescue => e
