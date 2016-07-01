@@ -51,7 +51,7 @@ class Api::V1::SceneCollectionsController < Api::V1::BaseController
   end
 
   def scene_collection_params
-    params.permit(:font, :music, :color, :callback_url, scenes: [:scene_id, :transition, :transition_duration]).tap do |whitelisted|
+    params.permit(:font, :music, :color, :callback_url, :user_audio, scenes: [:scene_id, :transition, :transition_duration]).tap do |whitelisted|
       whitelisted[:scenes].each_with_index do |scene, idx|
         scene[:data] = params[:scenes][idx][:data]
       end
