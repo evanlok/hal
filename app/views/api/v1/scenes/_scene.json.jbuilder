@@ -6,3 +6,10 @@ json.attributes do
     json.type scene_attribute.scene_attribute_type.name
   end
 end
+
+json.global_attributes do
+  json.array! scene.global_scene_attributes do |global_scene_attribute|
+    json.extract! global_scene_attribute, :name, :display_name, :description
+    json.type global_scene_attribute.scene_attribute_type.name
+  end
+end

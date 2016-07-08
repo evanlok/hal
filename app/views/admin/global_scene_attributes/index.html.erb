@@ -1,0 +1,36 @@
+<h1>Global Scene Attributes</h1>
+
+<p>
+  <%= link_to 'New Global Scene Attribute', new_admin_global_scene_attribute_path, class: 'btn btn-primary' %>
+</p>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Display Name</th>
+    <th>Description</th>
+    <th colspan="2">Updated</th>
+  </tr>
+
+  <% @global_scene_attributes.each do |global_scene_attribute| %>
+      <tr>
+        <td><%= global_scene_attribute.id %></td>
+        <td><%= global_scene_attribute.name %></td>
+        <td><%= global_scene_attribute.display_name %></td>
+        <td><%= truncate(global_scene_attribute.description) %></td>
+        <td><%= global_scene_attribute.updated_at.to_s(:full) %></td>
+        <td class="actions">
+          <%= link_to [:edit, :admin, global_scene_attribute] do %>
+              <i class="fa fa-pencil" title="Edit"></i>
+          <% end %>
+
+          <%= link_to [:admin, global_scene_attribute], method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="fa fa-trash-o" title="Delete"></i>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+</table>
+
+<%= paginate @global_scene_attributes %>

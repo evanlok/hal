@@ -7,6 +7,16 @@
   <%= f.input :duration %>
   <%= f.input :background, hint: 'Use comma separated numbers: 255,255,255' %>
 
+  <div class="form-group">
+    <h4>Global Scene Attributes</h4>
+
+    <%= collection_check_boxes :scene, :global_scene_attribute_ids, GlobalSceneAttribute.all, :id, :display_name do |b| %>
+      <div class="checkbox">
+        <%= b.label { b.check_box + b.text} %>
+      </div>
+    <% end %>
+  </div>
+
   <% if @scene.persisted? %>
     <div class="form-group">
       <h4>Scene Attributes</h4>
