@@ -1,12 +1,21 @@
 <%= simple_form_for [:admin, @scene, @scene_attribute] do |f| %>
-  <%= render 'shared/errors', errored_on: @scene_attribute %>
-  <%= f.input :name %>
-  <%= f.input :display_name %>
-  <%= f.association :scene_attribute_type, prompt: 'Select a scene attribute type' %>
-  <%= f.input :description, input_html: { rows: 3 } %>
+    <%= render 'shared/errors', errored_on: @scene_attribute %>
+    <%= f.input :name %>
+    <%= f.input :display_name %>
+    <%= f.association :scene_attribute_type, prompt: 'Select a scene attribute type' %>
+    <%= f.input :description, input_html: { rows: 3 } %>
 
-  <div class="form-actions">
-    <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
-    <%= link_to 'Cancel', [:admin, @scene, SceneAttribute], class: 'btn btn-default' %>
-  </div>
+    <div id="text-attributes" class="attribute-config hidden">
+      <h4>Text Display Config</h4>
+
+      <div class="form-group">
+        <%= f.label :display_config_limit, 'Limit' %>
+        <%= number_field_tag 'scene_attribute[display_config][limit]', @scene_attribute.display_config['limit'], class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, 'Save', class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', [:admin, @scene, SceneAttribute], class: 'btn btn-default' %>
+    </div>
 <% end %>
