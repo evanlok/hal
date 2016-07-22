@@ -22,6 +22,9 @@ module Engine
           b.stack(background: scene.background) do
             bnd = binding
             bnd.local_variable_set(:global_color, hex_to_rgb_string(video_data.color))
+            bnd.local_variable_set(:global_font, video_data.font)
+            bnd.local_variable_set(:global_music, video_data.music)
+            bnd.local_variable_set(:global_user_audio, video_data.user_audio)
             bnd.local_variable_set(:video_data, scene_data)
             eval(scene.vgl_content, bnd)
           end

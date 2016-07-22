@@ -8,6 +8,7 @@ class Admin::SceneAttributesController < Admin::BaseController
 
   def new
     @scene_attribute = @scene.scene_attributes.build
+    js :edit
   end
 
   def create
@@ -16,6 +17,7 @@ class Admin::SceneAttributesController < Admin::BaseController
     if @scene_attribute.save
       redirect_to [:admin, @scene, SceneAttribute], notice: "Created scene attribute: #{@scene_attribute.name}"
     else
+      js :edit
       render :new
     end
   end
@@ -31,7 +33,11 @@ class Admin::SceneAttributesController < Admin::BaseController
       end
     else
       respond_to do |format|
-        format.html { render :edit }
+        format.html do
+          js :edit
+          render :edit
+        end
+
         format.json { render json: @scene_attribute.errors.full_messages, status: :unprocessable_entity }
       end
     end

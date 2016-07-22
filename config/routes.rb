@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     end
 
     resources :scene_attribute_types
+    resources :global_scene_attributes
 
     resources :find_the_best_locations, concerns: :videoable do
       collection do

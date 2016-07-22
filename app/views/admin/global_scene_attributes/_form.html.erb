@@ -1,0 +1,9 @@
+<%= simple_form_for [:admin, @global_scene_attribute] do |f| %>
+    <%= f.input :name, disabled: @global_scene_attribute.persisted? %>
+    <%= f.input :display_name %>
+    <%= f.input :description %>
+    <%= f.association :scene_attribute_type %>
+
+    <%= f.submit 'Save', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', admin_global_scene_attributes_path, class: 'btn btn-default' %>
+<% end %>

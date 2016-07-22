@@ -91,9 +91,14 @@ Video.create! do |v|
   v.duration = 120
 end
 
-%w(text image video).each do |attr_name|
+%w(text number image video).each do |attr_name|
   SceneAttributeType.create(name: attr_name)
 end
+
+GlobalSceneAttribute.create(name: 'filter', display_name: 'Filter', scene_attribute_type: SceneAttributeType.find_by(name: 'text'))
+GlobalSceneAttribute.create(name: 'duration', display_name: 'Duration', scene_attribute_type: SceneAttributeType.find_by(name: 'number'))
+GlobalSceneAttribute.create(name: 'video_start', display_name: 'Video Start', scene_attribute_type: SceneAttributeType.find_by(name: 'number'))
+GlobalSceneAttribute.create(name: 'video_speed', display_name: 'Video Speed', scene_attribute_type: SceneAttributeType.find_by(name: 'number'))
 
 scene = Scene.create!(
   name: 'Intro',

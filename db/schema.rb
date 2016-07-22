@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160613194425) do
+ActiveRecord::Schema.define(version: 20160720221850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,15 @@ ActiveRecord::Schema.define(version: 20160613194425) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
+  create_table "global_scene_attributes", force: :cascade do |t|
+    t.string   "name"
+    t.string   "display_name"
+    t.text     "description"
+    t.integer  "scene_attribute_type_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
   create_table "scene_attribute_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -78,10 +87,11 @@ ActiveRecord::Schema.define(version: 20160613194425) do
     t.integer  "scene_attribute_type_id"
     t.string   "name"
     t.string   "display_name"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "position"
     t.text     "description"
+    t.jsonb    "display_config",          default: {}
   end
 
   add_index "scene_attributes", ["scene_attribute_type_id"], name: "index_scene_attributes_on_scene_attribute_type_id", using: :btree
@@ -92,6 +102,16 @@ ActiveRecord::Schema.define(version: 20160613194425) do
     t.datetime "updated_at", null: false
     t.jsonb    "data"
   end
+
+  create_table "scene_global_scene_attributes", force: :cascade do |t|
+    t.integer  "scene_id"
+    t.integer  "global_scene_attribute_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "scene_global_scene_attributes", ["global_scene_attribute_id"], name: "global_scene_attribute_id_index", using: :btree
+  add_index "scene_global_scene_attributes", ["scene_id", "global_scene_attribute_id"], name: "scene_id_global_scene_attribute_id_index", unique: true, using: :btree
 
   create_table "scenes", force: :cascade do |t|
     t.string   "name"

@@ -81,6 +81,12 @@ FactoryGirl.define do
     sequence(:display_name) { |n| "Attribute #{n}" }
   end
 
+  factory :global_scene_attribute do
+    scene_attribute_type
+    sequence(:name) { |n| "global_attr_#{n}" }
+    sequence(:display_name) { |n| "Global Attribute #{n}" }
+  end
+
   factory :scene_collection do
     data do
       {
