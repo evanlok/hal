@@ -70,6 +70,8 @@ module Engine
             "#{arg}"
           elsif arg.is_a?(Symbol)
             ":#{arg}"
+          elsif arg.is_a?(Range)
+            "#{arg}"
           else
             "\"#{arg.gsub(/\"/, "\\\"")}\""
           end
