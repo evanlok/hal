@@ -11,7 +11,7 @@ module Engine
           music_volume = -15
         end
 
-        b.audio(video_data.music, volume: music_volume, file: true) if video_data.music.present?
+        b.audio(video_data.music, volume: music_volume, file: true, loop: true) if video_data.music.present?
         b.set_default_font(video_data.font) if video_data.font.present?
 
         scene_collection.scenes.each_with_index do |scene, idx|
