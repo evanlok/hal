@@ -36,7 +36,7 @@ class VideoPreviewer
   def build_vgl
     begin
       @vgl ||= definition.to_vgl
-    rescue => e
+    rescue StandardError, SyntaxError => e
       errors << e.message
       errors << e.backtrace[0]
     end
