@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe VideoGenerator do
-  let(:video_content) { double(:content) }
+  let(:video_content) { double(:content, id: 123) }
   let(:definition) { double(:definition, video_content: video_content, to_vgl: 'vgl', width: 1280, height: 720) }
   subject { VideoGenerator.new(definition) }
 
@@ -39,7 +39,8 @@ RSpec.describe VideoGenerator do
       it 'returns false and sets errors' do
         expect(definition).to receive(:to_vgl).and_raise(StandardError, 'error message')
         expect(subject.valid?).to be false
-        expect(subject.errors).to eq(['error message'])
+        expect(subject.errors.count).to eq(2)
+        expect(subject.errors[0]).to eq('error message')
       end
     end
   end

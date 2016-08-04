@@ -72,5 +72,17 @@ RSpec.describe Engine::Definitions::SceneCollectionVideo do
         expect(definition.to_vgl).to match(/audio\("#{data[:music]}", {:volume=>-20/)
       end
     end
+
+    context 'with errors' do
+      let(:scene) { create(:scene, vgl_content: %{'test'\nerror_on_line_2\n'abc'}) }
+
+      it 'raises exception with line number of error' do
+        begin
+          definition.to_vgl
+        rescue => e
+          expect(e.backtrace[0]).to match(/#{scene.id}-#{scene.name}:2/)
+        end
+      end
+    end
   end
 end

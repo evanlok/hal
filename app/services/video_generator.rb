@@ -43,6 +43,14 @@ class VideoGenerator
       @vgl ||= definition.to_vgl
     rescue => e
       errors << e.message
+      errors << e.backtrace[0]
+
+      Honeybadger.notify(
+        error_class: definition.class.to_s,
+        error_message: "#{definition.class.to_s}: #{e.message}",
+        backtrace: e.backtrace,
+        context: { type: content.class.to_s, id: content.id }
+      )
     end
   end
 end

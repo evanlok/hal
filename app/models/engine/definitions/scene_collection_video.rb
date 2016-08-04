@@ -11,7 +11,7 @@ module Engine
           music_volume = -15
         end
 
-        b.audio(video_data.music, volume: music_volume, file: true) if video_data.music.present?
+        b.audio(video_data.music, volume: music_volume, file: true, loop: true) if video_data.music.present?
         b.set_default_font(video_data.font) if video_data.font.present?
 
         scene_collection.scenes.each_with_index do |scene, idx|
@@ -26,7 +26,8 @@ module Engine
             bnd.local_variable_set(:global_music, video_data.music)
             bnd.local_variable_set(:global_user_audio, video_data.user_audio)
             bnd.local_variable_set(:video_data, scene_data)
-            eval(scene.vgl_content, bnd)
+            _line_no ||= __LINE__
+            eval(scene.vgl_content, bnd, "#{scene.id}-#{scene.name}", __LINE__ - _line_no)
           end
 
           if scene_content.transition.present? && scene_content != scene_collection.video_data.scenes.last
