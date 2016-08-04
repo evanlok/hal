@@ -51,7 +51,8 @@ RSpec.describe VideoPreviewer do
       it 'returns false and sets errors' do
         expect(definition).to receive(:to_vgl).and_raise(StandardError, 'error message')
         expect(video_previewer.valid?).to be false
-        expect(video_previewer.errors).to eq(['error message'])
+        expect(video_previewer.errors.count).to eq(2)
+        expect(video_previewer.errors[0]).to eq('error message')
       end
     end
   end

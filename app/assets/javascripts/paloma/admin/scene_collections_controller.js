@@ -6,10 +6,11 @@ SceneCollectionsController.prototype.edit = function () {
   }).on('ajax:error', function (e, xhr) {
     new PNotify({
       title: 'Preview Error',
-      text: '<ul>' + _.reduce(xhr.responseJSON.errors, function (html, error) {
+      text: '<ul class="list-unstyled">' + _.reduce(xhr.responseJSON.errors, function (html, error) {
         return html + '<li>' + error + '</li>';
       }, '') + '</ul>',
-      type: 'error'
+      type: 'error',
+      width: '500px'
     });
   });
 

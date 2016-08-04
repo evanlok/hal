@@ -15,7 +15,8 @@ module Engine
 
       def content
         b.stack(background: @background) do
-          eval(scene_vgl)
+          _line_no = __LINE__
+          eval(scene_vgl, binding, 'vgl.rb', __LINE__ - _line_no)
         end
       end
 

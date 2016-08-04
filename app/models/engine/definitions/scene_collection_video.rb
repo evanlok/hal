@@ -26,7 +26,8 @@ module Engine
             bnd.local_variable_set(:global_music, video_data.music)
             bnd.local_variable_set(:global_user_audio, video_data.user_audio)
             bnd.local_variable_set(:video_data, scene_data)
-            eval(scene.vgl_content, bnd)
+            _line_no ||= __LINE__
+            eval(scene.vgl_content, bnd, "#{scene.id}-#{scene.name}", __LINE__ - _line_no)
           end
 
           if scene_content.transition.present? && scene_content != scene_collection.video_data.scenes.last

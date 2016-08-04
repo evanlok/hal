@@ -38,6 +38,7 @@ class VideoPreviewer
       @vgl ||= definition.to_vgl
     rescue => e
       errors << e.message
+      errors << e.backtrace[0]
     end
   end
 end
