@@ -59,7 +59,7 @@ gem 'color'
 gem 'aws-sdk', '~> 2.3'
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-jquery', '~> 2.2'
+  gem 'rails-assets-jquery'
   gem 'rails-assets-jquery-ujs'
   gem 'rails-assets-bootstrap-sass-official'
   gem 'rails-assets-fontawesome'
